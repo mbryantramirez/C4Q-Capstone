@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "36023239927",
+    "firebase_url": "https://communishare-9a59d.firebaseio.com",
+    "project_id": "communishare-9a59d",
+    "storage_bucket": "communishare-9a59d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36023239927:android:fce738f29e61bc64",
+        "android_client_info": {
+          "package_name": "nyc.c4q.capstone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36023239927-gutukinef23v2magqpffg0e6vv4jabj7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nyc.c4q.capstone",
+            "certificate_hash": "c792c9a765ab880a329d97c24543972affdafec8"
+          }
+        },
+        {
+          "client_id": "36023239927-9j7ljlpe3u5cd7n35s2jaq5od4lp3sns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy-Ai16moQsWVrfL-LTDlsfzwufbsLneM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36023239927-9j7ljlpe3u5cd7n35s2jaq5od4lp3sns.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
