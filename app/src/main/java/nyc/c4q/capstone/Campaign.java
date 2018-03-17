@@ -19,10 +19,14 @@ public class Campaign {
 
     }
 
-    public Campaign(String title, String userName, String imageUrl, String goal) {
+    public Campaign(String title, String creatorName, String creatorID, String imageUrl, String goal, String summary, String intro, String body) {
         this.title = title;
-        this.creatorName = userName;
+        this.creatorName = creatorName;
+        this.creatorID = creatorID;
         this.imageUrl = imageUrl;
         this.goal = goal;
+        this.summary = summary;
+        this.intro = intro;
+        this.body = body;
     }
 }

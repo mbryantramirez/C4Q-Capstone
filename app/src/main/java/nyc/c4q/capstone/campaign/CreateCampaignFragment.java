@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import nyc.c4q.capstone.Campaign;
 import nyc.c4q.capstone.R;
 
@@ -52,8 +49,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String goal = campaignGoal.getText().toString();
         String url = campaignImageUrl.getText().toString();
 
-        Campaign campaign = new Campaign(title, user, goal, url);
-        campaignRefrence.child(getString(R.string.firebase_root_node)).child(title).setValue(campaign);
+        Campaign campaign = new Campaign(title, user,"sampleId", url, goal,"sample Summary","sample Intro","sample Body");
+        campaignRefrence.child(getString(R.string.firebase_campaign_node)).child(title).setValue(campaign);
     }
 
     @Override

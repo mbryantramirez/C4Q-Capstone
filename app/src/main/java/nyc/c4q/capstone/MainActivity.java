@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         campaignRefrence = FirebaseDatabase.getInstance().getReference();
+        campaignRefrence.keepSynced(true);
         tabLayoutSetup();
     }
 

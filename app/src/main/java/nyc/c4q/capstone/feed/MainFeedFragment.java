@@ -2,12 +2,14 @@ package nyc.c4q.capstone.feed;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.GenericTypeIndicator;
@@ -25,6 +27,7 @@ import static nyc.c4q.capstone.MainActivity.campaignRefrence;
  * A simple {@link Fragment} subclass.
  */
 public class MainFeedFragment extends Fragment {
+    private static final String TAG = "FIREBASE?";
     private TextView campaignTitle;
     private TextView campaignGoal;
     private TextView campaignImage;
@@ -51,14 +54,31 @@ public class MainFeedFragment extends Fragment {
 
     private void loadListFromFirebase() {
 
-        campaignRefrence.child("campaigns").addValueEventListener(new ValueEventListener() {
+        campaignRefrence.child("campaigns").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 List<CampaignTestModel> campaignTestModelList = new ArrayList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    campaignTestModelList.add(child.getValue(CampaignTestModel.class));
+                    CampaignTestModel campaignTestModel = dataSnapshot.getValue(CampaignTestModel.class);
+                    campaignTestModelList.add(campaignTestModel);
+                    Log.d(TAG, "onChildAdded: " + child.getValue());
                 }
                 loadTextFromList(campaignTestModelList);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -73,7 +93,7 @@ public class MainFeedFragment extends Fragment {
             campaignTitle.setText(campaignTestModel.getTitle());
             campaignGoal.setText(campaignTestModel.getGoal());
             campaignImage.setText(campaignTestModel.getImageUrl());
-            campaignCreator.setText(campaignTestModel.getCreator());
+            campaignCreator.setText(campaignTestModel.getCreatorName());
         }
     }
 }
