@@ -25,4 +25,5 @@ public class Campaign {
         this.imageUrl = imageUrl;
         this.goal = goal;
     }
+
 }
