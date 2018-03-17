@@ -26,7 +26,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
   private EditText campaignCreator;
   private Button createCampaignButton;
 
-
   public CreateCampaignFragment() {
     // Required empty public constructor
   }
@@ -40,7 +39,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
     campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
     createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
-
+    createCampaignButton.setOnClickListener(this);
     return rootview;
   }
 
@@ -51,7 +50,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     String url = campaignImageUrl.getText().toString();
 
     Campaign campaign = new Campaign(title, user, goal, url);
-    campaignRefrence.child("campaigns").child(title).setValue(campaign);
+    campaignRefrence.child(getString(R.string.firebase_root_node)).child(title).setValue(campaign);
   }
 
   @Override public void onClick(View view) {
