@@ -3,70 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment"
-    >
+    tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
 
-  <!-- TODO: Update blank fragment layout -->
-  <EditText
-      android:id="@+id/firebase_test_set_title"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginTop="80dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      />
-  <EditText
-      android:id="@+id/firebase_test_set_goal"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="32dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_title"
-      android:inputType="numberDecimal"
-      />
-  <EditText
-      android:id="@+id/firebase_test_set_imageurl"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="32dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_goal"
-      android:inputType="textUri"
-      />
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/firebase_test_set_title"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-  <EditText
-      android:id="@+id/firebase_test_set_campaign_creator"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="32dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_imageurl"
-      android:inputType="textPersonName"
-      />
+    <EditText
+        android:id="@+id/firebase_test_set_goal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_title" />
+
+    <EditText
+        android:id="@+id/firebase_test_set_imageurl"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:inputType="textUri"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_goal" />
+
+    <EditText
+        android:id="@+id/firebase_test_set_campaign_creator"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_imageurl" />
 
 
-  <Button
-      android:id="@+id/firebase_test_store_data"
-      android:layout_width="200dp"
-      android:layout_height="50dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="32dp"
-      android:hint="@string/submit_to_firebase"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_campaign_creator"
-      />
+    <Button
+        android:id="@+id/firebase_test_store_data"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:hint="@string/submit_to_firebase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebase_test_set_campaign_creator" />
 
 
 </android.support.constraint.ConstraintLayout>

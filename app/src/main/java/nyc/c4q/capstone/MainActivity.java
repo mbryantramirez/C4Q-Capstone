@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void tabLayoutSetup() {
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_map_black_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_add_box_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_favorite_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager = findViewById(R.id.main_viewpager);
         FragmentAdapter fragmentAdapter =
