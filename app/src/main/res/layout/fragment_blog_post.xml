@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nyc.c4q.capstone.BlogPostFragment">
+
+
+    <ImageView
+        android:id="@+id/blog_post_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/blog_post_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/blog_post_imageview"
+        android:text="This is the story of someone that needs help.."
+        android:textSize="20sp" />
+
+</RelativeLayout>
