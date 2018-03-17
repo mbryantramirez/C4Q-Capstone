@@ -49,19 +49,6 @@
             android:hint="Enter Password"
             android:inputType="textWebPassword" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/remember_me_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Remember Me" />
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/login_submit_button"
