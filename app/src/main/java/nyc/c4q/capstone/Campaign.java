@@ -5,19 +5,24 @@ package nyc.c4q.capstone;
  */
 
 public class Campaign {
-  public String title;
-  public String creatorName;
-  public String imageUri;
-  public String goal;
 
-  public Campaign() {
+    public String title;
+    public String creatorName;
+    public String creatorID;
+    public String imageUrl;
+    public String goal;
+    public String summary;
+    public String intro;
+    public String body;
 
-  }
+    public Campaign() {
 
-  public Campaign(String title, String userName, String imageUri, String goal) {
-    this.title = title;
-    this.creatorName = userName;
-    this.imageUri = imageUri;
-    this.goal = goal;
-  }
+    }
+
+    public Campaign(String title, String userName, String imageUrl, String goal) {
+        this.title = title;
+        this.creatorName = userName;
+        this.imageUrl = imageUrl;
+        this.goal = goal;
+    }
 }

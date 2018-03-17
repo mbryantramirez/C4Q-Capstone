@@ -5,43 +5,43 @@ package nyc.c4q.capstone;
  */
 
 public class CampaignTestModel {
-  private String title;
-  private String goal;
-  private String imageUrl;
-  private String creator;
+    private String title;
+    private String goal;
+    private String imageUrl;
+    private String creator;
 
-  public CampaignTestModel() {
-  }
+    public CampaignTestModel() {
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public String getGoal() {
-    return goal;
-  }
+    public String getGoal() {
+        return goal;
+    }
 
-  public String getImageUrl() {
-    return imageUrl;
-  }
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-  public String getCreator() {
-    return creator;
-  }
+    public String getCreator() {
+        return creator;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public void setGoal(String goal) {
-    this.goal = goal;
-  }
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
 
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
-  }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-  public void setCreator(String creator) {
-    this.creator = creator;
-  }
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 }
