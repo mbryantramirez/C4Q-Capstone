@@ -9,18 +9,18 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.capstone.CampaignTestModel;
 import nyc.c4q.capstone.R;
+import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 /**
  * Created by c4q on 3/17/18.
  */
 
 public class PaignAdapter extends RecyclerView.Adapter<PaignViewHolder> {
-    private List<String> modelList= new ArrayList<>();
+    private List<DBReturnCampaignModel> modelList= new ArrayList<>();
     //In here Muhaimen will put the logic for the recyclerview for the list of campaigns.
 
-    public PaignAdapter(List<String> modelList) {
+    public PaignAdapter(List<DBReturnCampaignModel> modelList) {
         this.modelList = modelList;
     }
 

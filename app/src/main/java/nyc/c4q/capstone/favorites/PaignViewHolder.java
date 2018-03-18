@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import nyc.c4q.capstone.CampaignTestModel;
 import nyc.c4q.capstone.R;
+import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 /**
  * Created by c4q on 3/17/18.
@@ -25,8 +25,11 @@ public class PaignViewHolder extends RecyclerView.ViewHolder {
         imagleURl=itemView.findViewById(R.id.imageUrl);
         creator=itemView.findViewById(R.id.paignCreator);
     }
-    public void onBind(String model){
-        title.setText(model);
+    public void onBind(DBReturnCampaignModel model){
+        title.setText(model.getTitle());
+        goal.setText(model.getGoal());
+        imagleURl.setText(model.getImageUrl());
+        creator.setText(model.getCreatorID());
 
     }
 }

@@ -1,10 +1,10 @@
-package nyc.c4q.capstone;
+package nyc.c4q.capstone.models;
 
 /**
  * Created by c4q on 3/15/18.
  */
 
-public class Campaign {
+public class CreateCampaignModel {
 
     public String title;
     public String creatorName;
@@ -14,12 +14,14 @@ public class Campaign {
     public String summary;
     public String intro;
     public String body;
+    public String address;
+    public String category;
 
-    public Campaign() {
+    public CreateCampaignModel() {
 
     }
 
-    public Campaign(String title, String creatorName, String creatorID, String imageUrl, String goal, String summary, String intro, String body) {
+    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String summary, String intro, String body, String address, String category) {
         this.title = title;
         this.creatorName = creatorName;
         this.creatorID = creatorID;
@@ -28,6 +30,8 @@ public class Campaign {
         this.summary = summary;
         this.intro = intro;
         this.body = body;
+        this.address = address;
+        this.category = category;
     }
 
 }

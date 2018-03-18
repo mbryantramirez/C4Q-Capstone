@@ -1,11 +1,16 @@
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/paignRecyclerview"
-    tools:context="nyc.c4q.capstone.favorites.PaignFragment">
+
+    tools:context="nyc.c4q.capstone.favorites.FavoritesFragment">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/paignRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <!-- TODO: Update blank fragment layout -->
 
 
-</android.support.v7.widget.RecyclerView>
+</LinearLayout>
