@@ -9,6 +9,57 @@
     tools:context="nyc.c4q.capstone.campaign.PaymentActivity">
 
     <TextView
+        android:id="@+id/pay_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        tools:text="How Much Would You Like To Donate?" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$1"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$5"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$10"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$15"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$20"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$25"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="$30"/>
+    </LinearLayout>
+    <TextView
         android:id="@+id/title_text_view"
         android:layout_width="match_parent"
         android:layout_height="33dp"
