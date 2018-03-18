@@ -9,12 +9,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.controller.FragmentAdapter;
+import nyc.c4q.capstone.firebase.FirebaseDataHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
-    public static DatabaseReference databaseReference;
-    public static DatabaseReference campaignRefrence;
+    public static FirebaseDataHelper firebaseDataHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.main_tab_layout);
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        campaignRefrence = FirebaseDatabase.getInstance().getReference();
-        campaignRefrence.keepSynced(true);
+        firebaseDataHelper = new FirebaseDataHelper();
+        firebaseDataHelper.getDatabaseReference().keepSynced(true);
         tabLayoutSetup();
     }
 

@@ -21,7 +21,7 @@ import java.util.List;
 import nyc.c4q.capstone.CampaignTestModel;
 import nyc.c4q.capstone.R;
 
-import static nyc.c4q.capstone.MainActivity.campaignRefrence;
+import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,8 +53,7 @@ public class MainFeedFragment extends Fragment {
     }
 
     private void loadListFromFirebase() {
-
-        campaignRefrence.child("campaigns").addChildEventListener(new ChildEventListener() {
+        firebaseDataHelper.getCampaignDatbaseRefrence().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 List<CampaignTestModel> campaignTestModelList = new ArrayList<>();
