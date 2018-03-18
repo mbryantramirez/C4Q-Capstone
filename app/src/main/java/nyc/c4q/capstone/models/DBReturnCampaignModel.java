@@ -1,10 +1,10 @@
-package nyc.c4q.capstone;
+package nyc.c4q.capstone.models;
 
 /**
  * Created by c4q on 3/17/18.
  */
 
-public class CampaignTestModel {
+public class DBReturnCampaignModel {
 
     private String title;
     private String creatorName;
@@ -14,8 +14,10 @@ public class CampaignTestModel {
     private String summary;
     private String intro;
     private String body;
+    private String address;
+    private String category;
 
-    public CampaignTestModel() {
+    public DBReturnCampaignModel() {
     }
 
     public String getTitle() {
@@ -80,5 +82,21 @@ public class CampaignTestModel {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

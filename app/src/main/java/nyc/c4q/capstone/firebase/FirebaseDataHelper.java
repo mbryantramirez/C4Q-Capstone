@@ -6,19 +6,14 @@ package nyc.c4q.capstone.firebase;
 
 import android.util.Log;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.capstone.CampaignTestModel;
-
-import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
+import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 
 public class FirebaseDataHelper {
@@ -45,5 +40,16 @@ public class FirebaseDataHelper {
     public DatabaseReference getCampaignDatbaseRefrence() {
         return databaseReference.child(CAMPAIGN_PATH);
     }
+
+    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
+        List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
+        for (DataSnapshot child : dataSnapshot.getChildren()) {
+            DBReturnCampaignModel DBReturnCampaignModel = dataSnapshot.getValue(DBReturnCampaignModel.class);
+            DBReturnCampaignModelList.add(DBReturnCampaignModel);
+            Log.d(TAG, "onChildAdded: " + child.getValue());
+        }
+        return DBReturnCampaignModelList;
+    }
+
 
 }

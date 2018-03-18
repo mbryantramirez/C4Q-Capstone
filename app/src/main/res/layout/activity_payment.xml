@@ -6,65 +6,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_centerInParent="true"
-    tools:context="nyc.c4q.capstone.campaign.PaymentActivity">
+    tools:context="nyc.c4q.capstone.payment.PaymentActivity">
 
     <TextView
         android:id="@+id/pay_text_view"
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        tools:text="How Much Would You Like To Donate?" />
+        tools:text="How Much Would You Like To Donate?"
+        android:text="How Much Would You Like To Donate?"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:gravity="center"
         android:layout_marginBottom="20dp">
 
         <Button
+            android:id="@+id/one_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
+            android:layout_marginRight="5dp"
             android:text="$1"/>
         <Button
+            android:id="@+id/five_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
+            android:layout_marginRight="5dp"
             android:text="$5"/>
         <Button
+            android:id="@+id/ten_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
+            android:layout_marginRight="5dp"
             android:text="$10"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:textStyle="bold"
-            android:text="$15"/>
-        <Button
+            android:id="@+id/twenty_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:text="$20"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:textStyle="bold"
-            android:text="$25"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:textStyle="bold"
-            android:text="$30"/>
+
+
     </LinearLayout>
     <TextView
         android:id="@+id/title_text_view"
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        tools:text="Payment" />
+        tools:text="Payment"
+        android:text="Payment"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/googlePay_cv"
@@ -91,15 +85,9 @@
                 android:padding="16dp">
 
                 <ImageView
-                    tools:src="@tools:sample/avatars"
-                    android:layout_width="50dp"
+                    android:src="@drawable/google_wallet_logo"
+                    android:layout_width="100dp"
                     android:layout_height="50dp" />
-
-                <TextView
-                    android:id="@+id/googlepay_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
             </LinearLayout>
         </LinearLayout>
 
@@ -130,15 +118,9 @@
                 android:padding="16dp">
 
                 <ImageView
-                    tools:src="@tools:sample/avatars"
-                    android:layout_width="50dp"
+                    android:src="@drawable/android_pay_logo"
+                    android:layout_width="100dp"
                     android:layout_height="50dp" />
-
-                <TextView
-                    android:id="@+id/androidpay_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
             </LinearLayout>
         </LinearLayout>
 
@@ -169,18 +151,28 @@
                 android:padding="16dp">
 
                 <ImageView
-                    tools:src="@tools:sample/avatars"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
-
-                <TextView
-                    android:id="@+id/paypal_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/paypal_logo" />
             </LinearLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+    <Button
+        android:id="@+id/submit_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Payment"/>
+
+    </LinearLayout>
 
 </LinearLayout>
