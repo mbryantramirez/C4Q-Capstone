@@ -6,16 +6,16 @@ package nyc.c4q.capstone.models;
 
 public class CreateCampaignModel {
 
-    private String title;
-    private String creatorName;
-    private String creatorID;
-    private String imageUrl;
-    private String goal;
-    private String summary;
-    private String intro;
-    private String body;
-    private String address;
-    private String category;
+    public String title;
+    public String creatorName;
+    public String creatorID;
+    public String imageUrl;
+    public String goal;
+    public String summary;
+    public String intro;
+    public String body;
+    public String address;
+    public String category;
 
     public CreateCampaignModel() {
 
