@@ -1,13 +1,17 @@
 package nyc.c4q.capstone.blog;
 
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,15 +32,21 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
  */
 public class BlogPostFragment extends Fragment implements ChildEventListener {
 
+    public static final String TAG = "firebase?";
+
     View rootView;
     private TextView userImage;
     private TextView blogPost;
+    private TextView storyTitle;
+    private Button donateButton;
     private RecyclerView recyclerView;
 
 
     public BlogPostFragment() {
         // Required empty public constructor
     }
+
+    //
 
 
     @Override
@@ -46,28 +56,41 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
         rootView = inflater.inflate(R.layout.fragment_blog_post, container, false);
         userImage = rootView.findViewById(R.id.blog_post_imageview);
         blogPost = rootView.findViewById(R.id.blog_post_textview);
+        storyTitle = rootView.findViewById(R.id.blog_post_title);
+        donateButton = rootView.findViewById(R.id.donate_button);
         recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
 
+//        firebaseDataHelper.getCampaignDatbaseRefrence().addChildEventListener(this);
+        firebaseDataHelper.getDatabaseReference().addChildEventListener(this);
+
         blogPost.setMovementMethod(new ScrollingMovementMethod());
+
+//        Bundle bundle = getArguments();
+//        String title = bundle.getString("title");
 
         return rootView;
 
 
     }
 
-    private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList) {
-        for (DBReturnCampaignModel DBReturnCampaignModel : currentCampaignsList) {
-            userImage.setText(DBReturnCampaignModel.getImageUrl());
-            blogPost.setText(DBReturnCampaignModel.getIntro() + DBReturnCampaignModel.getBody());
+    private void loadTextFromList(DBReturnCampaignModel model) {
+        userImage.setText(model.getTitle());
+//            blogPost.setText(DBReturnCampaignModel.getIntro() + DBReturnCampaignModel.getBody());
+    }
+
+
+    @Override
+    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        Log.d(TAG, "query" + dataSnapshot.hasChild("eight"));
+        if (dataSnapshot.hasChild("eight")) {
+            Log.d(TAG, "datasnapshot:" + dataSnapshot.child("eight"));
+            DBReturnCampaignModel DBReturnCampaignModel = dataSnapshot.child("eight").getValue(DBReturnCampaignModel.class);
+            loadTextFromList(DBReturnCampaignModel);
+
         }
 
     }
 
-    @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot));
-
-    }
 
     @Override
     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -88,4 +111,6 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
+
 }
+

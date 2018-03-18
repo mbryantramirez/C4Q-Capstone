@@ -12,6 +12,13 @@
         tools:text="Large User Image"
         tools:textSize="80sp" />
 
+    <TextView
+        android:id="@+id/blog_post_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="TITLE"
+        android:textAlignment="center"/>
+
 
     <TextView
         android:id="@+id/blog_post_textview"
