@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import nyc.c4q.capstone.FavoritesFragment;
-import nyc.c4q.capstone.MapFragment;
+import nyc.c4q.capstone.favorites.FavoritesFragment;
+import nyc.c4q.capstone.finder.MapFragment;
 import nyc.c4q.capstone.campaign.CreateCampaignFragment;
 import nyc.c4q.capstone.feed.MainFeedFragment;
 
