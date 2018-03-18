@@ -41,4 +41,8 @@ public class PaignAdapter extends RecyclerView.Adapter<PaignViewHolder> {
     public int getItemCount() {
         return modelList.size();
     }
+
+    public void setData(List<DBReturnCampaignModel> data){
+        this.modelList = data;
+    }
 }

@@ -1,6 +1,7 @@
 package nyc.c4q.capstone.favorites;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -8,6 +9,8 @@ import java.util.List;
 
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by c4q on 3/17/18.
@@ -26,6 +29,7 @@ public class PaignViewHolder extends RecyclerView.ViewHolder {
         creator=itemView.findViewById(R.id.paignCreator);
     }
     public void onBind(DBReturnCampaignModel model){
+        Log.d(TAG, "onBind: viewholder" );
         title.setText(model.getTitle());
         goal.setText(model.getGoal());
         imagleURl.setText(model.getImageUrl());
