@@ -1,6 +1,7 @@
 package nyc.c4q.capstone.blog;
 
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,8 +23,10 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
 
+import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
+import nyc.c4q.capstone.payment.PaymentActivity;
 
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
@@ -68,6 +72,13 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
 //        Bundle bundle = getArguments();
 //        String title = bundle.getString("title");
 
+        donateButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(rootView.getContext(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
         return rootView;
 
 
@@ -111,6 +122,5 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
 }
 
