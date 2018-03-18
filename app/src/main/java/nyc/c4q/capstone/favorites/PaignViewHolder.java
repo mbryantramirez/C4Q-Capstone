@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 import nyc.c4q.capstone.CampaignTestModel;
 import nyc.c4q.capstone.R;
 
@@ -23,10 +25,8 @@ public class PaignViewHolder extends RecyclerView.ViewHolder {
         imagleURl=itemView.findViewById(R.id.imageUrl);
         creator=itemView.findViewById(R.id.paignCreator);
     }
-    public void onBind(CampaignTestModel model){
-        title.setText(model.getTitle());
-        goal.setText(model.getGoal());
-        imagleURl.setText(model.getImageUrl());
-        creator.setText(model.getCreator());
+    public void onBind(String model){
+        title.setText(model);
+
     }
 }

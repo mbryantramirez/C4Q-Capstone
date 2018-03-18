@@ -12,6 +12,7 @@
         android:layout_height="100dp" />
 
     <LinearLayout
+        android:background="#FF4500"
         android:id="@+id/ll1"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -39,6 +40,7 @@
             />
 
         <Button
+            android:id="@+id/education_button"
             android:text="education"
             android:textSize="12sp"
             android:background="@drawable/education_round_button"
@@ -49,6 +51,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="#FFD700"
         android:id="@+id/ll2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -67,12 +70,19 @@
             android:layout_margin="10dp" />
 
         <Button
+            android:id="@+id/clothingButton"
+            android:background="@drawable/clothing_round_button"
+            android:text="clothing"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
             />
 
         <Button
+            android:id="@+id/npButton"
+            android:background="@drawable/nonprofit_round_button"
+            android:text="nonprofit"
+            android:textSize="12sp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp" />

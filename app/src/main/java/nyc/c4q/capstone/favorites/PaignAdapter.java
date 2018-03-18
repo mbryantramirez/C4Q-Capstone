@@ -33,6 +33,7 @@ public class PaignAdapter extends RecyclerView.Adapter<PaignViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PaignViewHolder holder, int position) {
+        holder.onBind(modelList.get(position));
 
     }
 

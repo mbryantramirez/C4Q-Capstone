@@ -10,6 +10,9 @@ public class CampaignPreferenceActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private Button medButton;
+    private Button housingButton;
+    private Button clothingButton;
+    private Button educationButton;
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
 
 
@@ -21,6 +24,9 @@ public class CampaignPreferenceActivity extends AppCompatActivity {
         preferences=getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
         editor=preferences.edit();
         medButton= findViewById(R.id.medButton);
+        housingButton=findViewById(R.id.housing_button);
+        clothingButton=findViewById(R.id.clothingButton);
+        educationButton=findViewById(R.id.education_button);
         medButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,6 +35,24 @@ public class CampaignPreferenceActivity extends AppCompatActivity {
 
             }
         });
+        housingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textFromHousingButton= housingButton.getText().toString();
+                editor.putString("med",textFromHousingButton);
+
+            }
+        });
+        clothingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textFromClothingButton= clothingButton.getText().toString();
+                editor.putString("med",textFromClothingButton);
+
+            }
+        });
+
+
 
 
     }
