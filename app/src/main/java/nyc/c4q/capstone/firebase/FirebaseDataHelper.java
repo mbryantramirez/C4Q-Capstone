@@ -25,7 +25,7 @@ public class FirebaseDataHelper {
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();
     }
 
-    private static FirebaseDataHelper getInstance() {
+    public static FirebaseDataHelper getInstance() {
         return FirebaseHolder.INSTANCE;
     }
 
