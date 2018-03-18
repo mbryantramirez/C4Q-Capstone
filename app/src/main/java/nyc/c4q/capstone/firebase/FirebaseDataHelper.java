@@ -44,6 +44,7 @@ public class FirebaseDataHelper {
     public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
         for (DataSnapshot child : dataSnapshot.getChildren()) {
+            dataSnapshot.child("eight").getValue();
             DBReturnCampaignModel DBReturnCampaignModel = dataSnapshot.getValue(DBReturnCampaignModel.class);
             DBReturnCampaignModelList.add(DBReturnCampaignModel);
             Log.d(TAG, "onChildAdded: " + child.getValue());
