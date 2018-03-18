@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import nyc.c4q.capstone.Campaign;
+import nyc.c4q.capstone.models.CreateCampaignModel;
 import nyc.c4q.capstone.R;
 
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
@@ -49,7 +49,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String goal = campaignGoal.getText().toString();
         String url = campaignImageUrl.getText().toString();
 
-        Campaign campaign = new Campaign(title, user, "sampleId", url, goal, "sample Summary", "sample Intro", "sample Body");
+        CreateCampaignModel campaign = new CreateCampaignModel(title, user, "sampleId", url, goal, "sample Summary", "sample Intro", "sample Body", "sampleAddress", "sampleCategory");
         firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
     }
 
