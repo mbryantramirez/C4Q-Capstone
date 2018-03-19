@@ -21,13 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginBottom="32dp"
-            android:src="@mipmap/ic_launcher_round" />
+            android:src="@drawable/community_logo" />
 
         <TextView
             android:id="@+id/login_welcome_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="App Name: A place to give and receive"
+            android:text="CommuniShare: A place to give and receive"
             android:textSize="20dp" />
 
         <TextView
