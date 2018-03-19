@@ -6,7 +6,7 @@
 
     tools:context="nyc.c4q.capstone.favorites.FavoritesFragment">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/paignRecyclerview"
+        android:id="@+id/favorites_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

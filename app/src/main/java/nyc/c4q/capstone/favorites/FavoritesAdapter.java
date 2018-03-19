@@ -16,23 +16,28 @@ import nyc.c4q.capstone.models.DBReturnCampaignModel;
  * Created by c4q on 3/17/18.
  */
 
-public class PaignAdapter extends RecyclerView.Adapter<PaignViewHolder> {
-    private List<DBReturnCampaignModel> modelList= new ArrayList<>();
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> {
+    private List<DBReturnCampaignModel> modelList = new ArrayList<>();
     //In here Muhaimen will put the logic for the recyclerview for the list of campaigns.
 
-    public PaignAdapter(List<DBReturnCampaignModel> modelList) {
+    public FavoritesAdapter(List<DBReturnCampaignModel> modelList) {
         this.modelList = modelList;
     }
 
+    public void setData(List<DBReturnCampaignModel> data) {
+        this.modelList = data;
+    }
+
+
     @NonNull
     @Override
-    public PaignViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View childView= LayoutInflater.from(parent.getContext()).inflate(R.layout.paign_itemview, parent, false);
-        return new PaignViewHolder(childView);
+    public FavoritesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View childView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorites_itemview, parent, false);
+        return new FavoritesViewHolder(childView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PaignViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
         holder.onBind(modelList.get(position));
 
     }
@@ -42,7 +47,5 @@ public class PaignAdapter extends RecyclerView.Adapter<PaignViewHolder> {
         return modelList.size();
     }
 
-    public void setData(List<DBReturnCampaignModel> data){
-        this.modelList = data;
-    }
+
 }
