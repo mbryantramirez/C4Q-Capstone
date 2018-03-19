@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,7 +34,9 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 
 public class FavoritesFragment extends Fragment implements ChildEventListener {
+    private static final String KEY_POSITION = "position";
     private View rootView;
+    private ViewPager pager;
     private RecyclerView recyclerView;
     //In this fragment Muhaimen will put in the logic to display the list of campaigns
     //
@@ -44,6 +48,15 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
     public FavoritesFragment() {
         // Required empty public constructor
     }
+    static FavoritesFragment newInstance(int position) {
+        FavoritesFragment frag=new FavoritesFragment();
+        Bundle args=new Bundle();
+
+        args.putInt(KEY_POSITION, position);
+        frag.setArguments(args);
+
+        return(frag);
+    }
 
 
 
@@ -53,10 +66,15 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
 
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
+        pager= rootView.findViewById(R.id.viewpage);
+        pager.setAdapter(buildAdapter());
 
 
         // Inflate the layout for this fragment
         return rootView;
+    }
+    private PagerAdapter buildAdapter() {
+        return(new MyAdapter(getActivity(), getChildFragmentManager()));
     }
 
     @Override
