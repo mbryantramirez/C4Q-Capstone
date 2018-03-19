@@ -6,10 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
-
-    protected int splashTime = 2000;
-
-    //did not add to manifest as launcher activ
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

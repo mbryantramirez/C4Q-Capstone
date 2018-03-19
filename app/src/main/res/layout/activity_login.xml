@@ -84,7 +84,8 @@
             android:layout_gravity="center"
             android:paddingHorizontal="16dp"
             android:text="Click to register"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:background="@drawable/rounded_button"/>
 
     </LinearLayout>
 

@@ -23,10 +23,10 @@
     <TextView
         android:id="@+id/blog_post_textview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_below="@id/blog_post_imageview"
         android:scrollbars="vertical"
-        android:text="This is the story of someone that needs help.."
+        android:text="This is the story of someone that needs help..."
         android:textSize="25sp" />
 
 
@@ -50,5 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Donate Now" />
+        android:text="Donate Now"
+        android:background="@drawable/rounded_button"/>
 </RelativeLayout>
