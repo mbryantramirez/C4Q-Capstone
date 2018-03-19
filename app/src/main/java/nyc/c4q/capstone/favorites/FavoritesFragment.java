@@ -24,16 +24,20 @@ import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.firebase.FirebaseDataHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
+import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
+
 /**
  * A simple {@link Fragment} subclass.
  */
+
+
 public class FavoritesFragment extends Fragment implements ChildEventListener {
     private View rootView;
     private RecyclerView recyclerView;
     //In this fragment Muhaimen will put in the logic to display the list of campaigns
     //
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
-    private PaignAdapter listAdapter;
+    private FavoritesAdapter listAdapter;
 
     private static final String TAG = "FIREBASEFAV";
 
@@ -42,12 +46,14 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
-        recyclerView = rootView.findViewById(R.id.paignRecyclerview);
+        recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
+
 
         // Inflate the layout for this fragment
         return rootView;
@@ -56,13 +62,13 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseDatabase.getInstance().getReference().child("campaigns").addChildEventListener(this);
+        firebaseDataHelper.getDatabaseReference().addChildEventListener(this);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listAdapter = new PaignAdapter(campaignModelList);
+        listAdapter = new FavoritesAdapter(campaignModelList);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager1);
         recyclerView.setAdapter(listAdapter);
@@ -71,14 +77,13 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
 
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        campaignModelList = FirebaseDataHelper.getInstance().getCampaignsList(dataSnapshot);
+        campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot);
         for (DBReturnCampaignModel ccm : campaignModelList) {
             Log.d(TAG, "onChildAdded: " + ccm.getTitle());
-            Log.d(TAG, "onChildAdded:size " + campaignModelList.size());
         }
+        Log.d(TAG, "onChildAdded:size " + campaignModelList.size());
         listAdapter.setData(campaignModelList);
         listAdapter.notifyDataSetChanged();
-
     }
 
     @Override

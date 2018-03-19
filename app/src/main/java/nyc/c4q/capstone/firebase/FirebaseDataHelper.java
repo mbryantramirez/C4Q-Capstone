@@ -38,19 +38,30 @@ public class FirebaseDataHelper {
     }
 
     public DatabaseReference getCampaignDatbaseRefrence() {
-        return databaseReference.child(CAMPAIGN_PATH);
+        return getDatabaseReference().child(CAMPAIGN_PATH);
     }
 
     public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
+        int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
-            dataSnapshot.child("eight").getValue();
-            DBReturnCampaignModel DBReturnCampaignModel = dataSnapshot.getValue(DBReturnCampaignModel.class);
-            DBReturnCampaignModelList.add(DBReturnCampaignModel);
-            Log.d(TAG, "onChildAdded: " + child.getValue());
+            Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
+            Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
+            Log.d(TAG, "onLoopCount: " + count);
+            DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
+           DBReturnCampaignModelList.add(dbReturnCampaignModel);
+            count++;
         }
         return DBReturnCampaignModelList;
     }
 
+    public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot) {
+        Log.d(TAG, "query" + dataSnapshot.hasChild("one"));
+        if (dataSnapshot.hasChild("one")) {
+            Log.d(TAG, "datasnapshot:" + dataSnapshot.child("one"));
+            return dataSnapshot.child("one").getValue(DBReturnCampaignModel.class);
+        }
+        return null;
+    }
 
 }
