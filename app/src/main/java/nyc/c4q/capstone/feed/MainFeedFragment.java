@@ -1,7 +1,5 @@
 package nyc.c4q.capstone.feed;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -46,7 +42,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
-        firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(this);
+        firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
         setup();
@@ -71,7 +67,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
                     firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
-
                 }
 
             }
@@ -92,13 +87,19 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
             public void onCardClicked(int index) {
                 Log.d(CARD_TAG, "onCardClicked");
                 Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
+
+                int pos = cardStackView.getTopIndex() - 1;
+
+                DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
+                Log.d(CARD_TAG, "onCardClicked: " + dbReturnCampaignModel.getTitle());
+                firebaseDataHelper.getDatabaseReference().child("funded").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
             }
         });
     }
 
 
     private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList) {
-        if (getActivity()!=null){
+        if (getActivity() != null) {
             feedCardAdapter = new FeedCardAdapter(getActivity());
             feedCardAdapter.addAll(currentCampaignsList);
             cardStackView.setAdapter(feedCardAdapter);
