@@ -7,21 +7,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.capstone.R;
-import nyc.c4q.capstone.firebase.FirebaseDataHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
@@ -31,7 +28,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
  */
 
 
-public class FavoritesFragment extends Fragment implements ChildEventListener {
+public class FavoritesFragment extends Fragment implements ValueEventListener {
     private View rootView;
     private RecyclerView recyclerView;
     //In this fragment Muhaimen will put in the logic to display the list of campaigns
@@ -46,7 +43,6 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +50,7 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
 
+        firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(this);
 
         // Inflate the layout for this fragment
         return rootView;
@@ -62,7 +59,6 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseDataHelper.getDatabaseReference().addChildEventListener(this);
     }
 
     @Override
@@ -72,32 +68,13 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager1);
         recyclerView.setAdapter(listAdapter);
-        listAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+    public void onDataChange(DataSnapshot dataSnapshot) {
         campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot);
-        for (DBReturnCampaignModel ccm : campaignModelList) {
-            Log.d(TAG, "onChildAdded: " + ccm.getTitle());
-        }
-        Log.d(TAG, "onChildAdded:size " + campaignModelList.size());
         listAdapter.setData(campaignModelList);
         listAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-    }
-
-    @Override
-    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
     }
 
@@ -105,6 +82,5 @@ public class FavoritesFragment extends Fragment implements ChildEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
 
 }

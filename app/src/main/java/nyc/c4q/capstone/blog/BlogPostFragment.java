@@ -1,9 +1,9 @@
 package nyc.c4q.capstone.blog;
 
 
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.List;
@@ -32,7 +33,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlogPostFragment extends Fragment implements ChildEventListener {
+public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     public static final String TAG = "firebase?";
 
@@ -52,7 +53,7 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_blog_post, container, false);
@@ -62,13 +63,9 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
         donateButton = rootView.findViewById(R.id.donate_button);
         recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
 
-//        firebaseDataHelper.getCampaignDatbaseRefrence().addChildEventListener(this);
-        firebaseDataHelper.getDatabaseReference().addChildEventListener(this);
+        firebaseDataHelper.getDatabaseReference().addValueEventListener(this);
 
         blogPost.setMovementMethod(new ScrollingMovementMethod());
-
-//        Bundle bundle = getArguments();
-//        String title = bundle.getString("title");
 
         donateButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -78,8 +75,6 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
             }
         });
         return rootView;
-
-
     }
 
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
@@ -88,25 +83,8 @@ public class BlogPostFragment extends Fragment implements ChildEventListener {
 
 
     @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-       loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot));
-
-    }
-
-
-    @Override
-    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-    }
-
-    @Override
-    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot));
     }
 
     @Override
