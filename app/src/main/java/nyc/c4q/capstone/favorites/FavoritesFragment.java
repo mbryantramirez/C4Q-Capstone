@@ -76,6 +76,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
+        //In her firbase takes a snapshot of the model and saves it, then puts the dat wherever needed.
         campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot);
         listAdapter.setData(campaignModelList);
         listAdapter.notifyDataSetChanged();

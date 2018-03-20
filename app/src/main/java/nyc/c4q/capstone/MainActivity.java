@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
+        /*
+        we are using firebase to save certain data.
+         */
         tabLayoutSetup();
     }
 

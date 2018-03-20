@@ -71,6 +71,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
                     firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                    //when the card is swiped right firebase takes data from the card, so if it is swiped right it will take data
+                    //and diplay it in the favorites fragment.
 
                 }
 

@@ -1,5 +1,6 @@
 package nyc.c4q.capstone.campaign;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,7 +24,13 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignGoal;
     private EditText campaignImageUrl;
     private EditText campaignCreator;
+    private EditText campaignSummary;
+    private EditText campaignIntro;
+    private EditText campaignBody;
+    private EditText campaignAddress;
+    private EditText campaignCategory;
     private Button createCampaignButton;
+
 
     public CreateCampaignFragment() {
         // Required empty public constructor
@@ -37,8 +44,13 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
+        campaignSummary=rootview.findViewById(R.id.firebase_test_set_summary);
         campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
         createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
+        campaignIntro=rootview.findViewById(R.id.firebase_test_set_intro);
+        campaignBody=rootview.findViewById(R.id.firebase_test_set_campaign_body);
+        campaignAddress=rootview.findViewById(R.id.address);
+        campaignCategory=rootview.findViewById(R.id.category);
         createCampaignButton.setOnClickListener(this);
         return rootview;
     }
@@ -48,8 +60,15 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String user = campaignCreator.getText().toString();
         String goal = campaignGoal.getText().toString();
         String url = campaignImageUrl.getText().toString();
+        String creator= campaignCreator.getText().toString();
+        String intro=campaignIntro.getText().toString();
+        String summary=campaignSummary.getText().toString();
+        String body=campaignBody.getText().toString();
+        String address=campaignAddress.getText().toString();
+        String category=campaignCategory.getText().toString();
 
-        CreateCampaignModel campaign = new CreateCampaignModel(title, user, "sampleId", url, goal, "sample Summary", "sample Intro", "sample Body", "sampleAddress", "sampleCategory");
+
+        CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, summary, intro, body, address, category);
         firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
     }
 
