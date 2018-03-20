@@ -48,9 +48,9 @@ public class FirebaseDataHelper {
             Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
             Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
             Log.d(TAG, "onLoopCount: " + count);
+            Log.d(TAG, "getCampaignsList: "+ dataSnapshot.getChildren());
             DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-           DBReturnCampaignModelList.add(dbReturnCampaignModel);
-            count++;
+            DBReturnCampaignModelList.add(dbReturnCampaignModel);
         }
         return DBReturnCampaignModelList;
     }

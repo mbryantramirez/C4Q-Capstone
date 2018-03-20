@@ -16,12 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".payment.PaymentActivity">
-        </activity>
+        <activity android:name=".payment.PaymentActivity"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".SplashActivity">
-        </activity>
+        <activity android:name=".SplashActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value=" AIzaSyCRm-51nGIAxV3q2fz5IuX20bWariS45FM " />
+
     </application>
 
 </manifest>

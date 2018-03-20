@@ -4,9 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.favorites.FavoritesFragment;
-import nyc.c4q.capstone.finder.MapFragment;
+import nyc.c4q.capstone.finder.FinderFragment;
 import nyc.c4q.capstone.campaign.CreateCampaignFragment;
 import nyc.c4q.capstone.feed.MainFeedFragment;
 
@@ -28,7 +27,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new MainFeedFragment();
             case 1:
-                return new MapFragment();
+                return new FinderFragment();
             case 2:
                 return new CreateCampaignFragment();
             case 3:
