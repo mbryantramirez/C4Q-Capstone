@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ import nyc.c4q.capstone.R;
  * A simple {@link Fragment} subclass.
  */
 
-public class FinderFragment extends Fragment implements OnMapReadyCallback {
+public class FinderFragment extends Fragment implements OnMapReadyCallback , ViewPager.OnPageChangeListener {
 
     private View rootView;
     private MapView mapView;
@@ -62,6 +63,20 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         myGoogleMap = googleMap;
         myGoogleMap.getUiSettings().setZoomControlsEnabled(true);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 }

@@ -7,22 +7,19 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.capstone.R;
-import nyc.c4q.capstone.firebase.FirebaseDataHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
@@ -35,6 +32,8 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 public class FavoritesFragment extends Fragment implements ValueEventListener {
     private View rootView;
     private RecyclerView recyclerView;
+    private Button fundedButton;
+    private Button favoritesButton;
     //In this fragment Muhaimen will put in the logic to display the list of campaigns
     //
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
@@ -53,8 +52,25 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
+        favoritesButton=rootView.findViewById(R.id.favorites);
+        fundedButton=rootView.findViewById(R.id.fundedButton);
+        fundedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseDataHelper.getDatabaseReference().child("funded").addValueEventListener(FavoritesFragment.this);
 
-        firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(this);
+            }
+        });
+        favoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
+
+            }
+        });
+
+
+
 
         // Inflate the layout for this fragment
         return rootView;
@@ -87,8 +103,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
-    public void loadFavorites(){
 
-    }
+
 
 }

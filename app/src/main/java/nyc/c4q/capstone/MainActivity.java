@@ -10,11 +10,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.controller.FragmentAdapter;
-import nyc.c4q.capstone.firebase.FirebaseDataHelper;
+import nyc.c4q.capstone.utils.FirebaseDataHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,12 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.main_tab_layout);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
-        /*
-        we are using firebase to save certain data.
-         */
+        firebaseDataHelper.getCampaignDatbaseRefrence().keepSynced(true);
         tabLayoutSetup();
     }
 
