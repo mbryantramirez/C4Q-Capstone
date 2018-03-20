@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
@@ -28,7 +29,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFeedFragment extends Fragment implements ChildEventListener {
+public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     private static final String TAG = "FIREBASE?";
     private static final String CARD_TAG = "CARDSTACKVIEW?";
@@ -45,7 +46,7 @@ public class MainFeedFragment extends Fragment implements ChildEventListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
-        firebaseDataHelper.getDatabaseReference().addChildEventListener(this);
+        firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(this);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
         setup();
@@ -63,6 +64,15 @@ public class MainFeedFragment extends Fragment implements ChildEventListener {
             public void onCardSwiped(SwipeDirection direction) {
                 Log.d(CARD_TAG, "onCardSwipped: " + direction.toString());
                 Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
+                if (direction == SwipeDirection.Right) {
+                    Log.d(CARD_TAG, "onCardSwippedRight: " + "add to favorites");
+                    Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
+                    int pos = cardStackView.getTopIndex() - 1;
+                    DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
+                    Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
+                    firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+
+                }
 
             }
 
@@ -81,36 +91,23 @@ public class MainFeedFragment extends Fragment implements ChildEventListener {
             @Override
             public void onCardClicked(int index) {
                 Log.d(CARD_TAG, "onCardClicked");
+                Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
             }
         });
     }
 
 
     private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList) {
-        feedCardAdapter = new FeedCardAdapter(getContext());
-        feedCardAdapter.addAll(currentCampaignsList);
-        cardStackView.setAdapter(feedCardAdapter);
-
+        if (getActivity()!=null){
+            feedCardAdapter = new FeedCardAdapter(getActivity());
+            feedCardAdapter.addAll(currentCampaignsList);
+            cardStackView.setAdapter(feedCardAdapter);
+        }
     }
 
     @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot));
-    }
-
-    @Override
-    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-    }
-
-    @Override
-    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+    public void onDataChange(DataSnapshot dataSnapshot) {
+            loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot));
     }
 
     @Override
