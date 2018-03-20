@@ -16,24 +16,25 @@ import static android.content.ContentValues.TAG;
  * Created by c4q on 3/17/18.
  */
 
-public class PaignViewHolder extends RecyclerView.ViewHolder {
+public class FavoritesViewHolder extends RecyclerView.ViewHolder {
     private TextView title;
     private TextView goal;
     private TextView imagleURl;
     private TextView creator;
-    public PaignViewHolder(View itemView) {
+
+    public FavoritesViewHolder(View itemView) {
         super(itemView);
-        title=itemView.findViewById(R.id.paigTitle);
-        goal=itemView.findViewById(R.id.paignGoal);
-        imagleURl=itemView.findViewById(R.id.imageUrl);
-        creator=itemView.findViewById(R.id.paignCreator);
+        title = itemView.findViewById(R.id.paigTitle);
+        goal = itemView.findViewById(R.id.paignGoal);
+        imagleURl = itemView.findViewById(R.id.imageUrl);
+        creator = itemView.findViewById(R.id.paignCreator);
     }
-    public void onBind(DBReturnCampaignModel model){
-        Log.d(TAG, "onBind: viewholder" );
+
+    public void onBind(DBReturnCampaignModel model) {
+        Log.d(TAG, "onBind: viewholder");
         title.setText(model.getTitle());
         goal.setText(model.getGoal());
         imagleURl.setText(model.getImageUrl());
         creator.setText(model.getCreatorID());
-
     }
 }

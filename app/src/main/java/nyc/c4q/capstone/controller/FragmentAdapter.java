@@ -26,7 +26,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new BlogPostFragment();
+                return new MainFeedFragment();
             case 1:
                 return new MapFragment();
             case 2:
