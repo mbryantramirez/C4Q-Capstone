@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     tools:context="nyc.c4q.capstone.SplashActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/community_logo"/>
+        android:src="@drawable/community_logo" />
+
 
 </android.support.constraint.ConstraintLayout>

@@ -9,19 +9,24 @@
         android:roundIcon="@drawable/community_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".payment.PaymentActivity">
-        </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".payment.PaymentActivity"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/SplashTheme" />
         <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".SplashActivity"></activity>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value=" AIzaSyCRm-51nGIAxV3q2fz5IuX20bWariS45FM " />
 
     </application>
 
