@@ -3,12 +3,14 @@ package nyc.c4q.capstone.campaign;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import nyc.c4q.capstone.models.CreateCampaignModel;
 import nyc.c4q.capstone.R;
@@ -56,6 +58,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     }
 
     private void createCampaign() {
+
+
         String title = campaignTitle.getText().toString();
         String user = campaignCreator.getText().toString();
         String goal = campaignGoal.getText().toString();
@@ -67,9 +71,12 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String address=campaignAddress.getText().toString();
         String category=campaignCategory.getText().toString();
 
-
-        CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, summary, intro, body, address, category);
-        firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
+        if (TextUtils.isEmpty(title)|| TextUtils.isEmpty(user)||TextUtils.isEmpty(goal)|| TextUtils.isEmpty(url)||TextUtils.isEmpty(creator)|| TextUtils.isEmpty(intro)||TextUtils.isEmpty(summary)||TextUtils.isEmpty(body)||TextUtils.isEmpty(address)||TextUtils.isEmpty(category)){
+            Toast.makeText(getContext(),"enter missing input",Toast.LENGTH_LONG).show();
+        } else {
+            CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, summary, intro, body, address, category);
+            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
+        }
     }
 
     @Override
