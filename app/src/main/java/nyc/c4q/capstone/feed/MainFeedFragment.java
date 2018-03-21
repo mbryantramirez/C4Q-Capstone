@@ -1,5 +1,6 @@
 package nyc.c4q.capstone.feed;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import java.util.List;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
 
+import static android.content.Context.MODE_PRIVATE;
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 /**
@@ -31,6 +33,9 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     private static final String CARD_TAG = "CARDSTACKVIEW?";
     private CardStackView cardStackView;
     private FeedCardAdapter feedCardAdapter;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
 
     public MainFeedFragment() {
         // Required empty public constructor
@@ -43,6 +48,10 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
+        preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+        editor=preferences.edit();
+        String med=preferences.getString("med",null);
+        Log.d(TAG, "onCreateView: pref stuff"+med);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
         setup();

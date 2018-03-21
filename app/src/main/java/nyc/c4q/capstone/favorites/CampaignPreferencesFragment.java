@@ -47,6 +47,7 @@ public class CampaignPreferencesFragment extends Fragment {
             public void onClick(View v) {
                 String textFromMedButton= medButton.getText().toString();
                 editor.putString("med",textFromMedButton);
+                editor.apply();
 
             }
         });
@@ -54,7 +55,8 @@ public class CampaignPreferencesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String textFromHousingButton= housingButton.getText().toString();
-                editor.putString("med",textFromHousingButton);
+                editor.putString("housing",textFromHousingButton);
+                editor.apply();
 
             }
         });
@@ -62,7 +64,8 @@ public class CampaignPreferencesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String textFromClothingButton= clothingButton.getText().toString();
-                editor.putString("med",textFromClothingButton);
+                editor.putString("clothing",textFromClothingButton);
+                editor.apply();
 
             }
         });
