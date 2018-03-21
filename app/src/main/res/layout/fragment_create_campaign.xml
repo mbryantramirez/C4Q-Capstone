@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-
         <EditText
             android:id="@+id/firebase_test_set_title"
             android:layout_width="100dp"
@@ -117,5 +116,5 @@
 
     </LinearLayout>
 
-
 </ScrollView>
+
