@@ -17,17 +17,19 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_marginBottom="32dp"
-            android:src="@mipmap/ic_launcher_round" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/community_logo"/>
 
         <TextView
             android:id="@+id/login_welcome_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="App Name: A place to give and receive"
+            android:text="CommuniShare: \n A place to give and receive"
+            android:textAlignment="center"
             android:textSize="20dp" />
 
         <TextView
@@ -60,8 +62,9 @@
         <Button
             android:id="@+id/login_submit_button"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_button"
             android:text="Submit" />
     </LinearLayout>
 
@@ -84,7 +87,8 @@
             android:layout_gravity="center"
             android:paddingHorizontal="16dp"
             android:text="Click to register"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:background="@drawable/rounded_button"/>
 
     </LinearLayout>
 
