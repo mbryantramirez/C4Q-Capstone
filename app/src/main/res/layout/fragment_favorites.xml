@@ -22,7 +22,6 @@
         <Button
             android:id="@+id/fundedButton"
             android:text="funded"
-            android:onClick="loadFunded"
             android:layout_width="200dp"
             android:layout_height="wrap_content" />
 

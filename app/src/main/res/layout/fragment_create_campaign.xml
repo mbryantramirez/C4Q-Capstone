@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,114 +7,115 @@
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/firebase_test_set_title"
-        android:hint="title"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
-      />
-    <EditText
-        android:id="@+id/firebase_test_set_campaign_creator"
-        android:hint="creator"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPersonName"
-/>
-
-    <EditText
-        android:id="@+id/firebase_test_set_goal"
-        android:hint="goal"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
-        android:inputType="numberDecimal"
- />
-
-    <EditText
-        android:id="@+id/firebase_test_set_imageurl"
-        android:hint="imageurl"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
-        android:inputType="textUri"
-/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
-    <EditText
-        android:id="@+id/firebase_test_set_summary"
-        android:hint="summary"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-/>
-    <EditText
-        android:id="@+id/firebase_test_set_intro"
-        android:hint="intro"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:inputType="textLongMessage"
-/>
-    <EditText
-        android:id="@+id/firebase_test_set_campaign_body"
-        android:hint="body"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="30dp"
-        android:inputType="textPersonName"
-/>
-    <EditText
-        android:id="@+id/category"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="2dp"
-        android:hint="category"/>
+        <EditText
+            android:id="@+id/firebase_test_set_title"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="title" />
 
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:hint="address"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/firebase_test_set_campaign_creator"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="creator"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/firebase_test_set_goal"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="goal"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/firebase_test_set_imageurl"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="imageurl"
+            android:inputType="textUri" />
 
 
+        <EditText
+            android:id="@+id/firebase_test_set_summary"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="summary" />
 
-    <Button
-        android:id="@+id/firebase_test_store_data"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:hint="@string/submit_to_firebase"
- />
+        <EditText
+            android:id="@+id/firebase_test_set_intro"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="intro"
+            android:inputType="textLongMessage" />
+
+        <EditText
+            android:id="@+id/firebase_test_set_campaign_body"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="body"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/category"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:hint="category" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:hint="address"
+            android:inputType="textPersonName" />
 
 
+        <Button
+            android:id="@+id/firebase_test_store_data"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:hint="@string/submit_to_firebase" />
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>
