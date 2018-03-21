@@ -19,9 +19,10 @@ public class BlogPostCampaignViewHolder extends RecyclerView.ViewHolder {
     public BlogPostCampaignViewHolder(View itemView) {
         super(itemView);
         image = itemView.findViewById(R.id.my_contributions_image);
+
     }
 
-    public void onBind(DBReturnCampaignModel model){
+    public void onBind(DBReturnCampaignModel model) {
         image.setText(model.getImageUrl());
 
     }

@@ -111,7 +111,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     //this is linked to blog feed
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
-        userImage.setText(model.getTitle());
+//        userImage.setText(model.getTitle());
     }
 
 

@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-    private void signOut(){
+
+    private void signOut() {
         auth.signOut();
 
     }
