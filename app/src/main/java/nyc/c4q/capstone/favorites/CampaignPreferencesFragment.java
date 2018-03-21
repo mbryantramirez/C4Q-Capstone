@@ -1,12 +1,23 @@
-package nyc.c4q.capstone;
+package nyc.c4q.capstone.favorites;
+
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
-public class CampaignPreferenceActivity extends AppCompatActivity {
+import nyc.c4q.capstone.R;
+
+import static android.content.Context.MODE_PRIVATE;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class CampaignPreferencesFragment extends Fragment {
+    private View rootView;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private Button medButton;
@@ -16,17 +27,21 @@ public class CampaignPreferenceActivity extends AppCompatActivity {
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
 
 
+    public CampaignPreferencesFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_campaign_preference);
-        getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
-        preferences=getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView=inflater.inflate(R.layout.fragment_campaign_preferences, container, false);
+        preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
         editor=preferences.edit();
-        medButton= findViewById(R.id.medButton);
-        housingButton=findViewById(R.id.housing_button);
-        clothingButton=findViewById(R.id.clothingButton);
-        educationButton=findViewById(R.id.education_button);
+        medButton= rootView.findViewById(R.id.medButton);
+        housingButton=rootView.findViewById(R.id.housing_button);
+        clothingButton=rootView.findViewById(R.id.clothingButton);
+        educationButton=rootView.findViewById(R.id.education_button);
         medButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,9 +66,8 @@ public class CampaignPreferenceActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
+        // Inflate the layout for this fragment
+        return rootView;
     }
+
 }
