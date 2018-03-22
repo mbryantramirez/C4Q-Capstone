@@ -88,7 +88,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                 Log.d(CARD_TAG, "onCardClicked");
                 Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
 
-                int pos = cardStackView.getTopIndex() - 1;
+                int pos = cardStackView.getTopIndex();
 
                 DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                 Log.d(CARD_TAG, "onCardClicked: " + dbReturnCampaignModel.getTitle());
