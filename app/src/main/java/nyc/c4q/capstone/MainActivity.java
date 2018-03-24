@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.controller.FragmentAdapter;
@@ -23,10 +24,15 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseDataHelper firebaseDataHelper;
 
     private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        Log.d(TAG, "user name is: "+ currentUser.getUid());
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
