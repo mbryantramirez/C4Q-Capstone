@@ -5,7 +5,7 @@
     tools:context="nyc.c4q.capstone.blog.BlogPostFragment">
 
 
-    <TextView
+    <ImageView
         android:id="@+id/blog_post_imageview"
         android:layout_width="match_parent"
         android:layout_height="200dp"

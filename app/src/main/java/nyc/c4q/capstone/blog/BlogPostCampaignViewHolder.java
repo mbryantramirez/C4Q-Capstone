@@ -1,5 +1,6 @@
 package nyc.c4q.capstone.blog;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +15,7 @@ import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 public class BlogPostCampaignViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView image;
+    private ImageView image;
 
     public BlogPostCampaignViewHolder(View itemView) {
         super(itemView);
@@ -23,7 +24,7 @@ public class BlogPostCampaignViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind(DBReturnCampaignModel model) {
-        image.setText(model.getImageUrl());
+        image.setImageURI(Uri.parse(model.getImageUrl()));
 
     }
 }
