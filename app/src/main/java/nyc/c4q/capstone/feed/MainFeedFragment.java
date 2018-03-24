@@ -3,6 +3,7 @@ package nyc.c4q.capstone.feed;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -39,6 +40,7 @@ import nyc.c4q.capstone.finder.LocationHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
 
+import static android.content.Context.MODE_PRIVATE;
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 /**
@@ -47,6 +49,8 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     private static final String TAG = "FIREBASE?";
+    private SharedPreferences preferences;
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private static final String CARD_TAG = "CARDSTACKVIEW?";
     private static final String LOCATION_TAG = "LASTKNOWNLOCATION?";
     private CardStackView cardStackView;
@@ -78,6 +82,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences=getActivity().getSharedPreferences(SHARED_PREFS_KEY,MODE_PRIVATE);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
     }
@@ -147,12 +152,14 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
+        final String textFromPref=preferences.getString("Keyword"," ");
+        Log.d(TAG,"onDataChange: "+ textFromPref);
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 if (location != null) {
                     Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
-                    loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot), location);
+                    loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot,textFromPref), location);
                 }
             }
         });

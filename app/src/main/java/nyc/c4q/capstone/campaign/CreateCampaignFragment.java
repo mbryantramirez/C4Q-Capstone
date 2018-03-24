@@ -75,7 +75,12 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
             CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, summary, intro, body, address, category);
             firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
         }
-    }
+    }//ther are more things I need to do such as fixing the design.
+    //I also with the help of mu team mates ned to make the code more testable.
+    //which I will need to do by organizing the code more.
+    //I will also need to implement better logic so people can navigate through the app more
+    //easily.
+
 
     @Override
     public void onClick(View view) {
