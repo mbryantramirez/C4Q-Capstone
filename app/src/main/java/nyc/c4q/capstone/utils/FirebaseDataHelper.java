@@ -4,6 +4,8 @@ package nyc.c4q.capstone.utils;
  * Created by c4q on 3/17/18.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.FeatureInfo;
 import android.util.Log;
 
@@ -16,14 +18,20 @@ import java.util.List;
 
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class FirebaseDataHelper {
     private static FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private SharedPreferences preferences;
     private static final String CAMPAIGN_PATH = "campaigns";
     private static final String TAG = "Firebase?";
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+    private Context context;
 
     private static class FirebaseHolder {
+
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();
     }
 
@@ -31,8 +39,8 @@ public class FirebaseDataHelper {
         return FirebaseHolder.INSTANCE;
     }
 
-    private static FirebaseDatabase getDatabase(){
-        if(firebaseDatabase == null){
+    private static FirebaseDatabase getDatabase() {
+        if (firebaseDatabase == null) {
             firebaseDatabase = FirebaseDatabase.getInstance();
             firebaseDatabase.setPersistenceEnabled(true);
         }
@@ -48,20 +56,23 @@ public class FirebaseDataHelper {
         return getDatabaseReference().child(CAMPAIGN_PATH);
     }
 
-    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
+    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
+
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
             Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
             Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
             Log.d(TAG, "onLoopCount: " + count);
-            Log.d(TAG, "getCampaignsList: "+ dataSnapshot.getChildren());
-            if (child.child("category").getValue(String.class).contains("Education")) {
+
+            Log.d(TAG, "getCampaignsList: " + dataSnapshot.getChildren());
+            if (child.child("category").getValue(String.class).contains(textFromPref)) {
                 Log.d(TAG, "onChildrenLoop: " + child.child("category"));
+                DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
+                Log.d(TAG, "getCampaignsList: "+dbReturnCampaignModel.getTitle());
+                DBReturnCampaignModelList.add(dbReturnCampaignModel);
             }
 
-            DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-            DBReturnCampaignModelList.add(dbReturnCampaignModel);
         }
         return DBReturnCampaignModelList;
     }

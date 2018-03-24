@@ -73,7 +73,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot);
+                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot," ");
                 campaignAdapter.setData(campaignModelList);
                 campaignAdapter.notifyDataSetChanged();
 

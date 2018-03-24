@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nyc.c4q.capstone.CampaignPreferenceActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="nyc.c4q.capstone.favorites.CampaignPreferencesFragment">
     <ImageView
         android:id="@+id/userImage"
         android:layout_width="match_parent"
@@ -25,14 +23,14 @@
         <Button
             android:id="@+id/medButton"
             android:background="@drawable/round_button"
-            android:text="medical"
+            android:text="Medical"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp" />
 
         <Button
             android:id="@+id/housing_button"
-            android:text="housing"
+            android:text="Housing"
             android:background="@drawable/housing_round_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -41,7 +39,7 @@
 
         <Button
             android:id="@+id/education_button"
-            android:text="education"
+            android:text="Education"
             android:textSize="12sp"
             android:background="@drawable/education_round_button"
             android:layout_width="100dp"
@@ -63,7 +61,7 @@
 
         <Button
             android:id="@+id/business"
-            android:text="business"
+            android:text="Business"
             android:background="@drawable/business_round_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -72,7 +70,7 @@
         <Button
             android:id="@+id/clothingButton"
             android:background="@drawable/clothing_round_button"
-            android:text="clothing"
+            android:text="Clothing"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
@@ -81,7 +79,7 @@
         <Button
             android:id="@+id/npButton"
             android:background="@drawable/nonprofit_round_button"
-            android:text="nonprofit"
+            android:text="Nonprofit"
             android:textSize="12sp"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -89,5 +87,8 @@
 
 
     </LinearLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+
 
 </android.support.constraint.ConstraintLayout>
