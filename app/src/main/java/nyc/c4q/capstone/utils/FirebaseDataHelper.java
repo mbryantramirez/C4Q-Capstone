@@ -4,6 +4,8 @@ package nyc.c4q.capstone.utils;
  * Created by c4q on 3/17/18.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.FeatureInfo;
 import android.util.Log;
 
@@ -16,12 +18,17 @@ import java.util.List;
 
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class FirebaseDataHelper {
     private static FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private SharedPreferences preferences;
     private static final String CAMPAIGN_PATH = "campaigns";
     private static final String TAG = "Firebase?";
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+    private Context context;
 
     private static class FirebaseHolder {
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();

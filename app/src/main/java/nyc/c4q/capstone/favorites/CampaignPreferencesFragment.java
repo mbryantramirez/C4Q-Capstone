@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -41,10 +42,10 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     private Button educationButton;
     private Button businessButton;
     private Button npButton;
-    FirebaseDataHelper firebaseDataHelper;
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private FavoritesAdapter listAdapter;
+    private DatabaseReference saving;
 
 
     public CampaignPreferencesFragment() {
@@ -71,7 +72,8 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromMedButton= medButton.getText().toString();
-                firebaseDataHelper.getDatabaseReference().child(textFromMedButton).addValueEventListener(CampaignPreferencesFragment.this);
+                editor.putString("med",textFromMedButton);
+                editor.apply();
 
             }
         });
@@ -79,7 +81,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromHousingButton= housingButton.getText().toString();
-                firebaseDataHelper.getDatabaseReference().child(textFromHousingButton).addValueEventListener(CampaignPreferencesFragment.this);
+                editor.putString("housing",textFromHousingButton);
 
 
             }
@@ -88,7 +90,8 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromClothingButton= clothingButton.getText().toString();
-                firebaseDataHelper.getDatabaseReference().child(textFromClothingButton).addValueEventListener(CampaignPreferencesFragment.this);
+                editor.putString("clothing",textFromClothingButton);
+                editor.apply();
 
 
             }
@@ -97,7 +100,8 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromEducationButton=educationButton.getText().toString();
-                firebaseDataHelper.getDatabaseReference().child(textFromEducationButton).addValueEventListener(CampaignPreferencesFragment.this);
+                editor.putString("education",textFromEducationButton);
+                editor.apply();
 
             }
         });
@@ -105,7 +109,9 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromBusinessButton= businessButton.getText().toString();
-                firebaseDataHelper.getDatabaseReference().child(textFromBusinessButton).addValueEventListener(CampaignPreferencesFragment.this);
+                editor.putString("business",textFromBusinessButton);
+                editor.apply();
+
 
             }
         });
@@ -113,7 +119,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromnpButton=npButton.getText().toString();
-                firebaseDataHelper.getDatabaseReference().child(textFromnpButton).addValueEventListener(CampaignPreferencesFragment.this);
+                editor.putString("np",textFromnpButton);
 
             }
         });
@@ -126,17 +132,12 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listAdapter = new FavoritesAdapter(campaignModelList);
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager1);
-        recyclerView.setAdapter(listAdapter);
+
     }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot);
-        listAdapter.setData(campaignModelList);
-        listAdapter.notifyDataSetChanged();
+
 
     }
 
