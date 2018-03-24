@@ -145,7 +145,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         }
     }
 
-    @SuppressLint("MissingPermission")
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
