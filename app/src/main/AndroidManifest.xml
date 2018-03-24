@@ -16,13 +16,14 @@
         android:roundIcon="@drawable/community_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LoginActivity"
             android:theme="@style/ActionBar" />
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/ActionBar">
+            android:theme="@style/SplashTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".payment.PaymentActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".payment.PaymentActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/ActionBar" />
 
 
         <activity android:name=".CreateAccountActivity" />
