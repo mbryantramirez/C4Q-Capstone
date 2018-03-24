@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.controller.FragmentAdapter;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TabLayout tabLayout;
     public static FirebaseDataHelper firebaseDataHelper;
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +82,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "about", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.options_menu_logout:
-                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
+                signOut();
+                Toast.makeText(this, "logout successful", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 Log.e(TAG, "nothing clicked");
         }
         return true;
+    }
+
+    private void signOut() {
+        auth.signOut();
+
     }
 }
