@@ -16,12 +16,12 @@
         android:layout_weight="4"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginBottom="32dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/community_logo"/>
 
@@ -29,7 +29,8 @@
             android:id="@+id/login_welcome_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="it takes a village..."
+            android:text="because it takes a village"
+            android:paddingBottom="10dp"
             android:textAlignment="center"
             android:textSize="20dp" />
 
