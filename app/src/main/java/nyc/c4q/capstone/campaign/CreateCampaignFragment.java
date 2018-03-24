@@ -1,5 +1,6 @@
 package nyc.c4q.capstone.campaign;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import nyc.c4q.capstone.models.CreateCampaignModel;
 import nyc.c4q.capstone.R;
 
+import static android.content.Context.MODE_PRIVATE;
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 /**
@@ -32,6 +34,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignAddress;
     private EditText campaignCategory;
     private Button createCampaignButton;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
 
     public CreateCampaignFragment() {
@@ -43,6 +47,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_create_campaign, container, false);
+        preferences=rootview.getContext().getSharedPreferences("sharedPrefsTesting", MODE_PRIVATE);
+        editor=preferences.edit();
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
@@ -68,6 +74,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body=campaignBody.getText().toString();
         String address=campaignAddress.getText().toString();
         String category=campaignCategory.getText().toString();
+        editor.putString("url",url);
 
         if (TextUtils.isEmpty(title)|| TextUtils.isEmpty(user)||TextUtils.isEmpty(goal)|| TextUtils.isEmpty(url)||TextUtils.isEmpty(creator)|| TextUtils.isEmpty(intro)||TextUtils.isEmpty(summary)||TextUtils.isEmpty(body)||TextUtils.isEmpty(address)||TextUtils.isEmpty(category)){
             Toast.makeText(getContext(),"enter missing input",Toast.LENGTH_LONG).show();

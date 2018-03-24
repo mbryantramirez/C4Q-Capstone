@@ -1,6 +1,8 @@
 package nyc.c4q.capstone;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.controller.FragmentAdapter;
+import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -91,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 signOut();
                 Toast.makeText(this, "logout successful", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.pref:
+                CampaignPreferencesFragment fragment= new CampaignPreferencesFragment();
+                FragmentManager fragmentManager=getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_viewpager,fragment);
+                fragmentTransaction.commit();
+
             default:
                 Log.e(TAG, "nothing clicked");
         }

@@ -6,6 +6,8 @@
 
     <item android:title="About"
         android:id="@+id/options_menu_about"/>
+    <item android:title="preferences"
+        android:id="@+id/pref"/>
 
     <item android:title="Logout"
         android:id="@+id/options_menu_logout"/>

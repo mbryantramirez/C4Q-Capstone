@@ -12,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +48,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private FavoritesAdapter listAdapter;
     private DatabaseReference saving;
+    private ImageView profilePic;
 
 
     public CampaignPreferencesFragment() {
@@ -68,6 +71,8 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
         npButton=rootView.findViewById(R.id.npButton);
         preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
         editor=preferences.edit();
+        profilePic=rootView.findViewById(R.id.userImage);
+        Picasso.get().load(preferences.getString("url"," ")).into(profilePic);
 
 
         medButton.setOnClickListener(new View.OnClickListener() {

@@ -72,6 +72,7 @@ public class FirebaseDataHelper {
                 DBReturnCampaignModelList.add(dbReturnCampaignModel);
             }
         }
+        //what this method is doing is it takes a string as a parameter and then
         return DBReturnCampaignModelList;
     }
 
