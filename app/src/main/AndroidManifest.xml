@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nyc.c4q.capstone">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -34,7 +36,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value=" AIzaSyCRm-51nGIAxV3q2fz5IuX20bWariS45FM " />
-
 
 
     </application>

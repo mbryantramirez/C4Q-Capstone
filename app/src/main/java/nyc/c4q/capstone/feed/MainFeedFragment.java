@@ -1,22 +1,41 @@
 package nyc.c4q.capstone.feed;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
+import java.util.Collections;
 import java.util.List;
 
+import nyc.c4q.capstone.finder.LocationHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
 
@@ -29,8 +48,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     private static final String TAG = "FIREBASE?";
     private static final String CARD_TAG = "CARDSTACKVIEW?";
+    private static final String LOCATION_TAG = "LASTKNOWNLOCATION?";
     private CardStackView cardStackView;
     private FeedCardAdapter feedCardAdapter;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+
 
     public MainFeedFragment() {
         // Required empty public constructor
@@ -45,8 +67,30 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
+
+
         setup();
         return rootView;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {
+            checkPermission();
+        }
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+    }
+
+    public void checkPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                ) {//Can add more as per requirement
+
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    123);
+        }
     }
 
     private void setup() {
@@ -98,7 +142,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     }
 
 
-    private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList) {
+    private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList, Location location) {
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        Collections.sort(currentCampaignsList, new LocationComparator(latLng, getActivity()));
+
         if (getActivity() != null) {
             feedCardAdapter = new FeedCardAdapter(getActivity());
             feedCardAdapter.addAll(currentCampaignsList);
@@ -106,14 +154,22 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-        loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot));
+    public void onDataChange(final DataSnapshot dataSnapshot) {
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
+                    loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot), location);
+                }
+            }
+        });
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 
 public class LocationHelper {
+
 
 
     public static LatLng getLocationFromAddress(Context context, String strAddress) {
