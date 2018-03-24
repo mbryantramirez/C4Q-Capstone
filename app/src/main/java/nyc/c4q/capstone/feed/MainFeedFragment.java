@@ -48,10 +48,12 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
-        preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
-        editor=preferences.edit();
-        String med=preferences.getString("med",null);
-        Log.d(TAG, "onCreateView: pref stuff"+med);
+        preferences = rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+        editor = preferences.edit();
+        String med = preferences.getString("med", null);
+        String housing = preferences.getString("housing", null);
+        String education = preferences.getString("education", null);
+        Log.d(TAG, "onCreateView: pref stuff" + med);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
         setup();
@@ -75,7 +77,9 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     int pos = cardStackView.getTopIndex() - 1;
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
-                    firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                    firebaseDataHelper.getDatabaseReference().child("favorites")
+                            .child(dbReturnCampaignModel.getTitle())
+                            .setValue(dbReturnCampaignModel);
                 }
 
             }
@@ -101,7 +105,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
                 DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                 Log.d(CARD_TAG, "onCardClicked: " + dbReturnCampaignModel.getTitle());
-                firebaseDataHelper.getDatabaseReference().child("funded").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                firebaseDataHelper.getDatabaseReference().child("funded")
+                        .child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
             }
         });
     }

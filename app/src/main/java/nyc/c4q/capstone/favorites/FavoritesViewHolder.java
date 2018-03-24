@@ -36,5 +36,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
         goal.setText(model.getGoal());
         imagleURl.setText(model.getImageUrl());
         creator.setText(model.getCreatorID());
+
+        //I need to clean this code so It can be better implemented elsewhere in the app.
     }
 }
