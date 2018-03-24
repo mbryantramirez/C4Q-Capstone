@@ -66,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:paddingHorizontal="16dp"
             android:background="@color/lightGreen"
             android:text="Submit" />
     </LinearLayout>

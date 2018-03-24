@@ -3,10 +3,12 @@ package nyc.c4q.capstone.finder;
 
 import android.content.Context;
 import android.location.Address;
+
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,7 +30,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.maps.android.SphericalUtil;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -89,6 +93,8 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     public void onMapReady(GoogleMap googleMap) {
         myGoogleMap = googleMap;
         myGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+
         myGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
         myGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         myGoogleMap.setMyLocationEnabled(true);
@@ -107,6 +113,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                     mapMarker.setVisible(false);
                 }
             }
+
 
         }
     }
@@ -128,7 +135,9 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
+
         setMapMarkers(firebaseDataHelper.getCampaignsList(dataSnapshot," "));
+
     }
 
     @Override
@@ -139,7 +148,9 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     public void setMapMarkers(List<DBReturnCampaignModel> campaignModels) {
         for (DBReturnCampaignModel dbReturnCampaignModel : campaignModels) {
             LatLng currentLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
+
             MarkerOptions marker = new MarkerOptions().position(new LatLng(currentLocation.latitude, currentLocation.longitude));
+
             campaignHashMap.put(marker, dbReturnCampaignModel);
         }
     }
