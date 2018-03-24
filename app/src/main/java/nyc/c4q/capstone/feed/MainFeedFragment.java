@@ -150,7 +150,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         }
     }
 
-    @SuppressLint("MissingPermission")
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
         final String textFromPref=preferences.getString("Keyword"," ");

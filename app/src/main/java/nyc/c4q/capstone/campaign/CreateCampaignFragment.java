@@ -58,8 +58,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     }
 
     private void createCampaign() {
-
-
         String title = campaignTitle.getText().toString();
         String user = campaignCreator.getText().toString();
         String goal = campaignGoal.getText().toString();
