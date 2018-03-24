@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -82,7 +84,9 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     @Override
     public void onMapReady(GoogleMap googleMap) {
         myGoogleMap = googleMap;
+        myGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
         myGoogleMap.getUiSettings().setZoomControlsEnabled(true);
+        myGoogleMap.setMyLocationEnabled(true);
         for(Map.Entry<MarkerOptions, DBReturnCampaignModel> entry: campaignHashMap.entrySet()){
          MarkerOptions marker = entry.getKey();
          myGoogleMap.addMarker(marker);

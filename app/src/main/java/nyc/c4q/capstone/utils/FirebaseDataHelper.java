@@ -56,6 +56,10 @@ public class FirebaseDataHelper {
             Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
             Log.d(TAG, "onLoopCount: " + count);
             Log.d(TAG, "getCampaignsList: "+ dataSnapshot.getChildren());
+            if (child.child("category").getValue(String.class).contains("Education")) {
+                Log.d(TAG, "onChildrenLoop: " + child.child("category"));
+            }
+
             DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
             DBReturnCampaignModelList.add(dbReturnCampaignModel);
         }

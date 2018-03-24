@@ -52,6 +52,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     private CardStackView cardStackView;
     private FeedCardAdapter feedCardAdapter;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private Context context;
 
 
     public MainFeedFragment() {
@@ -68,6 +69,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
 
+        this.context = container.getContext();
 
         setup();
         return rootView;
@@ -76,22 +78,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {
-            checkPermission();
-        }
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
     }
 
-    public void checkPermission() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                ) {//Can add more as per requirement
 
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    123);
-        }
-    }
 
     private void setup() {
         cardStackView.setCardEventListener(new CardStackView.CardEventListener() {
@@ -157,7 +148,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @SuppressLint("MissingPermission")
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
-        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 if (location != null) {
