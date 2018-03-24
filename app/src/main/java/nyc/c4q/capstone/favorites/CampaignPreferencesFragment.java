@@ -59,20 +59,22 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
         rootView=inflater.inflate(R.layout.fragment_campaign_preferences, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
         firebaseDataHelper= new FirebaseDataHelper();
-        preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
-        editor=preferences.edit();
+
         medButton= rootView.findViewById(R.id.medButton);
         housingButton=rootView.findViewById(R.id.housing_button);
         clothingButton=rootView.findViewById(R.id.clothingButton);
         educationButton=rootView.findViewById(R.id.education_button);
         businessButton=rootView.findViewById(R.id.business);
         npButton=rootView.findViewById(R.id.npButton);
+        preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+        editor=preferences.edit();
+
 
         medButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String textFromMedButton= medButton.getText().toString();
-                editor.putString("med",textFromMedButton);
+                editor.putString("Keyword",textFromMedButton);
                 editor.apply();
 
             }
@@ -81,7 +83,8 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromHousingButton= housingButton.getText().toString();
-                editor.putString("housing",textFromHousingButton);
+                editor.putString("Keyword",textFromHousingButton);
+                editor.apply();
 
 
             }
@@ -90,7 +93,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromClothingButton= clothingButton.getText().toString();
-                editor.putString("clothing",textFromClothingButton);
+                editor.putString("Keyword",textFromClothingButton);
                 editor.apply();
 
 
@@ -100,8 +103,10 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromEducationButton=educationButton.getText().toString();
-                editor.putString("education",textFromEducationButton);
+                editor.putString("Keyword",textFromEducationButton);
                 editor.apply();
+
+
 
             }
         });
@@ -109,7 +114,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromBusinessButton= businessButton.getText().toString();
-                editor.putString("business",textFromBusinessButton);
+                editor.putString("Keyword",textFromBusinessButton);
                 editor.apply();
 
 
@@ -119,7 +124,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
             @Override
             public void onClick(View v) {
                 String textFromnpButton=npButton.getText().toString();
-                editor.putString("np",textFromnpButton);
+                editor.putString("Keyword",textFromnpButton);
 
             }
         });

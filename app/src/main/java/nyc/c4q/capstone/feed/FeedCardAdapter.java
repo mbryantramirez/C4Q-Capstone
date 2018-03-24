@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -46,22 +49,18 @@ public class FeedCardAdapter extends ArrayAdapter<DBReturnCampaignModel> {
         DBReturnCampaignModel dbReturnCampaignModel = getItem(position);
 
         holder.title.setText(dbReturnCampaignModel.getTitle());
-        holder.summary.setText(dbReturnCampaignModel.getSummary());
-        holder.imageUrl.setText(dbReturnCampaignModel.getImageUrl());
-
+        Picasso.get().load(dbReturnCampaignModel.getImageUrl()).into(holder.imageUrl);
         return convertView;
     }
 
 
     private static class ViewHolder {
         public TextView title;
-        public TextView summary;
-        public TextView imageUrl;
+        public ImageView imageUrl;
 
         public ViewHolder(View view) {
             this.title = view.findViewById(R.id.item_campaign_card_title);
-            this.summary = view.findViewById(R.id.item_campaign_card_summary);
-            this.imageUrl = view.findViewById(R.id.item_campaign_card_image_url);
+            this.imageUrl = view.findViewById(R.id.item_campaign_card_image);
         }
 
     }

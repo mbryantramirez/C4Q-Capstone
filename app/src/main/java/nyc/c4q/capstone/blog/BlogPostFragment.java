@@ -2,6 +2,7 @@ package nyc.c4q.capstone.blog;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,6 +29,7 @@ import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.payment.PaymentActivity;
 
+import static android.content.Context.MODE_PRIVATE;
 import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 
@@ -43,7 +45,10 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     private TextView blogPost;
     private TextView storyTitle;
     private Button donateButton;
+    private SharedPreferences preferences;
     private RecyclerView recyclerView;
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
@@ -69,7 +74,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         firebaseDataHelper.getDatabaseReference().child("contributions").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot);
+                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot," ");
                 campaignAdapter.setData(campaignModelList);
                 campaignAdapter.notifyDataSetChanged();
 
@@ -117,6 +122,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
+
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot));
     }
 

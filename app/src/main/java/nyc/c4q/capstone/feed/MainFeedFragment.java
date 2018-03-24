@@ -1,23 +1,42 @@
 package nyc.c4q.capstone.feed;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
+import java.util.Collections;
 import java.util.List;
 
+import nyc.c4q.capstone.finder.LocationHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
 
@@ -30,12 +49,15 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     private static final String TAG = "FIREBASE?";
+    private SharedPreferences preferences;
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private static final String CARD_TAG = "CARDSTACKVIEW?";
+    private static final String LOCATION_TAG = "LASTKNOWNLOCATION?";
     private CardStackView cardStackView;
     private FeedCardAdapter feedCardAdapter;
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
-    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Context context;
+
 
     public MainFeedFragment() {
         // Required empty public constructor
@@ -48,17 +70,24 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
-        preferences = rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
-        editor = preferences.edit();
-        String med = preferences.getString("med", null);
-        String housing = preferences.getString("housing", null);
-        String education = preferences.getString("education", null);
-        Log.d(TAG, "onCreateView: pref stuff" + med);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
+
+        this.context = container.getContext();
+
         setup();
         return rootView;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        preferences=getActivity().getSharedPreferences(SHARED_PREFS_KEY,MODE_PRIVATE);
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+    }
+
+
 
     private void setup() {
         cardStackView.setCardEventListener(new CardStackView.CardEventListener() {
@@ -77,9 +106,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     int pos = cardStackView.getTopIndex() - 1;
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
-                    firebaseDataHelper.getDatabaseReference().child("favorites")
-                            .child(dbReturnCampaignModel.getTitle())
-                            .setValue(dbReturnCampaignModel);
+                    firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
                 }
 
             }
@@ -101,18 +128,21 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                 Log.d(CARD_TAG, "onCardClicked");
                 Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
 
-                int pos = cardStackView.getTopIndex() - 1;
+                int pos = cardStackView.getTopIndex();
 
                 DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                 Log.d(CARD_TAG, "onCardClicked: " + dbReturnCampaignModel.getTitle());
-                firebaseDataHelper.getDatabaseReference().child("funded")
-                        .child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                firebaseDataHelper.getDatabaseReference().child("funded").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
             }
         });
     }
 
 
-    private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList) {
+    private void loadTextFromList(List<DBReturnCampaignModel> currentCampaignsList, Location location) {
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        Collections.sort(currentCampaignsList, new LocationComparator(latLng, getActivity()));
+
         if (getActivity() != null) {
             feedCardAdapter = new FeedCardAdapter(getActivity());
             feedCardAdapter.addAll(currentCampaignsList);
@@ -120,14 +150,24 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-        loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot));
+    public void onDataChange(final DataSnapshot dataSnapshot) {
+        final String textFromPref=preferences.getString("Keyword"," ");
+        Log.d(TAG,"onDataChange: "+ textFromPref);
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
+                    loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot,textFromPref), location);
+                }
+            }
+        });
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
 }

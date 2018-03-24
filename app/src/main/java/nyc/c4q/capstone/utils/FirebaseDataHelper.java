@@ -31,6 +31,7 @@ public class FirebaseDataHelper {
     private Context context;
 
     private static class FirebaseHolder {
+
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();
     }
 
@@ -38,8 +39,8 @@ public class FirebaseDataHelper {
         return FirebaseHolder.INSTANCE;
     }
 
-    private static FirebaseDatabase getDatabase(){
-        if(firebaseDatabase == null){
+    private static FirebaseDatabase getDatabase() {
+        if (firebaseDatabase == null) {
             firebaseDatabase = FirebaseDatabase.getInstance();
             firebaseDatabase.setPersistenceEnabled(true);
         }
@@ -55,16 +56,21 @@ public class FirebaseDataHelper {
         return getDatabaseReference().child(CAMPAIGN_PATH);
     }
 
-    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
+    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
+
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
             Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
             Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
             Log.d(TAG, "onLoopCount: " + count);
-            Log.d(TAG, "getCampaignsList: "+ dataSnapshot.getChildren());
-            DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-            DBReturnCampaignModelList.add(dbReturnCampaignModel);
+            Log.d(TAG, "getCampaignsList: " + dataSnapshot.getChildren());
+            if (child.child("category").getValue(String.class).contains(textFromPref)) {
+                Log.d(TAG, "onChildrenLoop: " + child.child("category"));
+                DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
+                Log.d(TAG, "getCampaignsList: "+dbReturnCampaignModel.getTitle());
+                DBReturnCampaignModelList.add(dbReturnCampaignModel);
+            }
         }
         return DBReturnCampaignModelList;
     }
