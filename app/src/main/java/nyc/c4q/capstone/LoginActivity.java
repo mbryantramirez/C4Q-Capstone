@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
+import nyc.c4q.capstone.payment.PaymentActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = LoginActivity.class.getSimpleName();
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Login");
 
         setUpViews();
+
         auth = FirebaseAuth.getInstance();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -68,28 +71,48 @@ public class LoginActivity extends AppCompatActivity {
                     password.setError(null);
                 }
 
-                auth.signInWithEmailAndPassword(email, userPassword)
+
+//                auth.signInWithEmailAndPassword(email, userPassword)
+//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "sign in: success");
+//                                    currentUser = auth.getCurrentUser();
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                    finish();
+//                                } else {
+//                                    Log.d(TAG, "sign in: failure", task.getException());
+//                                    Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+//            }
+//        });
+//    }
+//    }
+                auth.createUserWithEmailAndPassword(email, userPassword)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Log.d(TAG, "sign in: success");
+                                    Log.d(TAG, "user account created? YES");
                                     currentUser = auth.getCurrentUser();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    updateUI(currentUser);
                                 } else {
-                                    Log.d(TAG, "sign in: failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
+                                    Log.d(TAG, "exception is: " + task.getException());
+                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
                                 }
                             }
                         });
 
             }
         });
-
-
     }
+
 
     @Override
     protected void onStart() {
@@ -106,14 +129,22 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
     //if user is logged in, go to MainActivity
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-            Intent intent = new Intent(this, MainActivity.class);
+//            Toast.makeText(this, "you are logged in", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
 
         }
     }
-
-
 }
+
+
+
+
+
+
+
+

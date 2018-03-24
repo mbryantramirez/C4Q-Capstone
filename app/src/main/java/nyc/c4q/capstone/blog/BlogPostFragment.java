@@ -1,7 +1,9 @@
 package nyc.c4q.capstone.blog;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,11 +16,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -39,11 +43,12 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     public static final String TAG = "firebase?";
 
     View rootView;
-    private TextView userImage;
+    private ImageView userImage;
     private TextView blogPost;
     private TextView storyTitle;
     private Button donateButton;
     private RecyclerView recyclerView;
+    Context context;
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
@@ -111,7 +116,8 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     //this is linked to blog feed
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
-//        userImage.setText(model.getTitle());
+        Picasso.get().load(model.getImageUrl()).into(userImage);
+//        userImage.setImageURI(Uri.parse(model.getImageUrl()));
     }
 
 
