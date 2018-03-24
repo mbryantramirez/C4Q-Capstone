@@ -3,7 +3,9 @@ package nyc.c4q.capstone.feed;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+
 import android.content.SharedPreferences;
+
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -83,7 +85,9 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         preferences=getActivity().getSharedPreferences(SHARED_PREFS_KEY,MODE_PRIVATE);
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
     }
@@ -151,16 +155,21 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
+
         final String textFromPref=preferences.getString("Keyword"," ");
         Log.d(TAG,"onDataChange: "+ textFromPref);
+
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 if (location != null) {
                     Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
+
                     loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot,textFromPref), location);
+
                 }
             }
         });

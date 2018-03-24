@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import nyc.c4q.capstone.models.CreateCampaignModel;
 import nyc.c4q.capstone.R;
@@ -36,6 +39,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private Button createCampaignButton;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private ImageView profilePic;
 
 
     public CreateCampaignFragment() {
@@ -49,6 +53,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         View rootview = inflater.inflate(R.layout.fragment_create_campaign, container, false);
         preferences=rootview.getContext().getSharedPreferences("sharedPrefsTesting", MODE_PRIVATE);
         editor=preferences.edit();
+        profilePic=rootview.findViewById(R.id.userImage);
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
@@ -74,11 +79,13 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body=campaignBody.getText().toString();
         String address=campaignAddress.getText().toString();
         String category=campaignCategory.getText().toString();
-        editor.putString("url",url);
+        Picasso.get().load(url).into(profilePic);
+
 
         if (TextUtils.isEmpty(title)|| TextUtils.isEmpty(user)||TextUtils.isEmpty(goal)|| TextUtils.isEmpty(url)||TextUtils.isEmpty(creator)|| TextUtils.isEmpty(intro)||TextUtils.isEmpty(summary)||TextUtils.isEmpty(body)||TextUtils.isEmpty(address)||TextUtils.isEmpty(category)){
             Toast.makeText(getContext(),"enter missing input",Toast.LENGTH_LONG).show();
         } else {
+
             CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, summary, intro, body, address, category);
             firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
         }

@@ -1,5 +1,6 @@
 package nyc.c4q.capstone;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: "+ currentUser.getUid());
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
@@ -109,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void signOut() {
         auth.signOut();
-
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
     }
 }

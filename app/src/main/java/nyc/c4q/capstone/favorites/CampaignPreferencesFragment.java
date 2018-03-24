@@ -72,7 +72,6 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
         preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
         editor=preferences.edit();
         profilePic=rootView.findViewById(R.id.userImage);
-        Picasso.get().load(preferences.getString("url"," ")).into(profilePic);
 
 
         medButton.setOnClickListener(new View.OnClickListener() {

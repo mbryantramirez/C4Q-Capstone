@@ -48,7 +48,6 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     private TextView storyTitle;
     private Button donateButton;
     private RecyclerView recyclerView;
-    Context context;
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
@@ -71,7 +70,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
 
         firebaseDataHelper.getDatabaseReference().addValueEventListener(this);
-        firebaseDataHelper.getDatabaseReference().child("contributions").addValueEventListener(new ValueEventListener() {
+        firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot," ");
@@ -116,14 +115,17 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     //this is linked to blog feed
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
-        Picasso.get().load(model.getImageUrl()).into(userImage);
-//        userImage.setImageURI(Uri.parse(model.getImageUrl()));
+//        Picasso.get().load(model.getImageUrl()).into(userImage);
+        userImage.setImageResource(R.drawable.community_logo);
+
     }
 
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot));
+        campaignAdapter.setData(campaignModelList);
+        campaignAdapter.notifyDataSetChanged();
     }
 
     @Override
