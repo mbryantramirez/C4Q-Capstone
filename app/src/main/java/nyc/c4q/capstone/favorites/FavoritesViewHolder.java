@@ -37,7 +37,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
         Log.d(TAG, "onBind: viewholder");
         title.setText(model.getTitle());
         goal.setText(model.getGoal());
-        Picasso.get().load(model.getImageUrl()).resize(30,30).into(imagleURl);
+        Picasso.get().load(model.getImageUrl()).resize(100,100).into(imagleURl);
         creator.setText(model.getCreatorID());
 
         //I need to clean this code so It can be better implemented elsewhere in the app.
