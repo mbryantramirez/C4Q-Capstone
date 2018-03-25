@@ -52,8 +52,10 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
-        favoritesButton=rootView.findViewById(R.id.favorites);
-        fundedButton=rootView.findViewById(R.id.fundedButton);
+        favoritesButton = rootView.findViewById(R.id.favorites);
+        fundedButton = rootView.findViewById(R.id.fundedButton);
+        firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
+
         fundedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +67,8 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
             @Override
             public void onClick(View v) {
                 firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
-
             }
         });
-
-
 
 
         // Inflate the layout for this fragment
@@ -92,8 +91,8 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        //In her firebase takes a snapshot of the model and saves it, then puts the data wherever needed.
-        campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot," ");
+        //In here firebase takes a snapshot of the model and saves it, then puts the data wherever needed.
+        campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
         listAdapter.setData(campaignModelList);
         listAdapter.notifyDataSetChanged();
 
@@ -103,7 +102,6 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
 
 
 }
