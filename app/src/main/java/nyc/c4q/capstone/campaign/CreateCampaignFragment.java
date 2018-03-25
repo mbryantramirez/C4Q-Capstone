@@ -2,7 +2,10 @@ package nyc.c4q.capstone.campaign;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +59,16 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignCategory = rootview.findViewById(R.id.category);
         createCampaignButton.setOnClickListener(this);
         return rootview;
+
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("create campaign");
     }
 
     private void createCampaign() {

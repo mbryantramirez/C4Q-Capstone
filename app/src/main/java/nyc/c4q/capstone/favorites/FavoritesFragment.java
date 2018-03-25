@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,6 +61,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         fundedButton = rootView.findViewById(R.id.fundedButton);
         firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
 
+
         fundedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +76,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
             }
         });
 
-//        getActivity().getActionBar().setTitle("My Favorites");
-
+//
 
 
         // Inflate the layout for this fragment
@@ -84,6 +86,9 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("Favorites");
     }
 
     @Override
@@ -109,5 +114,11 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     }
 
-
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        AppCompatActivity activity = (AppCompatActivity) getActivity();
+//        ActionBar actionBar = activity.getSupportActionBar();
+//        actionBar.setTitle("Favorites");
+//    }
 }
