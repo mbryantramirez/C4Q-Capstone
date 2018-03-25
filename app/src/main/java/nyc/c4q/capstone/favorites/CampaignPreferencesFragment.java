@@ -48,7 +48,6 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private FavoritesAdapter listAdapter;
     private DatabaseReference saving;
-    private ImageView profilePic;
 
 
     public CampaignPreferencesFragment() {
@@ -71,7 +70,6 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
         npButton=rootView.findViewById(R.id.npButton);
         preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
         editor=preferences.edit();
-        profilePic=rootView.findViewById(R.id.userImage);
 
 
         medButton.setOnClickListener(new View.OnClickListener() {
