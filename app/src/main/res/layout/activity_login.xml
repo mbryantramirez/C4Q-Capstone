@@ -67,8 +67,9 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:paddingHorizontal="16dp"
-            android:background="@color/lightGreen"
-            android:text="Submit" />
+            android:background="@drawable/rounded_button"
+            android:text="Submit"
+            android:textColor="@color/darkBlue"/>
     </LinearLayout>
 
     <LinearLayout
@@ -90,8 +91,9 @@
             android:layout_gravity="center"
             android:paddingHorizontal="16dp"
             android:text="Click to register"
+            android:textColor="@color/darkBlue"
             android:textSize="10sp"
-            android:background="@color/lightGreen"/>
+            android:background="@drawable/rounded_button"/>
 
     </LinearLayout>
 

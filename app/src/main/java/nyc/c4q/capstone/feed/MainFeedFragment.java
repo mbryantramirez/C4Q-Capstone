@@ -80,8 +80,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
         this.context = container.getContext();
 
-
-
         setup();
         return rootView;
     }
@@ -90,9 +88,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle("village");
 
         preferences = getActivity().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
 
@@ -186,5 +181,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("village");
+    }
 }

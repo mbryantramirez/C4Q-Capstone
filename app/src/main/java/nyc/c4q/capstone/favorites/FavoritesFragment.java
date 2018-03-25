@@ -114,5 +114,11 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     }
 
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("Favorites");
+    }
 }
