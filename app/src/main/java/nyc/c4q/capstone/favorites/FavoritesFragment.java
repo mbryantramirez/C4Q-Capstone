@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
@@ -50,6 +52,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
         favoritesButton = rootView.findViewById(R.id.favorites);
@@ -69,6 +72,9 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
                 firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
             }
         });
+
+//        getActivity().getActionBar().setTitle("My Favorites");
+
 
 
         // Inflate the layout for this fragment

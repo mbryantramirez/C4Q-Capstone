@@ -20,6 +20,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
 
     Fragment Home, Feed, Create, Favorites;
 
+
     public FragmentAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numberOfTabs = numOfTabs;
@@ -38,6 +39,8 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
                 return new CreateCampaignFragment();
             case 3:
                 return new FavoritesFragment();
+
+
             default:
                 return null;
         }

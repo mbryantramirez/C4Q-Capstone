@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import nyc.c4q.capstone.models.CreateCampaignModel;
@@ -46,7 +47,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
-        campaignSummary = rootview.findViewById(R.id.firebase_test_set_summary);
+//        campaignSummary = rootview.findViewById(R.id.firebase_test_set_summary);
         campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
         createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
         campaignIntro = rootview.findViewById(R.id.firebase_test_set_intro);
