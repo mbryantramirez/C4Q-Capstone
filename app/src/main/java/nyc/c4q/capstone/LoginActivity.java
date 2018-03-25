@@ -92,6 +92,27 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+//    }
+//    }
+//                auth.createUserWithEmailAndPassword(email, userPassword)
+//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "user account created? YES");
+//                                    currentUser = auth.getCurrentUser();
+//                                    updateUI(currentUser);
+//                                } else {
+//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
+//                                    Log.d(TAG, "exception is: " + task.getException());
+//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
+//                                    updateUI(null);
+//                                }
+//                            }
+//                        });
+//
+//            }
+//        });
     }
 
 //                auth.createUserWithEmailAndPassword(email, userPassword)
