@@ -2,7 +2,10 @@ package nyc.c4q.capstone.campaign;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import nyc.c4q.capstone.models.CreateCampaignModel;
@@ -46,7 +50,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
-        campaignSummary = rootview.findViewById(R.id.firebase_test_set_summary);
+//        campaignSummary = rootview.findViewById(R.id.firebase_test_set_summary);
         campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
         createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
         campaignIntro = rootview.findViewById(R.id.firebase_test_set_intro);
@@ -55,6 +59,16 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignCategory = rootview.findViewById(R.id.category);
         createCampaignButton.setOnClickListener(this);
         return rootview;
+
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        AppCompatActivity activity = (AppCompatActivity) getActivity();
+//        ActionBar actionBar = activity.getSupportActionBar();
+//        actionBar.setTitle("create campaign");
     }
 
     private void createCampaign() {
@@ -85,5 +99,11 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
         createCampaign();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().setTitle("create campaign");
     }
 }

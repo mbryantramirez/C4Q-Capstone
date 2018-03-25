@@ -8,115 +8,126 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/userImage"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-        <EditText
-            android:id="@+id/firebase_test_set_title"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:hint="title" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/firebase_test_set_campaign_creator"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:hint="creator"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/firebase_test_set_goal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:hint="goal"
-            android:inputType="numberDecimal" />
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="your name"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/firebase_test_set_imageurl"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:hint="imageurl"
-            android:inputType="textUri" />
+            android:background="@drawable/create_campaign_boxes"
+            android:drawableStart="@drawable/ic_add_a_photo_black_24dp"
+            android:hint="upload your image"
+            android:inputType="textUri"
+            android:textAlignment="center" />
 
 
         <EditText
-            android:id="@+id/firebase_test_set_summary"
+            android:id="@+id/firebase_test_set_title"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:hint="summary" />
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="choose a title for your campaign"
+            android:textAlignment="center" />
+
+
+        <EditText
+            android:id="@+id/firebase_test_set_goal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="amount of money you'd like to raise"
+            android:inputType="numberDecimal"
+            android:textAlignment="center" />
+
 
         <EditText
             android:id="@+id/firebase_test_set_intro"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:hint="intro"
-            android:inputType="textLongMessage" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="briefly tell us your story"
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
+
 
         <EditText
             android:id="@+id/firebase_test_set_campaign_body"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="30dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:hint="body"
-            android:inputType="textPersonName" />
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="continue your story here"
+            android:inputType="textLongMessage"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/category"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="2dp"
-            android:hint="category" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/create_campaign_boxes"
+            android:textAlignment="center"
+            android:hint="category spinner?" />
 
         <EditText
             android:id="@+id/address"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:hint="address"
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="your address"
+            android:textAlignment="center"
             android:inputType="textPersonName" />
 
 
         <Button
             android:id="@+id/firebase_test_store_data"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:hint="@string/submit_to_firebase" />
+            android:background="@color/lightGreen"
+            android:hint="Create My Campaign"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
