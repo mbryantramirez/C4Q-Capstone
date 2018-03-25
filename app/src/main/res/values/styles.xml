@@ -27,7 +27,7 @@
     </style>
 
     <style name="ActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:letterSpacing">.1</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/lightGreen</item>

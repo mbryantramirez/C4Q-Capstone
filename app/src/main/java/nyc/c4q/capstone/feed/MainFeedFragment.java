@@ -14,6 +14,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.TypedArrayUtils;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +80,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
         this.context = container.getContext();
 
+
+
         setup();
         return rootView;
     }
@@ -84,6 +89,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("village");
+
         preferences = getActivity().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -175,4 +185,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
+
+
 }

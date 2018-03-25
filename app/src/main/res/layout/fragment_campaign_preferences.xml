@@ -1,19 +1,20 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="nyc.c4q.capstone.favorites.CampaignPreferencesFragment">
+
     <ImageView
         android:id="@+id/userImage"
         android:layout_width="match_parent"
         android:layout_height="100dp" />
 
     <LinearLayout
-        android:background="#FF4500"
         android:id="@+id/ll1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FF4500"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/ll2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,37 +23,37 @@
 
         <Button
             android:id="@+id/medButton"
-            android:background="@drawable/round_button"
-            android:text="Medical"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp" />
-
-        <Button
-            android:id="@+id/housing_button"
-            android:text="Housing"
-            android:background="@drawable/housing_round_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            />
+            android:background="@drawable/round_button"
+            android:text="Medical" />
+
+        <Button
+            android:id="@+id/housing_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/housing_round_button"
+            android:text="Housing" />
 
         <Button
             android:id="@+id/education_button"
-            android:text="Education"
-            android:textSize="12sp"
-            android:background="@drawable/education_round_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/education_round_button"
+            android:text="Education"
+            android:textSize="12sp" />
 
 
     </LinearLayout>
+
     <LinearLayout
-        android:background="#FFD700"
         android:id="@+id/ll2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFD700"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,29 +62,28 @@
 
         <Button
             android:id="@+id/business"
-            android:text="Business"
-            android:background="@drawable/business_round_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp" />
-
-        <Button
-            android:id="@+id/clothingButton"
-            android:background="@drawable/clothing_round_button"
-            android:text="Clothing"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            />
+            android:background="@drawable/business_round_button"
+            android:text="Business" />
+
+        <Button
+            android:id="@+id/clothingButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/clothing_round_button"
+            android:text="Clothing" />
 
         <Button
             android:id="@+id/npButton"
-            android:background="@drawable/nonprofit_round_button"
-            android:text="Nonprofit"
-            android:textSize="12sp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/nonprofit_round_button"
+            android:text="Nonprofit"
+            android:textSize="12sp" />
 
 
     </LinearLayout>
