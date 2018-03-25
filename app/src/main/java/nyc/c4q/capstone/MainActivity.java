@@ -1,6 +1,8 @@
 package nyc.c4q.capstone;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.controller.FragmentAdapter;
+import nyc.c4q.capstone.feed.MainFeedFragment;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TabLayout tabLayout;
     public static FirebaseDataHelper firebaseDataHelper;
-
+    private int currentPosition;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
+    private FragmentAdapter fragmentAdapter;
 
 
     @Override
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
@@ -48,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_favorite_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager = findViewById(R.id.main_viewpager);
-        FragmentAdapter fragmentAdapter =
-                new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setOffscreenPageLimit(4);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                currentPosition = tab.getPosition();
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
@@ -91,7 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 signOut();
                 Toast.makeText(this, "logout successful", Toast.LENGTH_SHORT).show();
                 break;
-
+            case R.id.options_menu_refresh_feed:
+                if (fragmentAdapter.getItem(currentPosition) instanceof MainFeedFragment) {
+                    Fragment activeFragment = fragmentAdapter.getItem(currentPosition);
+                    ((MainFeedFragment) activeFragment).doSomething();
+                }
             default:
                 Log.e(TAG, "nothing clicked");
         }
@@ -100,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void signOut() {
         auth.signOut();
-
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

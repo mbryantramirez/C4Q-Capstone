@@ -3,6 +3,7 @@ package nyc.c4q.capstone;
 import android.app.job.JobInfo;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
         getSupportActionBar().setTitle("Login");
+
 
         setUpViews();
 
@@ -112,6 +114,27 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+//                auth.createUserWithEmailAndPassword(email, userPassword)
+//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "user account created? YES");
+//                                    currentUser = auth.getCurrentUser();
+//                                    updateUI(currentUser);
+//                                } else {
+//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
+//                                    Log.d(TAG, "exception is: " + task.getException());
+//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
+//                                    updateUI(null);
+//                                }
+//                            }
+//                        });
+//
+//            }
+//        });
+//    }
 
 
     @Override

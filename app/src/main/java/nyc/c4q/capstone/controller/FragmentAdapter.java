@@ -18,6 +18,8 @@ import nyc.c4q.capstone.feed.MainFeedFragment;
 public class FragmentAdapter extends FragmentStatePagerAdapter {
     private int numberOfTabs;
 
+    Fragment Home, Feed, Create, Favorites;
+
     public FragmentAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numberOfTabs = numOfTabs;
@@ -27,11 +29,11 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-
-                return new MainFeedFragment();
+                if (Home == null)
+                    Home = new MainFeedFragment();
+                return Home;
             case 1:
                 return new FinderFragment();
-
             case 2:
                 return new CreateCampaignFragment();
             case 3:

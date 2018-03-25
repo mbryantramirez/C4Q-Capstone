@@ -6,7 +6,6 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,7 +51,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
  * A simple {@link Fragment} subclass.
  */
 
-public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener, LocationSource {
+public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener {
 
     private View rootView;
     private MapView mapView;
@@ -191,13 +190,6 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         }
     }
 
-    @Override
-    public void activate(OnLocationChangedListener onLocationChangedListener) {
 
-    }
 
-    @Override
-    public void deactivate() {
-
-    }
 }
