@@ -15,5 +15,9 @@
     <item
         android:id="@+id/options_menu_refresh_feed"
         android:title="Refresh" />
+    <item
+        android:id="@+id/pref"
+        android:title="Preferences" />
+
 
 </menu>

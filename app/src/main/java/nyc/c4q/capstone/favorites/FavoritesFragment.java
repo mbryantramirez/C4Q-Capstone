@@ -105,49 +105,4 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
 
 }
-/*
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-    <android.support.v7.widget.CardView
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/paigTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/paignGoal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:layout_gravity="center"
-        android:id="@+id/imageUrl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/paignCreator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-
-
-</LinearLayout>
- */
