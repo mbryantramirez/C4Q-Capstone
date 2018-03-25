@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -184,4 +185,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
+
+
 }

@@ -66,9 +66,9 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle("create campaign");
+//        AppCompatActivity activity = (AppCompatActivity) getActivity();
+//        ActionBar actionBar = activity.getSupportActionBar();
+//        actionBar.setTitle("create campaign");
     }
 
     private void createCampaign() {
@@ -99,5 +99,11 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
         createCampaign();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().setTitle("create campaign");
     }
 }
