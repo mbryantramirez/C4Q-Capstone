@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/lightBlue"
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -22,6 +23,7 @@
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:hint="your name"
+            android:textColor="@color/darkBlue"
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
@@ -125,9 +127,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:background="@color/lightGreen"
+            android:background="@drawable/rounded_button"
             android:hint="Create My Campaign"
-            android:textSize="20sp" />
+            android:textColor="@color/darkBlue"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"/>
 
     </LinearLayout>
 

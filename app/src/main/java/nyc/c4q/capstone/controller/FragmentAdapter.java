@@ -3,6 +3,8 @@ package nyc.c4q.capstone.controller;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
@@ -10,6 +12,8 @@ import nyc.c4q.capstone.favorites.FavoritesFragment;
 import nyc.c4q.capstone.finder.FinderFragment;
 import nyc.c4q.capstone.campaign.CreateCampaignFragment;
 import nyc.c4q.capstone.feed.MainFeedFragment;
+
+import static android.app.PendingIntent.getActivity;
 
 /**
  * Created by c4q on 3/15/18.
@@ -39,8 +43,6 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
                 return new CreateCampaignFragment();
             case 3:
                 return new FavoritesFragment();
-
-
             default:
                 return null;
         }
@@ -50,4 +52,6 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return numberOfTabs;
     }
+
+
 }

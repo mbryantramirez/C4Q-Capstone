@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
         setContentView(R.layout.activity_main);
-//        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
 //        getSupportActionBar().setTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
