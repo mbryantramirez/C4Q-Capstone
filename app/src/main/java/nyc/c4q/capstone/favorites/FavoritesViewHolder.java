@@ -3,7 +3,10 @@ package nyc.c4q.capstone.favorites;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ import static android.content.ContentValues.TAG;
 public class FavoritesViewHolder extends RecyclerView.ViewHolder {
     private TextView title;
     private TextView goal;
-    private TextView imagleURl;
+    private ImageView imagleURl;
     private TextView creator;
 
     public FavoritesViewHolder(View itemView) {
@@ -34,7 +37,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
         Log.d(TAG, "onBind: viewholder");
         title.setText(model.getTitle());
         goal.setText(model.getGoal());
-        imagleURl.setText(model.getImageUrl());
+        Picasso.get().load(model.getImageUrl()).resize(100,100).into(imagleURl);
         creator.setText(model.getCreatorID());
 
         //I need to clean this code so It can be better implemented elsewhere in the app.

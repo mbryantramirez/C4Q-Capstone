@@ -122,3 +122,4 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         actionBar.setTitle("Favorites");
     }
 }
+

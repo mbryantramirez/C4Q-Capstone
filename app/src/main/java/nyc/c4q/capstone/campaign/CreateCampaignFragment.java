@@ -90,7 +90,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
             firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
         }
     }//ther are more things I need to do such as fixing the design.
-    //I also with the help of mu team mates ned to make the code more testable.
+    //I also with the help of my teammates need to make the code more testable.
     //which I will need to do by organizing the code more.
     //I will also need to implement better logic so people can navigate through the app more
     //easily.

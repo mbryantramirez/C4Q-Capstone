@@ -202,3 +202,5 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
 
 
 }
+//I am going to set up the preferneces fragment so that I can
+//click on a tab in the tablayout and then go to than fragment.
