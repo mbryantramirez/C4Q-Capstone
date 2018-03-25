@@ -1,9 +1,10 @@
-package nyc.c4q.capstone.firebase;
+package nyc.c4q.capstone.utils;
 
 /**
  * Created by c4q on 3/17/18.
  */
 
+import android.content.pm.FeatureInfo;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +18,7 @@ import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 
 public class FirebaseDataHelper {
+    private static FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private static final String CAMPAIGN_PATH = "campaigns";
     private static final String TAG = "Firebase?";
@@ -29,11 +31,16 @@ public class FirebaseDataHelper {
         return FirebaseHolder.INSTANCE;
     }
 
-    public FirebaseDataHelper() {
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+    private static FirebaseDatabase getDatabase(){
+        if(firebaseDatabase == null){
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseDatabase.setPersistenceEnabled(true);
+        }
+        return firebaseDatabase;
     }
 
     public DatabaseReference getDatabaseReference() {
+        databaseReference = getDatabase().getReference();
         return databaseReference;
     }
 
@@ -48,9 +55,9 @@ public class FirebaseDataHelper {
             Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
             Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
             Log.d(TAG, "onLoopCount: " + count);
+            Log.d(TAG, "getCampaignsList: "+ dataSnapshot.getChildren());
             DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-           DBReturnCampaignModelList.add(dbReturnCampaignModel);
-            count++;
+            DBReturnCampaignModelList.add(dbReturnCampaignModel);
         }
         return DBReturnCampaignModelList;
     }
