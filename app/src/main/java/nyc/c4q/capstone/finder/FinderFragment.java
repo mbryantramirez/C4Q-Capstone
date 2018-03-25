@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -36,6 +38,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.SphericalUtil;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +79,6 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         mapView = rootView.findViewById(R.id.finder_map_view);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-        centerMapOnMyLocation();
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
         return rootView;
     }
@@ -85,9 +89,6 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
     }
 
-    private void centerMapOnMyLocation() {
-//        myGoogleMap.setMyLocationEnabled(true);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -111,36 +112,25 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         myGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker) {
+
+
                 return null;
             }
 
             @Override
             public View getInfoContents(Marker marker) {
-                return null;
+             DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
+                View rootView = getLayoutInflater().inflate(R.layout.mapwindowlayout,null);
+                ImageView tvImage = rootView.findViewById(R.id.infowindow_marker_image);
+                TextView tvTitle = rootView.findViewById(R.id.infowindow_marker_title);
+                TextView tvSummary = rootView.findViewById(R.id.infowindow_marker_summary);
+                tvTitle.setText(markerCampaign.getTitle());
+                tvSummary.setText(markerCampaign.getSummary());
+                Picasso.get().load(markerCampaign.getImageUrl()).into(tvImage);
+                return rootView;
             }
         });
-
         getDeviceLocation();
-        for (Map.Entry<MarkerOptions, DBReturnCampaignModel> entry : campaignHashMap.entrySet()) {
-            MarkerOptions marker = entry.getKey();
-            LocationManager locationManager = (LocationManager) getActivity().getSystemService(getActivity().LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            String bestProvider = locationManager.getBestProvider(criteria, true);
-            Location location = locationManager.getLastKnownLocation(bestProvider);
-            if (location != null) {
-                Marker mapMarker = myGoogleMap.addMarker(marker);
-                if(lastKnownLocation != null) {
-                    Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
-                }
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                if (SphericalUtil.computeDistanceBetween(marker.getPosition(), latLng) <= 5000) {
-                    mapMarker.setVisible(true);
-                } else {
-                    mapMarker.setVisible(false);
-                }
-            }
-
-        }
     }
 
     private void getDeviceLocation() {
@@ -152,9 +142,29 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                     lastKnownLocation = (Location) task.getResult();
                     Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
                     myGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()), 13));
+                    orderMarkers(lastKnownLocation);
                 }
             }
         });
+    }
+
+    private void orderMarkers(Location deviceLocation) {
+        for (Map.Entry<MarkerOptions, DBReturnCampaignModel> entry : campaignHashMap.entrySet()) {
+            MarkerOptions marker = entry.getKey();
+            if (deviceLocation != null) {
+                Marker mapMarker = myGoogleMap.addMarker(marker);
+                mapMarker.setTag(entry.getValue());
+                if (lastKnownLocation != null) {
+                    Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
+                }
+                LatLng latLng = new LatLng(deviceLocation.getLatitude(), deviceLocation.getLongitude());
+                if (SphericalUtil.computeDistanceBetween(marker.getPosition(), latLng) <= 5000) {
+                    mapMarker.setVisible(true);
+                } else {
+                    mapMarker.setVisible(false);
+                }
+            }
+        }
     }
 
     @Override
@@ -189,7 +199,6 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
             campaignHashMap.put(marker, dbReturnCampaignModel);
         }
     }
-
 
 
 }
