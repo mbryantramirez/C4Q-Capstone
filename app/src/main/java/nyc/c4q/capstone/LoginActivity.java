@@ -72,45 +72,45 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
 
-//                auth.signInWithEmailAndPassword(email, userPassword)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "sign in: success");
-//                                    currentUser = auth.getCurrentUser();
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    startActivity(intent);
-//                                    finish();
-//                                } else {
-//                                    Log.d(TAG, "sign in: failure", task.getException());
-//                                    Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-//            }
-//        });
-//    }
-//    }
-                auth.createUserWithEmailAndPassword(email, userPassword)
+                auth.signInWithEmailAndPassword(email, userPassword)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Log.d(TAG, "user account created? YES");
+                                    Log.d(TAG, "sign in: success");
                                     currentUser = auth.getCurrentUser();
-                                    updateUI(currentUser);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
-                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
-                                    Log.d(TAG, "exception is: " + task.getException());
-                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
+                                    Log.d(TAG, "sign in: failure", task.getException());
+                                    Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
             }
         });
+//    }
+//    }
+//                auth.createUserWithEmailAndPassword(email, userPassword)
+//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "user account created? YES");
+//                                    currentUser = auth.getCurrentUser();
+//                                    updateUI(currentUser);
+//                                } else {
+//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
+//                                    Log.d(TAG, "exception is: " + task.getException());
+//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
+//                                    updateUI(null);
+//                                }
+//                            }
+//                        });
+//
+//            }
+//        });
     }
 
 

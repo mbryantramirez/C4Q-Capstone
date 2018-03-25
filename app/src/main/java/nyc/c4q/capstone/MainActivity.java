@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-        Log.d(TAG, "user name is: "+ currentUser.getUid());
+        Log.d(TAG, "user name is: " + currentUser.getUid());
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 signOut();
                 Toast.makeText(this, "logout successful", Toast.LENGTH_SHORT).show();
                 break;
+
             default:
                 Log.e(TAG, "nothing clicked");
         }
