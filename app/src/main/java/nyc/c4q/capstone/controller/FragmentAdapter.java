@@ -29,7 +29,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new MainFeedFragment();
             case 1:
-                return new CampaignPreferencesFragment();
+                return new FinderFragment();
 
             case 2:
                 return new CreateCampaignFragment();

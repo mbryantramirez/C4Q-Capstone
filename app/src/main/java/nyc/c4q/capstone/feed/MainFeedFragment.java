@@ -159,7 +159,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
 
-        final String textFromPref=preferences.getString("Keyword"," ");
+        final String textFromPref=preferences.getString("Keyword","");
         Log.d(TAG,"onDataChange: "+ textFromPref);
 
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {

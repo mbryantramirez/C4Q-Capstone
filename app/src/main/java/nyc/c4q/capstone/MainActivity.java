@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_viewpager,fragment);
                 fragmentTransaction.commit();
+                break;
 
             default:
                 Log.e(TAG, "nothing clicked");
