@@ -13,6 +13,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.ActionBar;
@@ -40,6 +42,8 @@ import com.yuyakaido.android.cardstackview.SwipeDirection;
 import java.util.Collections;
 import java.util.List;
 
+import nyc.c4q.capstone.MainActivity;
+import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.finder.LocationHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
@@ -132,12 +136,9 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
             public void onCardClicked(int index) {
                 Log.d(CARD_TAG, "onCardClicked");
                 Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
-
                 int pos = cardStackView.getTopIndex();
-
                 DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
-                Log.d(CARD_TAG, "onCardClicked: " + dbReturnCampaignModel.getTitle());
-                firebaseDataHelper.getDatabaseReference().child("funded").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                ((MainActivity) getActivity()).startSecondFragment(dbReturnCampaignModel);
             }
         });
     }

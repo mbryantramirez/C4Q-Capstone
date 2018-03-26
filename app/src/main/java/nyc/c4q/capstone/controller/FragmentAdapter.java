@@ -34,8 +34,9 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                if (Home == null)
+                if (Home == null) {
                     Home = new MainFeedFragment();
+                }
                 return Home;
             case 1:
                 return new FinderFragment();
