@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        setActionBarTitle("village");
+//        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
 //        getSupportActionBar().setTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_fragment_container, fragment);
                 fragmentTransaction.addToBackStack("Campaigns");
-//                getActionBar().setTitle("My Preferences");
+                setActionBarTitle("preferences");
                 fragmentTransaction.commit();
                 break;
             default:
@@ -142,5 +143,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_fragment_container, blogPostFragment);
         fragmentTransaction.addToBackStack("Blogs");
         fragmentTransaction.commit();
+    }
+
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
     }
 }

@@ -75,6 +75,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("village");
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
@@ -182,12 +184,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle("village");
-    }
+
+//    public void onResume() {
+//        super.onResume();
+//        ((MainActivity) getActivity())
+//                .setActionBarTitle("village");
+//    }
 
 }

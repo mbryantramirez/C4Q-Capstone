@@ -15,6 +15,15 @@
         android:orientation="vertical"
         android:layout_marginBottom="20dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:text="Please provide the following information to create your campaign"/>
+
         <EditText
             android:id="@+id/firebase_test_set_campaign_creator"
             android:layout_width="match_parent"
