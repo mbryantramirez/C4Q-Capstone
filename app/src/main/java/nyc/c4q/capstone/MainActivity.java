@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
 import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
 import nyc.c4q.capstone.feed.MainFeedFragment;
+import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
     private FragmentAdapter fragmentAdapter;
-
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_add_box_black_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_favorite_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        final ViewPager viewPager = findViewById(R.id.main_viewpager);
+        viewPager = findViewById(R.id.main_viewpager);
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -105,18 +107,21 @@ public class MainActivity extends AppCompatActivity {
                     Fragment activeFragment = fragmentAdapter.getItem(currentPosition);
                     ((MainFeedFragment) activeFragment).doSomething();
                 }
+                break;
             case R.id.pref:
-                CampaignPreferencesFragment fragment= new CampaignPreferencesFragment();
-                FragmentManager fragmentManager=getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_fragment_container,fragment);
+                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
+                fragmentTransaction.addToBackStack("Campaigns");
                 fragmentTransaction.commit();
-
+                break;
             default:
                 Log.e(TAG, "nothing clicked");
         }
         return true;
     }
+
 
     private void signOut() {
         auth.signOut();
@@ -125,4 +130,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void startSecondFragment(DBReturnCampaignModel dbReturnCampaignModel) {
+        Log.d(TAG, "onCardLongClicked: " + dbReturnCampaignModel.getTitle());
+        BlogPostFragment blogPostFragment = new BlogPostFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("Title", dbReturnCampaignModel.getTitle());
+        blogPostFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_fragment_container, blogPostFragment);
+        fragmentTransaction.addToBackStack("Blogs");
+        fragmentTransaction.commit();
+    }
 }

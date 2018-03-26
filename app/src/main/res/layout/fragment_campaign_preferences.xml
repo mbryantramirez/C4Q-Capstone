@@ -20,7 +20,7 @@
         <Button
             android:id="@+id/medButton"
             android:background="@drawable/round_button"
-            android:text="Medical"
+            android:text=""
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp" />

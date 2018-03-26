@@ -78,12 +78,12 @@ public class FirebaseDataHelper {
         return DBReturnCampaignModelList;
     }
 
-    public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot) {
-        Log.d(TAG, "query" + dataSnapshot.hasChild("one"));
-        Log.d(TAG, "getCampaign: "+dataSnapshot.hasChild("category"));
-        if (dataSnapshot.hasChild("one")) {
-            Log.d(TAG, "datasnapshot:" + dataSnapshot.child("one"));
-            return dataSnapshot.child("one").getValue(DBReturnCampaignModel.class);
+    public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot, String blogTitleString) {
+        Log.d(TAG, "query" + dataSnapshot.hasChild(blogTitleString));
+        Log.d(TAG, "getCampaign: "+dataSnapshot.hasChild(blogTitleString));
+        if (dataSnapshot.hasChild(blogTitleString)) {
+            Log.d(TAG, "datasnapshot:" + dataSnapshot.child(blogTitleString));
+            return dataSnapshot.child(blogTitleString).getValue(DBReturnCampaignModel.class);
         }
 
         return null;
