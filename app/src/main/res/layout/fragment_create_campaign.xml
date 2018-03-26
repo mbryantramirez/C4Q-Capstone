@@ -11,7 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
 
         <EditText
             android:id="@+id/firebase_test_set_campaign_creator"
@@ -26,6 +28,19 @@
             android:inputType="textPersonName"
             android:textAlignment="center"
             android:textColor="@color/darkBlue" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="your address"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/firebase_test_set_imageurl"
@@ -60,20 +75,6 @@
 
 
         <EditText
-            android:id="@+id/firebase_test_set_goal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
-            android:hint="amount of money you'd like to raise"
-            android:inputType="numberDecimal"
-            android:textAlignment="center" />
-
-
-        <EditText
             android:id="@+id/firebase_test_set_intro"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -90,14 +91,14 @@
         <EditText
             android:id="@+id/firebase_test_set_campaign_body"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="200dp"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:hint="continue your story here"
-            android:inputType="textLongMessage"
+            android:inputType="textMultiLine"
             android:textAlignment="center" />
 
         <EditText
@@ -105,22 +106,24 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:hint="category spinner?"
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/address"
+            android:id="@+id/firebase_test_set_goal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
-            android:hint="your address"
-            android:inputType="textPersonName"
+            android:hint="amount of money you'd like to raise"
+            android:inputType="numberDecimal"
             android:textAlignment="center" />
 
 
@@ -128,7 +131,7 @@
             android:id="@+id/firebase_test_store_data"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"

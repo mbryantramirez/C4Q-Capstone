@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_fragment_container, fragment);
                 fragmentTransaction.addToBackStack("Campaigns");
+//                getActionBar().setTitle("My Preferences");
                 fragmentTransaction.commit();
                 break;
             default:
