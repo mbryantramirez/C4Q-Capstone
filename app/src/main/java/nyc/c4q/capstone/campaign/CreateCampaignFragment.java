@@ -101,9 +101,9 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         createCampaign();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle("create campaign");
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        getActivity().setTitle("create campaign");
+//    }
 }

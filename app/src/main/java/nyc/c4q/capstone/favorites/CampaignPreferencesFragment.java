@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
@@ -158,5 +159,11 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     in a recyclerview. But I am having trouble figuring out the logic for that.
 
      */
+
+//    public void onResume() {
+//        super.onResume();
+//        ((MainActivity) getActivity())
+//                .setActionBarTitle("preferences");
+//    }
 
 }
