@@ -1,6 +1,7 @@
 package nyc.c4q.capstone;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_add_box_black_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_favorite_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tabLayout.setBackgroundColor(getColor(R.color.darkBlue));
+        }
         viewPager = findViewById(R.id.main_viewpager);
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
