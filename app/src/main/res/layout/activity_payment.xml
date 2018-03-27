@@ -15,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
         android:text="How Much Would You Like To Donate?"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         tools:text="How Much Would You Like To Donate?" />
@@ -26,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/one_button"
@@ -67,6 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:text="Payment"
+        android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         tools:text="Payment" />
 

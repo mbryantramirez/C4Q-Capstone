@@ -11,19 +11,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
-            android:textSize="20sp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Please provide the following information to create your campaign"
+            android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
-            android:text="Please provide the following information to create your campaign"/>
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/firebase_test_set_campaign_creator"
@@ -36,6 +37,7 @@
             android:background="@drawable/create_campaign_boxes"
             android:hint="your name"
             android:inputType="textPersonName"
+            android:padding="6dp"
             android:textAlignment="center"
             android:textColor="@color/darkBlue" />
 
@@ -50,6 +52,7 @@
             android:background="@drawable/create_campaign_boxes"
             android:hint="your address"
             android:inputType="textPersonName"
+            android:padding="6dp"
             android:textAlignment="center" />
 
         <EditText
@@ -62,12 +65,9 @@
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
-
             android:hint="upload image"
             android:inputType="textUri"
-            android:paddingLeft="100dp"
-
-            android:paddingRight="100dp"
+            android:padding="6dp"
             android:textAlignment="center" />
 
 
@@ -81,6 +81,7 @@
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:hint="choose a title for your campaign"
+            android:padding="6dp"
             android:textAlignment="center" />
 
 
@@ -95,6 +96,7 @@
             android:background="@drawable/create_campaign_boxes"
             android:hint="briefly tell us your story"
             android:inputType="textMultiLine"
+            android:padding="6dp"
             android:textAlignment="center" />
 
 
@@ -109,6 +111,7 @@
             android:background="@drawable/create_campaign_boxes"
             android:hint="continue your story here"
             android:inputType="textMultiLine"
+            android:padding="6dp"
             android:textAlignment="center" />
 
         <EditText
@@ -121,6 +124,7 @@
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:hint="category spinner?"
+            android:padding="6dp"
             android:textAlignment="center" />
 
         <EditText
@@ -134,6 +138,7 @@
             android:background="@drawable/create_campaign_boxes"
             android:hint="amount of money you'd like to raise"
             android:inputType="numberDecimal"
+            android:padding="6dp"
             android:textAlignment="center" />
 
 
