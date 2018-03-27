@@ -23,6 +23,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("payment");
+
         submitButton = findViewById(R.id.submit_payment);
         submitButton.setOnClickListener(this);
         one = findViewById(R.id.one_button);

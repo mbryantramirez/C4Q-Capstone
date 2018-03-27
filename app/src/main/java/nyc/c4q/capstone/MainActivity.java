@@ -36,11 +36,12 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private FragmentAdapter fragmentAdapter;
     private ViewPager viewPager;
-    HashMap<Integer,String>fragmentMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        showSwipeInstructions();
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
@@ -160,5 +161,10 @@ public class MainActivity extends AppCompatActivity {
     public void setActionBarTitle(String title){
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+    }
+
+    public void showSwipeInstructions(){
+        AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
+        alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
     }
 }
