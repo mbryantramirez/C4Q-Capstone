@@ -23,6 +23,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        setUpActionBar();
+
         submitButton = findViewById(R.id.submit_payment);
         submitButton.setOnClickListener(this);
         one = findViewById(R.id.one_button);
@@ -64,7 +66,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
             payPal.setBackgroundColor(Color.TRANSPARENT);
 
         }
-        view.setBackgroundColor(Color.GREEN);
+        view.setBackgroundColor(getResources().getColor(R.color.lightGreen));
 
         return false;
     }
@@ -99,9 +101,15 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
 
     }
 
-    private String getPaymentToastString(String amount, String paymentType){
+    private String getPaymentToastString(String amount, String paymentType) {
         return "Thank you for donating " + amount + " through " + paymentType +
                 ". Your contribution is greatly appreciated!";
+    }
+
+    public void setUpActionBar() {
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("payment");
+
     }
 
 }

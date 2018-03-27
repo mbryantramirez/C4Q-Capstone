@@ -1,6 +1,7 @@
 package nyc.c4q.capstone;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
 import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
@@ -38,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        showSwipeInstructions();
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
         setContentView(R.layout.activity_main);
         setActionBarTitle("village");
-//        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
-//        getSupportActionBar().setTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_add_box_black_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_favorite_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tabLayout.setBackgroundColor(getColor(R.color.darkBlue));
+        }
         viewPager = findViewById(R.id.main_viewpager);
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
@@ -68,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 currentPosition = tab.getPosition();
                 viewPager.setCurrentItem(tab.getPosition());
+                switch(currentPosition){
+                    case 0: setActionBarTitle("my village");
+                    break;
+                    case 1: setActionBarTitle("location");
+                    break;
+                    case 2: setActionBarTitle("create a campaign");
+                    break;
+                    case 3: setActionBarTitle("favorites & funded");
+                }
             }
 
             @Override
@@ -148,5 +162,10 @@ public class MainActivity extends AppCompatActivity {
     public void setActionBarTitle(String title){
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+    }
+
+    public void showSwipeInstructions(){
+        AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
+        alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
     }
 }

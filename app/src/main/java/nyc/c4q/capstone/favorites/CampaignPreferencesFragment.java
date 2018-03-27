@@ -160,10 +160,6 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
 
      */
 
-//    public void onResume() {
-//        super.onResume();
-//        ((MainActivity) getActivity())
-//                .setActionBarTitle("preferences");
-//    }
+
 
 }

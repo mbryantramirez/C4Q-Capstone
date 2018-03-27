@@ -11,7 +11,6 @@ public class CreateCampaignModel {
     public String creatorName;
     public String imageUrl;
     public String goal;
-    public String summary;
     public String intro;
     public String body;
     public String address;
@@ -21,13 +20,12 @@ public class CreateCampaignModel {
 
     }
 
-    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String summary, String intro, String body, String address, String category) {
+    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String intro, String body, String address, String category) {
         this.title = title;
         this.creatorName = creatorName;
         this.creatorID = creatorID;
         this.imageUrl = imageUrl;
         this.goal = goal;
-        this.summary = summary;
         this.intro = intro;
         this.body = body;
         this.address = address;

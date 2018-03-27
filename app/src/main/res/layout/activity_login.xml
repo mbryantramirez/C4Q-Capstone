@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/lightBlue"
+    android:orientation="vertical"
     tools:context="nyc.c4q.capstone.LoginActivity">
 
     <LinearLayout
@@ -23,42 +23,47 @@
             android:layout_height="180dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/community_logo"/>
+            android:src="@drawable/community_logo" />
 
         <TextView
             android:id="@+id/login_welcome_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="because it takes a village"
             android:paddingBottom="10dp"
+            android:text="village: a place to give and receive"
             android:textAlignment="center"
+            android:textAppearance="@color/darkBlue"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/login_username_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username:" />
+            android:text="Username:"
+            android:textColor="@color/darkBlue" />
 
         <EditText
             android:id="@+id/login_username_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Email Address"
-            android:inputType="textWebEmailAddress" />
+            android:inputType="textWebEmailAddress"
+            android:textColor="@color/darkBlue" />
 
         <TextView
             android:id="@+id/login_password_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password:" />
+            android:text="Password:"
+            android:textColor="@color/darkBlue" />
 
         <EditText
             android:id="@+id/login_password_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
-            android:inputType="textWebPassword" />
+            android:inputType="textWebPassword"
+            android:textColor="@color/darkBlue" />
 
 
         <Button
@@ -66,10 +71,10 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:paddingHorizontal="16dp"
             android:background="@drawable/rounded_button"
+            android:paddingHorizontal="16dp"
             android:text="Submit"
-            android:textColor="@color/darkBlue"/>
+            android:textColor="@color/darkBlue" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,11 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
+            android:background="@drawable/rounded_button"
             android:paddingHorizontal="16dp"
             android:text="Click to register"
             android:textColor="@color/darkBlue"
-            android:textSize="10sp"
-            android:background="@drawable/rounded_button"/>
+            android:textSize="10sp" />
 
     </LinearLayout>
 
