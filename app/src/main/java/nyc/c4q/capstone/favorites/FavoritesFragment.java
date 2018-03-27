@@ -54,6 +54,8 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+//        getActivity().setTitle("favorites");
+
 
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
@@ -76,7 +78,6 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
             }
         });
 
-//
 
 
         // Inflate the layout for this fragment
@@ -86,9 +87,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        AppCompatActivity activity = (AppCompatActivity) getActivity();
-//        ActionBar actionBar = activity.getSupportActionBar();
-//        actionBar.setTitle("Favorites");
+
     }
 
     @Override
@@ -114,6 +113,10 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     }
 
-
+//    public void onResume() {
+//        super.onResume();
+//        ((MainActivity) getActivity())
+//                .setActionBarTitle("favorites");
+//    }
 }
 

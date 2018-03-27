@@ -39,7 +39,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
         holder.onBind(modelList.get(position));
-
     }
 
     @Override
