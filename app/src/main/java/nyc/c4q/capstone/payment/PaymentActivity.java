@@ -23,8 +23,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
-        getSupportActionBar().setTitle("payment");
+        setUpActionBar();
 
         submitButton = findViewById(R.id.submit_payment);
         submitButton.setOnClickListener(this);
@@ -102,9 +101,15 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
 
     }
 
-    private String getPaymentToastString(String amount, String paymentType){
+    private String getPaymentToastString(String amount, String paymentType) {
         return "Thank you for donating " + amount + " through " + paymentType +
                 ". Your contribution is greatly appreciated!";
+    }
+
+    public void setUpActionBar() {
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("payment");
+
     }
 
 }

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 currentPosition = tab.getPosition();
                 viewPager.setCurrentItem(tab.getPosition());
                 switch(currentPosition){
-                    case 0: setActionBarTitle("village");
+                    case 0: setActionBarTitle("my village");
                     break;
                     case 1: setActionBarTitle("location");
                     break;
