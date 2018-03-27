@@ -20,13 +20,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 tools:text="Large User Image"
-                tools:textSize="80sp" />
+                tools:textSize="80sp"
+                android:layout_below="@id/blog_post_title"/>
 
             <TextView
                 android:id="@+id/blog_post_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:textSize="20sp"
                 tools:text="TITLE" />
 
 
@@ -46,7 +48,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
 
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:layout_alignParentBottom="true"
         android:background="@color/lightBlue">
 
