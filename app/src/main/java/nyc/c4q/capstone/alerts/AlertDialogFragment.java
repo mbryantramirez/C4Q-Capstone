@@ -1,4 +1,4 @@
-package nyc.c4q.capstone;
+package nyc.c4q.capstone.alerts;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+
+import nyc.c4q.capstone.R;
 
 /**
  * Created by C4Q on 3/26/18.

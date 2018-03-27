@@ -6,8 +6,8 @@
     <string name="submit_to_firebase">Submit</string>
     <string name="firebase_campaign_node">campaigns</string>
 
-    <string name="alert_dialog_greeting">Welcome</string>
-    <string name="swipe_instructions">Swipe left to see more campaigns \n Swipe right to save a campaign</string>
+    <string name="alert_dialog_greeting">Welcome to village</string>
+    <string name="swipe_instructions"> Swipe left to see more campaigns \nSwipe right to save a campaign \nClick a campaign for more info</string>
     <string name="alert_dialog_ok">got it?</string>
 
 </resources>

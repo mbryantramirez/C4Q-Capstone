@@ -18,8 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.HashMap;
-
+import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
 import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
@@ -48,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "user name is: " + currentUser.getUid());
         setContentView(R.layout.activity_main);
         setActionBarTitle("village");
-//        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
-//        getSupportActionBar().setTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
@@ -83,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                     case 2: setActionBarTitle("create a campaign");
                     break;
-                    case 3: setActionBarTitle("my favorites");
+                    case 3: setActionBarTitle("favorites & funded");
                 }
             }
 
