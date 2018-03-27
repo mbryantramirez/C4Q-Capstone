@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.HashMap;
+
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
 import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private FragmentAdapter fragmentAdapter;
     private ViewPager viewPager;
+    HashMap<Integer,String>fragmentMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 currentPosition = tab.getPosition();
                 viewPager.setCurrentItem(tab.getPosition());
+                switch(currentPosition){
+                    case 0: setActionBarTitle("village");
+                    break;
+                    case 1: setActionBarTitle("location");
+                    break;
+                    case 2: setActionBarTitle("create a campaign");
+                    break;
+                    case 3: setActionBarTitle("my favorites");
+                }
             }
 
             @Override
