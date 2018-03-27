@@ -22,6 +22,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
             android:textSize="20sp"
+            android:textAppearance="@color/darkBlue"
             android:text="Please provide the following information to create your campaign"/>
 
         <EditText

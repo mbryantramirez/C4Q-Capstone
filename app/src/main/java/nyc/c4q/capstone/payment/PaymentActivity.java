@@ -66,7 +66,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
             payPal.setBackgroundColor(Color.TRANSPARENT);
 
         }
-        view.setBackgroundColor(Color.GREEN);
+        view.setBackgroundColor(getResources().getColor(R.color.lightGreen));
 
         return false;
     }
