@@ -11,7 +11,6 @@ public class DBReturnCampaignModel {
     private String creatorID;
     private String imageUrl;
     private String goal;
-    private String summary;
     private String intro;
     private String body;
     private String address;
@@ -60,13 +59,6 @@ public class DBReturnCampaignModel {
         this.goal = goal;
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 
     public String getIntro() {
         return intro;

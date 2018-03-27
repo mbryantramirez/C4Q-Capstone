@@ -105,13 +105,14 @@ public class MainActivity extends AppCompatActivity {
                     Fragment activeFragment = fragmentAdapter.getItem(currentPosition);
                     ((MainFeedFragment) activeFragment).doSomething();
                 }
+                break;
             case R.id.pref:
                 CampaignPreferencesFragment fragment= new CampaignPreferencesFragment();
                 FragmentManager fragmentManager=getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.main_fragment_container,fragment);
                 fragmentTransaction.commit();
-
+                break;
             default:
                 Log.e(TAG, "nothing clicked");
         }
@@ -126,3 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+/*
+    
+ */
