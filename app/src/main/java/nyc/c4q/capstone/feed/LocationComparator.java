@@ -28,10 +28,23 @@ public class LocationComparator implements Comparator<DBReturnCampaignModel> {
         LatLng locationOne = LocationHelper.getLocationFromAddress(context, campaignOne.getAddress());
         LatLng locationTwo = LocationHelper.getLocationFromAddress(context, campaignTwo.getAddress());
 
-        double latOne = locationOne.latitude;
-        double longOne = locationOne.longitude;
-        double latTwo = locationTwo.latitude;
-        double longTwo = locationTwo.longitude;
+        double latOne;
+        double longOne;
+        double latTwo;
+        double longTwo;
+
+        if (locationOne == null || locationTwo == null) {
+            latOne = 0;
+            longOne = 0;
+            latTwo = 0;
+            longTwo = 0;
+        } else {
+            latOne = locationOne.latitude;
+            longOne = locationOne.longitude;
+            latTwo = locationTwo.latitude;
+            longTwo = locationTwo.longitude;
+        }
+
 
         double distanceToPlace1 = distance(currentLocation.latitude, currentLocation.longitude, latOne, longOne);
         double distanceToPlace2 = distance(currentLocation.latitude, currentLocation.longitude, latTwo, longTwo);
@@ -42,10 +55,10 @@ public class LocationComparator implements Comparator<DBReturnCampaignModel> {
         double radius = 6378137;   // approximate Earth radius, *in meters*
         double deltaLat = toLat - fromLat;
         double deltaLon = toLon - fromLon;
-        double angle = 2 * Math.asin( Math.sqrt(
-                Math.pow(Math.sin(deltaLat/2), 2) +
+        double angle = 2 * Math.asin(Math.sqrt(
+                Math.pow(Math.sin(deltaLat / 2), 2) +
                         Math.cos(fromLat) * Math.cos(toLat) *
-                                Math.pow(Math.sin(deltaLon/2), 2) ) );
+                                Math.pow(Math.sin(deltaLon / 2), 2)));
         return radius * angle;
     }
 }
