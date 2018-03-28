@@ -13,7 +13,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.TypedArrayUtils;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +42,8 @@ import com.yuyakaido.android.cardstackview.SwipeDirection;
 import java.util.Collections;
 import java.util.List;
 
+import nyc.c4q.capstone.MainActivity;
+import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.finder.LocationHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
@@ -68,6 +75,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("village");
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
@@ -84,6 +93,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         preferences = getActivity().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -127,12 +138,9 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
             public void onCardClicked(int index) {
                 Log.d(CARD_TAG, "onCardClicked");
                 Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
-
                 int pos = cardStackView.getTopIndex();
-
                 DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
-                Log.d(CARD_TAG, "onCardClicked: " + dbReturnCampaignModel.getTitle());
-                firebaseDataHelper.getDatabaseReference().child("funded").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                ((MainActivity) getActivity()).startSecondFragment(dbReturnCampaignModel);
             }
         });
     }
@@ -175,4 +183,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
+
+
+
 }

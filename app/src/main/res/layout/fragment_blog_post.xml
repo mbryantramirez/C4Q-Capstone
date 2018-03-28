@@ -1,56 +1,91 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:windowBackground"
     tools:context="nyc.c4q.capstone.blog.BlogPostFragment">
 
-
-    <ImageView
-        android:id="@+id/blog_post_imageview"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:text="Large User Image"
-        tools:textSize="80sp" />
-
-    <TextView
-        android:id="@+id/blog_post_title"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        tools:text="TITLE" />
+        android:background="@color/lightBlue">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <TextView
-        android:id="@+id/blog_post_textview"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_below="@id/blog_post_imageview"
-        android:scrollbars="vertical"
-        android:text="This is the story of someone that needs help..."
-        android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/blog_post_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:text="Large User Image"
+                tools:textSize="80sp"
+                android:layout_below="@id/blog_post_title"/>
+
+            <TextView
+                android:id="@+id/blog_post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:text="TITLE" />
 
 
-    <TextView
+            <TextView
+                android:id="@+id/blog_post_textview"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_below="@id/blog_post_imageview"
+                android:scrollbars="vertical"
+                android:text="This is the story of someone that needs help..."
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/blog_post_recyclerView"
-        android:text="I have contributed to: "
-        android:textSize="15sp" />
 
-    <android.support.v7.widget.RecyclerView
-    android:id="@+id/blog_post_recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_above="@id/donate_button"
-    android:orientation="horizontal" />
-
-
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/donate_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rounded_button"
-        android:text="Donate Now" />
+        android:background="@color/lightBlue">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/blog_post_recyclerView"
+            android:text="I have contributed to: "
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/blog_post_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_above="@id/donate_button"
+            android:orientation="horizontal" />
+
+
+        <Button
+            android:id="@+id/donate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/rounded_button"
+            android:text="Donate Now"
+            android:textSize="20sp"
+            android:contextClickable="true"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
+
+
+
+
+

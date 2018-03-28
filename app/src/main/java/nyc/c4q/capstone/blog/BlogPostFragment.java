@@ -3,6 +3,7 @@ package nyc.c4q.capstone.blog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,6 +43,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     public static final String TAG = "firebase?";
+    private static final String BLOG_TAG = "blog_bundle?";
 
     View rootView;
     private ImageView userImage;
@@ -51,8 +54,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
-
-
+    private String blogTitleString;
     public BlogPostFragment() {
         // Required empty public constructor
     }
@@ -68,15 +70,15 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         storyTitle = rootView.findViewById(R.id.blog_post_title);
         donateButton = rootView.findViewById(R.id.donate_button);
         recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
-
-        firebaseDataHelper.getDatabaseReference().addValueEventListener(this);
+        blogTitleString = getArguments().getString("Title");
+        Log.d(BLOG_TAG, "onBundleReceived: "+ blogTitleString);
+        firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(this);
         firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot," ");
                 campaignAdapter.setData(campaignModelList);
                 campaignAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -115,15 +117,17 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     //this is linked to blog feed
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
-//        Picasso.get().load(model.getImageUrl()).into(userImage);
-        userImage.setImageResource(R.drawable.community_logo);
-
+        Picasso.get().load(model.getImageUrl()).into(userImage);
+//        userImage.setImageResource(R.drawable.community_logo);
+        storyTitle.setText(model.getTitle());
+        blogPost.setText(model.getBody());
     }
 
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot));
+
+        loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString));
         campaignAdapter.setData(campaignModelList);
         campaignAdapter.notifyDataSetChanged();
     }

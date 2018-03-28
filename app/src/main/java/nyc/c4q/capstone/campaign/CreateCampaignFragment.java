@@ -2,7 +2,10 @@ package nyc.c4q.capstone.campaign;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import nyc.c4q.capstone.models.CreateCampaignModel;
@@ -26,7 +30,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignGoal;
     private EditText campaignImageUrl;
     private EditText campaignCreator;
-    private EditText campaignSummary;
     private EditText campaignIntro;
     private EditText campaignBody;
     private EditText campaignAddress;
@@ -46,7 +49,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
-        campaignSummary = rootview.findViewById(R.id.firebase_test_set_summary);
         campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
         createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
         campaignIntro = rootview.findViewById(R.id.firebase_test_set_intro);
@@ -55,6 +57,14 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignCategory = rootview.findViewById(R.id.category);
         createCampaignButton.setOnClickListener(this);
         return rootview;
+
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     private void createCampaign() {
@@ -64,19 +74,18 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String url = campaignImageUrl.getText().toString();
         String creator = campaignCreator.getText().toString();
         String intro = campaignIntro.getText().toString();
-        String summary = campaignSummary.getText().toString();
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
         String category = campaignCategory.getText().toString();
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(user) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(summary) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category)) {
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(user) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category)) {
             Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
         } else {
-            CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, summary, intro, body, address, category);
+            CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, intro, body, address, category);
             firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
         }
     }//ther are more things I need to do such as fixing the design.
-    //I also with the help of mu team mates ned to make the code more testable.
+    //I also with the help of my teammates need to make the code more testable.
     //which I will need to do by organizing the code more.
     //I will also need to implement better logic so people can navigate through the app more
     //easily.
@@ -86,4 +95,5 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     public void onClick(View view) {
         createCampaign();
     }
+
 }

@@ -46,6 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
@@ -56,7 +57,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
  * A simple {@link Fragment} subclass.
  */
 
-public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener {
+public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener, GoogleMap.OnInfoWindowClickListener {
 
     private View rootView;
     private MapView mapView;
@@ -119,8 +120,8 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
 
             @Override
             public View getInfoContents(Marker marker) {
-             DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
-                View rootView = getLayoutInflater().inflate(R.layout.mapwindowlayout,null);
+                DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
+                View rootView = getLayoutInflater().inflate(R.layout.mapwindowlayout, null);
                 ImageView tvImage = rootView.findViewById(R.id.infowindow_marker_image);
                 TextView tvTitle = rootView.findViewById(R.id.infowindow_marker_title);
                 TextView tvSummary = rootView.findViewById(R.id.infowindow_marker_summary);
@@ -130,6 +131,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                 return rootView;
             }
         });
+        myGoogleMap.setOnInfoWindowClickListener(this);
         getDeviceLocation();
     }
 
@@ -201,4 +203,12 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     }
 
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
+        ((MainActivity) getActivity()).startSecondFragment(markerCampaign);
+
+    }
 }
+//I am going to set up the preferneces fragment so that I can
+//click on a tab in the tablayout and then go to than fragment.

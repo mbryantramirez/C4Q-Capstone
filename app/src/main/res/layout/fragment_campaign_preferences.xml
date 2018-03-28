@@ -1,94 +1,113 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightBlue"
     tools:context="nyc.c4q.capstone.favorites.CampaignPreferencesFragment">
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
 
     <LinearLayout
-        android:background="#FF4500"
+        android:id="@+id/instructions_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/campaign_prefs_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
+            android:textAppearance="@color/darkBlue"
+            android:text="Choose from the following categories to be shown campaigns that align with your interests:"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:id="@+id/ll1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/ll2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userImage">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/instructions_layout"
+        android:orientation="horizontal">
+
 
         <Button
             android:id="@+id/medButton"
-            android:background="@drawable/round_button"
-            android:text="Medical"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+
+            android:background="@drawable/round_button"
+            android:text="" />
 
         <Button
             android:id="@+id/housing_button"
-            android:text="Housing"
-            android:background="@drawable/housing_round_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            />
+
+            android:background="@drawable/housing_round_button"
+            android:text="Housing" />
 
         <Button
             android:id="@+id/education_button"
-            android:text="Education"
-            android:textSize="12sp"
-            android:background="@drawable/education_round_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp" />
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:background="#FFD700"
-        android:id="@+id/ll2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll1">
-
-        <Button
-            android:id="@+id/business"
-            android:text="Business"
-            android:background="@drawable/business_round_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp" />
-
-        <Button
-            android:id="@+id/clothingButton"
-            android:background="@drawable/clothing_round_button"
-            android:text="Clothing"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            />
 
-        <Button
-            android:id="@+id/npButton"
-            android:background="@drawable/nonprofit_round_button"
-            android:text="Nonprofit"
-            android:textSize="12sp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:background="@drawable/education_round_button"
+            android:text="Education"
+            android:textSize="12sp" />
 
 
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll1"
+        android:background="@color/lightBlue"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/business"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+
+            android:background="@drawable/business_round_button"
+            android:text="Business" />
+
+        <Button
+            android:id="@+id/clothingButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/clothing_round_button"
+            android:text="Clothing" />
+
+        <Button
+            android:id="@+id/npButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/nonprofit_round_button"
+            android:text="Nonprofit"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
 
     <!-- TODO: Update blank fragment layout -->
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
