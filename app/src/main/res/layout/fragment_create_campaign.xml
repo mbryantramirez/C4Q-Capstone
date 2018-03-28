@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/lightBlue"
     android:orientation="vertical"
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
@@ -51,7 +51,7 @@
             android:layout_marginTop="2dp"
             android:background="@drawable/create_campaign_boxes"
             android:hint="your address"
-            android:inputType="textPersonName"
+            android:inputType="text|textPostalAddress"
             android:padding="6dp"
             android:textAlignment="center" />
 

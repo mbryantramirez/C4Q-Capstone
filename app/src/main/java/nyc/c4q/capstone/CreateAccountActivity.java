@@ -23,7 +23,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
     private TextView firstName_tv, lastName_tv, password_tv, email_tv, number_tv;
-    private EditText firstName_et, lastName_et, password_et, email_et, number_et;
+    private EditText firstName_et, lastName_et, password_et, email_et, address_et, number_et;
     private Button upload_bt, submit_bt;
     private ImageView profilePic;
     private FirebaseAuth auth;
@@ -39,11 +39,12 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         firstName_et = findViewById(R.id.name_et);
         lastName_et = findViewById(R.id.last_name_et);
+        address_et = findViewById(R.id.address_et);
         password_et = findViewById(R.id.pw_et);
         email_et = findViewById(R.id.email_et);
         upload_bt = findViewById(R.id.uploadPic_button);
         submit_bt = findViewById(R.id.create_account_bt);
-        profilePic = findViewById(R.id.icon_iv);
+//        profilePic = findViewById(R.id.icon_iv);
 
         auth = FirebaseAuth.getInstance();
 
