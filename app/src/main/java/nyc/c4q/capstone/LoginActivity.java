@@ -92,49 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
-//    }
-//    }
-//                auth.createUserWithEmailAndPassword(email, userPassword)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "user account created? YES");
-//                                    currentUser = auth.getCurrentUser();
-//                                    updateUI(currentUser);
-//                                } else {
-//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
-//                                    Log.d(TAG, "exception is: " + task.getException());
-//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
-//                                    updateUI(null);
-//                                }
-//                            }
-//                        });
-//
-//            }
-//        });
-    }
 
-//                auth.createUserWithEmailAndPassword(email, userPassword)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "user account created? YES");
-//                                    currentUser = auth.getCurrentUser();
-//                                    updateUI(currentUser);
-//                                } else {
-//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
-//                                    Log.d(TAG, "exception is: " + task.getException());
-//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
-//                                    updateUI(null);
-//                                }
-//                            }
-//                        });
-//
-//            }
-//        });
-//    }
+    }
 
 
     @Override
@@ -142,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         currentUser = auth.getCurrentUser();
         updateUI(currentUser);
+
     }
 
     public void setUpViews() {
@@ -155,14 +115,16 @@ public class LoginActivity extends AppCompatActivity {
 
     //if user is logged in, go to MainActivity
     private void updateUI(FirebaseUser currentUser) {
-        if (currentUser != null) {
-//            Toast.makeText(this, "you are logged in", Toast.LENGTH_SHORT).show();
+        if(currentUser != null){
+            Toast.makeText(this, "welcome back!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
 
         }
+
     }
 }
+
 
 
 
