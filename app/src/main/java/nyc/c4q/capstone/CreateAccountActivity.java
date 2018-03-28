@@ -23,7 +23,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
     private TextView firstName_tv, lastName_tv, password_tv, email_tv, number_tv;
-    private EditText firstName_et, lastName_et, password_et, email_et, address_et, number_et;
+    private EditText firstName_et, lastName_et, password_et, passwordConfirm_et, email_et, address_et, number_et;
     private Button upload_bt, submit_bt;
     private ImageView profilePic;
     private FirebaseAuth auth;
@@ -40,6 +40,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         lastName_et = findViewById(R.id.last_name_et);
         address_et = findViewById(R.id.address_et);
         password_et = findViewById(R.id.pw_et);
+        passwordConfirm_et = findViewById(R.id.pw_confirm_et);
         email_et = findViewById(R.id.email_et);
         upload_bt = findViewById(R.id.uploadPic_button);
         submit_bt = findViewById(R.id.create_account_bt);
@@ -53,6 +54,11 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 String email = email_et.getText().toString().trim();
                 String password = password_et.getText().toString().trim();
+                String confirmPassword = passwordConfirm_et.getText().toString().trim();
+
+                if(!password.equals(confirmPassword)){
+                    passwordConfirm_et.setError("password does not match");
+                }
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
@@ -77,6 +83,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(password)){
                     password_et.setError("required");
                 }
+
             }
         });
 
