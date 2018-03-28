@@ -21,7 +21,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="Please provide the following information to create your campaign"
+            android:text="To create your campaign, please provide the following information:"
             android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
             android:textSize="20sp" />

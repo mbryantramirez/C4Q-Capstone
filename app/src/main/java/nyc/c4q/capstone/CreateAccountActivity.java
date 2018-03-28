@@ -51,7 +51,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = email_et.getText().toString().trim();
+                final String email = email_et.getText().toString().trim();
                 if (TextUtils.isEmpty(email)) {
                     email_et.setError("Required");
                 } else {
