@@ -8,7 +8,7 @@
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/feed_card_stack_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="400dp"
         app:elevationEnabled="true"
         app:swipeEnabled="true"
         />

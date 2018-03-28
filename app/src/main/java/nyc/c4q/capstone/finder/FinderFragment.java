@@ -1,36 +1,70 @@
 package nyc.c4q.capstone.finder;
 
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.SphericalUtil;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import nyc.c4q.capstone.R;
+import nyc.c4q.capstone.models.DBReturnCampaignModel;
+
+import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 
-public class FinderFragment extends Fragment implements OnMapReadyCallback , ViewPager.OnPageChangeListener {
+public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener {
 
     private View rootView;
     private MapView mapView;
     private GoogleMap myGoogleMap;
+    private HashMap<MarkerOptions, DBReturnCampaignModel> campaignHashMap = new HashMap<>();
     FusedLocationProviderClient fusedLocationProviderClient;
+    private Location lastKnownLocation;
+    private static final String TAG = "FUSEDLOCATIONPROVIDER?";
 
     public FinderFragment() {
         // Required empty public constructor
@@ -45,8 +79,16 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback , Vie
         mapView = rootView.findViewById(R.id.finder_map_view);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
         return rootView;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,7 +104,67 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback , Vie
     @Override
     public void onMapReady(GoogleMap googleMap) {
         myGoogleMap = googleMap;
+        myGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        myGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
         myGoogleMap.getUiSettings().setZoomControlsEnabled(true);
+        myGoogleMap.getUiSettings().setMapToolbarEnabled(true);
+        myGoogleMap.setMyLocationEnabled(true);
+        myGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+
+
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+             DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
+                View rootView = getLayoutInflater().inflate(R.layout.mapwindowlayout,null);
+                ImageView tvImage = rootView.findViewById(R.id.infowindow_marker_image);
+                TextView tvTitle = rootView.findViewById(R.id.infowindow_marker_title);
+                TextView tvSummary = rootView.findViewById(R.id.infowindow_marker_summary);
+                tvTitle.setText(markerCampaign.getTitle());
+                tvSummary.setText(markerCampaign.getSummary());
+                Picasso.get().load(markerCampaign.getImageUrl()).into(tvImage);
+                return rootView;
+            }
+        });
+        getDeviceLocation();
+    }
+
+    private void getDeviceLocation() {
+        final Task locationResult = fusedLocationProviderClient.getLastLocation();
+        locationResult.addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()) {
+                    lastKnownLocation = (Location) task.getResult();
+                    Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
+                    myGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()), 13));
+                    orderMarkers(lastKnownLocation);
+                }
+            }
+        });
+    }
+
+    private void orderMarkers(Location deviceLocation) {
+        for (Map.Entry<MarkerOptions, DBReturnCampaignModel> entry : campaignHashMap.entrySet()) {
+            MarkerOptions marker = entry.getKey();
+            if (deviceLocation != null) {
+                Marker mapMarker = myGoogleMap.addMarker(marker);
+                mapMarker.setTag(entry.getValue());
+                if (lastKnownLocation != null) {
+                    Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
+                }
+                LatLng latLng = new LatLng(deviceLocation.getLatitude(), deviceLocation.getLongitude());
+                if (SphericalUtil.computeDistanceBetween(marker.getPosition(), latLng) <= 5000) {
+                    mapMarker.setVisible(true);
+                } else {
+                    mapMarker.setVisible(false);
+                }
+            }
+        }
     }
 
     @Override
@@ -79,4 +181,24 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback , Vie
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        setMapMarkers(firebaseDataHelper.getCampaignsList(dataSnapshot, ""));
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+
+    public void setMapMarkers(List<DBReturnCampaignModel> campaignModels) {
+        for (DBReturnCampaignModel dbReturnCampaignModel : campaignModels) {
+            LatLng currentLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
+            MarkerOptions marker = new MarkerOptions().position(new LatLng(currentLocation.latitude, currentLocation.longitude));
+            campaignHashMap.put(marker, dbReturnCampaignModel);
+        }
+    }
+
+
 }

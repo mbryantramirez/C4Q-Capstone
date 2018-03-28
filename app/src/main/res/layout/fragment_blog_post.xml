@@ -5,7 +5,7 @@
     tools:context="nyc.c4q.capstone.blog.BlogPostFragment">
 
 
-    <TextView
+    <ImageView
         android:id="@+id/blog_post_imageview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -16,8 +16,8 @@
         android:id="@+id/blog_post_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="TITLE"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        tools:text="TITLE" />
 
 
     <TextView
@@ -38,11 +38,12 @@
         android:textSize="15sp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/blog_post_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_above="@id/donate_button"
-        android:orientation="horizontal" />
+    android:id="@+id/blog_post_recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_above="@id/donate_button"
+    android:orientation="horizontal" />
+
 
 
     <android.support.v7.widget.AppCompatButton
@@ -50,6 +51,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Donate Now"
-        android:background="@drawable/rounded_button"/>
+        android:background="@drawable/rounded_button"
+        android:text="Donate Now" />
 </RelativeLayout>
