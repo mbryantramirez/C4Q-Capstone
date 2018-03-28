@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         showSwipeInstructions();
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-        Log.d(TAG, "user name is: " + currentUser.getUid());
+        Log.d(TAG, "user name is: " + currentUser);
         setContentView(R.layout.activity_main);
         setActionBarTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
@@ -167,5 +167,9 @@ public class MainActivity extends AppCompatActivity {
     public void showSwipeInstructions(){
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
         alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
+    }
+
+    public FirebaseUser getCurrentUser() {
+        return currentUser;
     }
 }

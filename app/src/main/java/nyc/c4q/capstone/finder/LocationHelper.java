@@ -21,23 +21,25 @@ public class LocationHelper {
 
     public static LatLng getLocationFromAddress(Context context, String strAddress) {
         Geocoder coder = new Geocoder(context);
-        List<Address> address;
+        List<Address> geoResults;
         LatLng p1 = null;
         try {
-            address = coder.getFromLocationName(strAddress, 3);
-            if (address == null) {
-                Log.d(GEOCODER_TAG,"onGetFromLocationName: Error due to address format");
-            }else {
-                Address location = address.get(0);
-                location.getLatitude();
-                location.getLongitude();
-                p1 = new LatLng(location.getLatitude(), location.getLongitude());
+            geoResults = coder.getFromLocationName(strAddress, 3);
+            if (geoResults == null) {
+                Log.d(GEOCODER_TAG, "onGetFromLocationName: Error due to address format");
+            } else {
+                if (geoResults.size() > 0) {
+                    Address location = geoResults.get(0);
+                    location.getLatitude();
+                    location.getLongitude();
+                    Log.d(GEOCODER_TAG, "onGetFromLocationName: " + "Lat_" + location.getLatitude() + "Long_" + location.getLongitude());
+                    p1 = new LatLng(location.getLatitude(), location.getLongitude());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return p1;
     }
-
 }
 

@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Objects;
+
+import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.models.CreateCampaignModel;
 import nyc.c4q.capstone.R;
 
@@ -69,7 +72,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 
     private void createCampaign() {
         String title = campaignTitle.getText().toString();
-        String user = campaignCreator.getText().toString();
+        String userName = campaignCreator.getText().toString();
         String goal = campaignGoal.getText().toString();
         String url = campaignImageUrl.getText().toString();
         String creator = campaignCreator.getText().toString();
@@ -77,11 +80,12 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
         String category = campaignCategory.getText().toString();
+        String uid = ((MainActivity) Objects.requireNonNull(getActivity())).getCurrentUser().getUid();
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(user) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category)) {
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
             Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
         } else {
-            CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, intro, body, address, category);
+            CreateCampaignModel campaign = new CreateCampaignModel(title, userName, creator, url, goal, intro, body, address, category);
             firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
         }
     }//ther are more things I need to do such as fixing the design.

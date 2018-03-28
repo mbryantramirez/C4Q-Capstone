@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -40,8 +41,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.SphericalUtil;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +58,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener, GoogleMap.OnInfoWindowClickListener {
 
+    private static final String FINDERTAG = "FINDERFRAG?";
     private View rootView;
     private MapView mapView;
     private GoogleMap myGoogleMap;
@@ -197,10 +197,12 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     public void setMapMarkers(List<DBReturnCampaignModel> campaignModels) {
         for (DBReturnCampaignModel dbReturnCampaignModel : campaignModels) {
             LatLng currentCampaignLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
-          if(currentCampaignLocation!=null) {
-              MarkerOptions marker = new MarkerOptions().position(new LatLng(currentCampaignLocation.latitude, currentCampaignLocation.longitude));
-              campaignHashMap.put(marker, dbReturnCampaignModel);
-          }
+            if (currentCampaignLocation != null) {
+                MarkerOptions marker = new MarkerOptions().position(new LatLng(currentCampaignLocation.latitude, currentCampaignLocation.longitude));
+                campaignHashMap.put(marker, dbReturnCampaignModel);
+            } else {
+                Log.d(FINDERTAG,"onGetLocationFromName: "+"ErrorLoading Location");
+            }
         }
     }
 

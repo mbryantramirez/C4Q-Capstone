@@ -15,6 +15,8 @@ public class CreateCampaignModel {
     public String body;
     public String address;
     public String category;
+    public String website;
+
 
     public CreateCampaignModel() {
 
@@ -31,5 +33,7 @@ public class CreateCampaignModel {
         this.address = address;
         this.category = category;
     }
+
+
 
 }
