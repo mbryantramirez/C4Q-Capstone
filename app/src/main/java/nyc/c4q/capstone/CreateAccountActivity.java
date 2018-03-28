@@ -34,8 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
-        getSupportActionBar().setTitle("Create Account");
+        setUpActionBar();
 
         firstName_et = findViewById(R.id.name_et);
         lastName_et = findViewById(R.id.last_name_et);
@@ -52,8 +51,9 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String email = email_et.getText().toString().trim();
+                String email = email_et.getText().toString().trim();
                 if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(CreateAccountActivity.this, "required", Toast.LENGTH_SHORT).show();
                     email_et.setError("Required");
                 } else {
                     email_et.setError(null);
@@ -71,7 +71,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Log.d(TAG, "new account created?: YES!");
+                                    Log.d(TAG, "new account created?: YES!" + auth.getUid());
                                     newUser = auth.getCurrentUser();
                                     updateUI(newUser);
                                 } else {
@@ -93,5 +93,10 @@ public class CreateAccountActivity extends AppCompatActivity {
             Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void setUpActionBar() {
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("Create Account");
     }
 }
