@@ -52,36 +52,31 @@ public class CreateAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String email = email_et.getText().toString().trim();
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(CreateAccountActivity.this, "required", Toast.LENGTH_SHORT).show();
-                    email_et.setError("Required");
-                } else {
-                    email_et.setError(null);
-                }
-
                 String password = password_et.getText().toString().trim();
-                if (TextUtils.isEmpty(password)) {
-                    password_et.setError("Required");
-                } else {
-                    password_et.setError(null);
-                }
 
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "new account created?: YES!" + auth.getUid());
-                                    newUser = auth.getCurrentUser();
-                                    updateUI(newUser);
-                                } else {
-                                    Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
-                                    Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
+                    auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "new account created?: YES!" + auth.getUid());
+                                        newUser = auth.getCurrentUser();
+                                        updateUI(newUser);
+                                    } else {
+                                        Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
+                                        Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
+                                        updateUI(null);
+
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }else if(TextUtils.isEmpty(email)){
+                    email_et.setError("required");
+                }else if(TextUtils.isEmpty(password)){
+                    password_et.setError("required");
+                }
             }
         });
 
