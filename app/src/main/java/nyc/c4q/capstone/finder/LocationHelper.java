@@ -3,6 +3,7 @@ package nyc.c4q.capstone.finder;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.model.LatLng;
@@ -16,6 +17,7 @@ import java.util.List;
 public class LocationHelper {
 
 
+    private static final String GEOCODER_TAG = "GEOCODER?";
 
     public static LatLng getLocationFromAddress(Context context, String strAddress) {
         Geocoder coder = new Geocoder(context);
@@ -24,13 +26,13 @@ public class LocationHelper {
         try {
             address = coder.getFromLocationName(strAddress, 3);
             if (address == null) {
-                return null;
+                Log.d(GEOCODER_TAG,"onGetFromLocationName: Error due to address format");
+            }else {
+                Address location = address.get(0);
+                location.getLatitude();
+                location.getLongitude();
+                p1 = new LatLng(location.getLatitude(), location.getLongitude());
             }
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            p1 = new LatLng(location.getLatitude(), location.getLongitude());
         } catch (Exception e) {
             e.printStackTrace();
         }
