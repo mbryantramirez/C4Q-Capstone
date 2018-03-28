@@ -40,7 +40,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         firstName_et = findViewById(R.id.name_et);
         lastName_et = findViewById(R.id.last_name_et);
         password_et = findViewById(R.id.pw_et);
-        email_et = findViewById(R.id.number_et);
+        email_et = findViewById(R.id.email_et);
         upload_bt = findViewById(R.id.uploadPic_button);
         submit_bt = findViewById(R.id.create_account_bt);
         profilePic = findViewById(R.id.icon_iv);
