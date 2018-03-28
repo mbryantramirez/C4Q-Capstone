@@ -38,7 +38,8 @@
             android:theme="@style/ActionBar" />
 
 
-        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".CreateAccountActivity"
+            android:theme="@style/ActionBar"/>
         <!--<activity-->
         <!--android:name=".SplashActivity"-->
         <!--android:theme="@style/SplashTheme" />-->
