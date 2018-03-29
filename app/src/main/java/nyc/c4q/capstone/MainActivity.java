@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
     }
 
-    public FirebaseUser getCurrentUser() {
-        return currentUser;
+    public String getCurrentUserID() {
+        return currentUser.getUid();
     }
 }
