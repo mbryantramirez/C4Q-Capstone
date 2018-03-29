@@ -1,11 +1,8 @@
 package nyc.c4q.capstone.campaign;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +10,11 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Objects;
+
+import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.models.CreateCampaignModel;
 import nyc.c4q.capstone.R;
 
@@ -34,6 +33,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignBody;
     private EditText campaignAddress;
     private EditText campaignCategory;
+    private EditText campaignWebsite;
+    private EditText campaignPhoneNumber;
     private Button createCampaignButton;
 
 
@@ -46,19 +47,19 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_create_campaign, container, false);
-        campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
-        campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
-        campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
-        campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
-        createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
-        campaignIntro = rootview.findViewById(R.id.firebase_test_set_intro);
-        campaignBody = rootview.findViewById(R.id.firebase_test_set_campaign_body);
-        campaignAddress = rootview.findViewById(R.id.address);
-        campaignCategory = rootview.findViewById(R.id.category);
+        campaignTitle = rootview.findViewById(R.id.firebase_set_title);
+        campaignGoal = rootview.findViewById(R.id.firebase_set_goal);
+        campaignImageUrl = rootview.findViewById(R.id.firebase_set_imageurl);
+        campaignCreator = rootview.findViewById(R.id.firebase_set_campaign_creator);
+        createCampaignButton = rootview.findViewById(R.id.firebase_store_data);
+        campaignIntro = rootview.findViewById(R.id.firebase_set_intro);
+        campaignBody = rootview.findViewById(R.id.firebase_set_campaign_body);
+        campaignAddress = rootview.findViewById(R.id.firebase_set_address);
+        campaignCategory = rootview.findViewById(R.id.firebase_set_category);
+        campaignWebsite = rootview.findViewById(R.id.firebase_set_website_url);
+        campaignPhoneNumber = rootview.findViewById(R.id.firebase_set_phone_num);
         createCampaignButton.setOnClickListener(this);
         return rootview;
-
-
     }
 
     @Override
@@ -69,7 +70,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 
     private void createCampaign() {
         String title = campaignTitle.getText().toString();
-        String user = campaignCreator.getText().toString();
         String goal = campaignGoal.getText().toString();
         String url = campaignImageUrl.getText().toString();
         String creator = campaignCreator.getText().toString();
@@ -77,25 +77,28 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
         String category = campaignCategory.getText().toString();
+        String website = campaignWebsite.getText().toString();
+        String phoneNumber = campaignPhoneNumber.getText().toString();
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(user) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category)) {
-            Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
-        } else {
-            CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, intro, body, address, category);
-            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
-        }
+//        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
+//            Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
+//        } else {
+//            CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, website, phoneNumber);
+//            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
+//        }
     }
-
-    //there are more things I need to do such as fixing the design.
-    //I also with the help of my teammates need to make the code more testable.
-    //which I will need to do by organizing the code more.
-    //I will also need to implement better logic so people can navigate through the app more
-    //easily.
-
 
     @Override
     public void onClick(View view) {
-        createCampaign();
+//        createCampaign();
+        createSampleCampaign();
+    }
+
+    public void createSampleCampaign() {
+        String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+        CreateCampaignModel campaign = new CreateCampaignModel("sample", "sample", uid, "https://dog.ceo/api/img/sheepdog-shetland/n02105855_3498.jpg", "sample", "sample", "sample", "47-99-47-1 30th Pl", "sample", "sample", "sample");
+        firebaseDataHelper.getCampaignDatbaseRefrence().push().setValue(campaign);
+        Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
     }
 
 }

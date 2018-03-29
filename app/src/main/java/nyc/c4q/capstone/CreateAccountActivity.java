@@ -22,7 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class CreateAccountActivity extends AppCompatActivity {
 
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
-    private EditText firstName_et, lastName_et, password_et, email_et, number_et;
+    private TextView firstName_tv, lastName_tv, password_tv, email_tv, number_tv;
+    private EditText firstName_et, lastName_et, password_et, passwordConfirm_et, email_et, address_et, number_et;
     private Button upload_bt, submit_bt;
     private ImageView profilePic;
     private FirebaseAuth auth;
@@ -33,16 +34,17 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
-        getSupportActionBar().setTitle("Create Account");
+        setUpActionBar();
 
         firstName_et = findViewById(R.id.name_et);
         lastName_et = findViewById(R.id.last_name_et);
+        address_et = findViewById(R.id.address_et);
         password_et = findViewById(R.id.pw_et);
+        passwordConfirm_et = findViewById(R.id.pw_confirm_et);
         email_et = findViewById(R.id.email_et);
         upload_bt = findViewById(R.id.uploadPic_button);
         submit_bt = findViewById(R.id.create_account_bt);
-        profilePic = findViewById(R.id.icon_iv);
+//        profilePic = findViewById(R.id.icon_iv);
 
         auth = FirebaseAuth.getInstance();
 
@@ -50,36 +52,38 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String email = email_et.getText().toString().trim();
-                if (TextUtils.isEmpty(email)) {
-                    email_et.setError("Required");
-                } else {
-                    email_et.setError(null);
-                }
-
+                String email = email_et.getText().toString().trim();
                 String password = password_et.getText().toString().trim();
-                if (TextUtils.isEmpty(password)) {
-                    password_et.setError("Required");
-                } else {
-                    password_et.setError(null);
+                String confirmPassword = passwordConfirm_et.getText().toString().trim();
+
+                if(!password.equals(confirmPassword)){
+                    passwordConfirm_et.setError("password does not match");
                 }
 
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "new account created?: YES!");
-                                    newUser = auth.getCurrentUser();
-                                    updateUI(newUser);
-                                } else {
-                                    Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
-                                    Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
+                    auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "new account created?: YES!" + auth.getUid());
+                                        newUser = auth.getCurrentUser();
+                                        updateUI(newUser);
+                                    } else {
+                                        Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
+                                        Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
+                                        updateUI(null);
+
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }else if(TextUtils.isEmpty(email)){
+                    email_et.setError("required");
+                }else if(TextUtils.isEmpty(password)){
+                    password_et.setError("required");
+                }
+
             }
         });
 
@@ -91,5 +95,10 @@ public class CreateAccountActivity extends AppCompatActivity {
             Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void setUpActionBar() {
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("Create Account");
     }
 }

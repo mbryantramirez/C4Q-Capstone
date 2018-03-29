@@ -168,4 +168,8 @@ public class MainActivity extends AppCompatActivity {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
         alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
     }
+
+    public String getCurrentUserID() {
+        return currentUser.getUid();
+    }
 }
