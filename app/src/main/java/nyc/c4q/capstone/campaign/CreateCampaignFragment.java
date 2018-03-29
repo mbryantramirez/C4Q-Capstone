@@ -70,7 +70,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 
     private void createCampaign() {
         String title = campaignTitle.getText().toString();
-        String userName = campaignCreator.getText().toString();
         String goal = campaignGoal.getText().toString();
         String url = campaignImageUrl.getText().toString();
         String creator = campaignCreator.getText().toString();
@@ -80,19 +79,26 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String category = campaignCategory.getText().toString();
         String website = campaignWebsite.getText().toString();
         String phoneNumber = campaignPhoneNumber.getText().toString();
-        String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
-            Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
-        } else {
-            CreateCampaignModel campaign = new CreateCampaignModel(title, userName, creator, url, goal, intro, body, address, category, website, phoneNumber);
-            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
-        }
+//        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
+//            Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
+//        } else {
+//            CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, website, phoneNumber);
+//            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
+//        }
     }
 
     @Override
     public void onClick(View view) {
-        createCampaign();
+//        createCampaign();
+        createSampleCampaign();
+    }
+
+    public void createSampleCampaign() {
+        String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+        CreateCampaignModel campaign = new CreateCampaignModel("sample", "sample", uid, "https://dog.ceo/api/img/sheepdog-shetland/n02105855_3498.jpg", "sample", "sample", "sample", "47-99-47-1 30th Pl", "sample", "sample", "sample");
+        firebaseDataHelper.getCampaignDatbaseRefrence().push().setValue(campaign);
+        Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
     }
 
 }

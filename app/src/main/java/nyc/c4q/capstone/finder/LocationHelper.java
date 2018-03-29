@@ -30,8 +30,6 @@ public class LocationHelper {
             } else {
                 if (geoResults.size() > 0) {
                     Address location = geoResults.get(0);
-                    location.getLatitude();
-                    location.getLongitude();
                     Log.d(GEOCODER_TAG, "onGetFromLocationName: " + "Lat_" + location.getLatitude() + "Long_" + location.getLongitude());
                     p1 = new LatLng(location.getLatitude(), location.getLongitude());
                 }
