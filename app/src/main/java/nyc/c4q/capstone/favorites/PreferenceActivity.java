@@ -1,5 +1,6 @@
 package nyc.c4q.capstone.favorites;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -9,7 +10,7 @@ import android.widget.Button;
 import nyc.c4q.capstone.R;
 
 public class PreferenceActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener{
-    private Button medical, housing, education, business, volunteer, events, community, sports, wishes;
+    private Button medical, housing, education, business, volunteer, events, community, sports, tragedies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +41,26 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnTouc
         sports = findViewById(R.id.sports_button);
         sports.setOnClickListener(this);
         sports.setOnTouchListener(this);
-        wishes = findViewById(R.id.wishes_button);
-        wishes.setOnClickListener(this);
-        wishes.setOnTouchListener(this);
+        tragedies = findViewById(R.id.tragedy_button);
+        tragedies.setOnClickListener(this);
+        tragedies.setOnTouchListener(this);
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (view instanceof Button)
+            medical.setBackgroundColor(Color.BLUE);
+            medical.setBackgroundColor(Color.BLUE);
+
+        return false;
     }
 
     @Override
     public void onClick(View view) {
 
+
+
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
-    }
+
 }

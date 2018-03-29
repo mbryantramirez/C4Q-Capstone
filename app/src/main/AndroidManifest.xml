@@ -33,10 +33,13 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/ActionBar" />
-        <activity android:name=".CreateAccountActivity" />
-        <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:theme="@style/SplashTheme" /> -->
+
+
+        <activity android:name=".CreateAccountActivity"
+            android:theme="@style/ActionBar"/>
+        <!--<activity-->
+        <!--android:name=".SplashActivity"-->
+        <!--android:theme="@style/SplashTheme" />-->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -147,14 +147,14 @@
             android:text="Sports" />
 
         <Button
-            android:id="@+id/wishes_button"
+            android:id="@+id/tragedy_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:textStyle="bold"
 
             android:background="@drawable/preference_round_button"
-            android:text="Wishes" />
+            android:text="Tragedy" />
 
 
     </LinearLayout>

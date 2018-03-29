@@ -196,9 +196,11 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
 
     public void setMapMarkers(List<DBReturnCampaignModel> campaignModels) {
         for (DBReturnCampaignModel dbReturnCampaignModel : campaignModels) {
-            LatLng currentLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
-            MarkerOptions marker = new MarkerOptions().position(new LatLng(currentLocation.latitude, currentLocation.longitude));
-            campaignHashMap.put(marker, dbReturnCampaignModel);
+            LatLng currentCampaignLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
+          if(currentCampaignLocation!=null) {
+              MarkerOptions marker = new MarkerOptions().position(new LatLng(currentCampaignLocation.latitude, currentCampaignLocation.longitude));
+              campaignHashMap.put(marker, dbReturnCampaignModel);
+          }
         }
     }
 
