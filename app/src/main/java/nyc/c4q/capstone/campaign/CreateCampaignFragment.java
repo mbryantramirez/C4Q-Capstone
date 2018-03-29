@@ -30,7 +30,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignGoal;
     private EditText campaignImageUrl;
     private EditText campaignCreator;
-    private EditText campaignSummary;
     private EditText campaignIntro;
     private EditText campaignBody;
     private EditText campaignAddress;
@@ -50,7 +49,6 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignTitle = rootview.findViewById(R.id.firebase_test_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_test_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_test_set_imageurl);
-//        campaignSummary = rootview.findViewById(R.id.firebase_test_set_summary);
         campaignCreator = rootview.findViewById(R.id.firebase_test_set_campaign_creator);
         createCampaignButton = rootview.findViewById(R.id.firebase_test_store_data);
         campaignIntro = rootview.findViewById(R.id.firebase_test_set_intro);
@@ -66,9 +64,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        AppCompatActivity activity = (AppCompatActivity) getActivity();
-//        ActionBar actionBar = activity.getSupportActionBar();
-//        actionBar.setTitle("create campaign");
+
     }
 
     private void createCampaign() {
@@ -82,7 +78,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String address = campaignAddress.getText().toString();
         String category = campaignCategory.getText().toString();
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(user) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro)  || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category)) {
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(user) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category)) {
             Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
         } else {
             CreateCampaignModel campaign = new CreateCampaignModel(title, user, creator, url, goal, intro, body, address, category);
@@ -100,9 +96,4 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         createCampaign();
     }
 
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        getActivity().setTitle("create campaign");
-//    }
 }

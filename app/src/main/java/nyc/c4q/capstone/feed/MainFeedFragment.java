@@ -185,10 +185,5 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     }
 
 
-//    public void onResume() {
-//        super.onResume();
-//        ((MainActivity) getActivity())
-//                .setActionBarTitle("village");
-//    }
 
 }

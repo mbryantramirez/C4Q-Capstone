@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="nyc.c4q.capstone.feed.MainFeedFragment"
-    android:background="@color/darkBlue">
+    android:background="@color/lightBlue">
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/feed_card_stack_view"
@@ -12,5 +12,8 @@
         android:layout_height="match_parent"
         app:elevationEnabled="true"
         app:swipeEnabled="true" />
+
+
+
 
 </android.support.constraint.ConstraintLayout>

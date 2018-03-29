@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -140,6 +141,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toast.makeText(getContext(), "Preferences", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -159,11 +161,7 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
     in a recyclerview. But I am having trouble figuring out the logic for that.
 
      */
+  
 
-//    public void onResume() {
-//        super.onResume();
-//        ((MainActivity) getActivity())
-//                .setActionBarTitle("preferences");
-//    }
 
 }
