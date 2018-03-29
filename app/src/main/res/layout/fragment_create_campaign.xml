@@ -27,7 +27,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/firebase_test_set_campaign_creator"
+            android:id="@+id/firebase_set_campaign_creator"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -42,7 +42,7 @@
             android:textColor="@color/darkBlue" />
 
         <EditText
-            android:id="@+id/address"
+            android:id="@+id/firebase_set_address"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -56,7 +56,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/firebase_test_set_imageurl"
+            android:id="@+id/firebase_set_imageurl"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -72,7 +72,7 @@
 
 
         <EditText
-            android:id="@+id/firebase_test_set_title"
+            android:id="@+id/firebase_set_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -86,7 +86,7 @@
 
 
         <EditText
-            android:id="@+id/firebase_test_set_intro"
+            android:id="@+id/firebase_set_intro"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="10dp"
@@ -101,7 +101,7 @@
 
 
         <EditText
-            android:id="@+id/firebase_test_set_campaign_body"
+            android:id="@+id/firebase_set_campaign_body"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginBottom="10dp"
@@ -115,7 +115,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/category"
+            android:id="@+id/firebase_set_category"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -128,7 +128,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/firebase_test_set_goal"
+            android:id="@+id/firebase_set_goal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -141,9 +141,34 @@
             android:padding="6dp"
             android:textAlignment="center" />
 
+        <EditText
+            android:id="@+id/firebase_set_website_url"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="campaign website URL"
+            android:padding="6dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/firebase_set_phone_num"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/create_campaign_boxes"
+            android:hint="phone number?"
+            android:padding="6dp"
+            android:textAlignment="center" />
 
         <Button
-            android:id="@+id/firebase_test_store_data"
+            android:id="@+id/firebase_store_data"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="40dp"
