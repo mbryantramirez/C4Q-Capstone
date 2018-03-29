@@ -19,14 +19,13 @@
             android:id="@+id/campaign_prefs_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
-            android:text="Choose from the following categories to be shown campaigns that align
-            with your interests:"
+            android:text="Choose from the following categories to be shown campaigns that align with your interests:"
             android:textSize="20sp" />
 
     </LinearLayout>

@@ -48,9 +48,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnTouc
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (view instanceof Button)
-            medical.setBackgroundColor(Color.BLUE);
-            medical.setBackgroundColor(Color.BLUE);
+        view.setBackgroundColor(getResources().getColor(R.color.darkBlue));
 
         return false;
     }
