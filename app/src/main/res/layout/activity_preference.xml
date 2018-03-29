@@ -1,10 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightBlue"
-    tools:context="nyc.c4q.capstone.favorites.CampaignPreferencesFragment">
+    tools:context="nyc.c4q.capstone.favorites.PreferenceActivity">
 
     <LinearLayout
         android:id="@+id/instructions_layout"
@@ -17,10 +19,10 @@
             android:id="@+id/campaign_prefs_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
             android:text="Choose from the following categories to be shown campaigns that align with your interests:"
@@ -34,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/instructions_layout"
+        android:gravity="center"
         android:orientation="horizontal">
 
 
@@ -42,15 +45,17 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            android:textStyle="bold"
 
             android:background="@drawable/preference_round_button"
-            android:text="" />
+            android:text="Medical" />
 
         <Button
             android:id="@+id/housing_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            android:textStyle="bold"
 
             android:background="@drawable/preference_round_button"
             android:text="Housing" />
@@ -60,10 +65,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            android:textStyle="bold"
 
             android:background="@drawable/preference_round_button"
-            android:text="Education"
-            android:textSize="12sp" />
+            android:text="Education" />
 
 
     </LinearLayout>
@@ -75,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ll1"
         android:background="@color/lightBlue"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
@@ -82,32 +88,74 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            android:textStyle="bold"
 
             android:background="@drawable/preference_round_button"
             android:text="Business" />
 
         <Button
-            android:id="@+id/clothingButton"
+            android:id="@+id/volunteerButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            android:textStyle="bold"
+
             android:background="@drawable/preference_round_button"
-            android:text="Clothing" />
+            android:text="Volunteer" />
 
         <Button
-            android:id="@+id/npButton"
+            android:id="@+id/eventsButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            android:textStyle="bold"
+
             android:background="@drawable/preference_round_button"
-            android:text="Nonprofit"
-            android:textSize="12sp" />
+            android:text="Events" />
 
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll2"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <!-- TODO: Update blank fragment layout -->
 
+        <Button
+            android:id="@+id/commButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+
+            android:background="@drawable/preference_round_button"
+            android:text="Community" />
+
+        <Button
+            android:id="@+id/sports_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+
+            android:background="@drawable/preference_round_button"
+            android:text="Sports" />
+
+        <Button
+            android:id="@+id/tragedy_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+
+            android:background="@drawable/preference_round_button"
+            android:text="Tragedy" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
