@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -168,4 +169,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
         alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
     }
+
+
 }
