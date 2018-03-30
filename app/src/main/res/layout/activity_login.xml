@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter Password"
             android:inputType="textWebPassword"
+
             android:textColor="@color/darkBlue" />
 
 
