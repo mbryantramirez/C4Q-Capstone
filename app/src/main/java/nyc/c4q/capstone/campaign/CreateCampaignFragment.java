@@ -83,7 +83,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 //        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
 //            Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
 //        } else {
-//            CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, website, phoneNumber);
+            CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, website, phoneNumber);
 //            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
 //        }
     }

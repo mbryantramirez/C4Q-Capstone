@@ -55,6 +55,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
     private String blogTitleString;
+
     public BlogPostFragment() {
         // Required empty public constructor
     }
@@ -71,12 +72,13 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         donateButton = rootView.findViewById(R.id.donate_button);
         recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
         blogTitleString = getArguments().getString("Title");
-        Log.d(BLOG_TAG, "onBundleReceived: "+ blogTitleString);
+        Log.d(BLOG_TAG, "onBundleReceived: " + blogTitleString);
         firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(this);
+
         firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot," ");
+                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
                 campaignAdapter.setData(campaignModelList);
                 campaignAdapter.notifyDataSetChanged();
             }
@@ -117,6 +119,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     //this is linked to blog feed
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
+        Log.d(BLOG_TAG, "onLoadBlog: " + model.getTitle() + " " + model.getImageUrl());
         Picasso.get().load(model.getImageUrl()).into(userImage);
 //        userImage.setImageResource(R.drawable.community_logo);
         storyTitle.setText(model.getTitle());
@@ -126,7 +129,6 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString));
         campaignAdapter.setData(campaignModelList);
         campaignAdapter.notifyDataSetChanged();

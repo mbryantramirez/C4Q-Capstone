@@ -26,12 +26,12 @@ public class FirebaseDataHelper {
     private DatabaseReference databaseReference;
     private SharedPreferences preferences;
     private static final String CAMPAIGN_PATH = "campaigns";
+    private static final String USER_PATH = "users";
     private static final String TAG = "Firebase?";
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private Context context;
 
     private static class FirebaseHolder {
-
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();
     }
 
@@ -55,6 +55,11 @@ public class FirebaseDataHelper {
     public DatabaseReference getCampaignDatbaseRefrence() {
         return getDatabaseReference().child(CAMPAIGN_PATH);
     }
+
+    public DatabaseReference getUsersDatabaseReference() {
+        return getDatabaseReference().child(USER_PATH);
+    }
+
 
     public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
