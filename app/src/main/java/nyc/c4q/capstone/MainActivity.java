@@ -23,6 +23,7 @@ import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
 import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
+import nyc.c4q.capstone.favorites.PreferenceActivity;
 import nyc.c4q.capstone.feed.MainFeedFragment;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
@@ -125,13 +126,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.pref:
-                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
-                fragmentTransaction.addToBackStack("Campaigns");
-                setActionBarTitle("preferences");
-                fragmentTransaction.commit();
+                Intent intent = new Intent (this, PreferenceActivity.class);
+                startActivity(intent);
+//                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
+//                fragmentTransaction.addToBackStack("Campaigns");
+//                setActionBarTitle("preferences");
+//                fragmentTransaction.commit();
                 break;
             default:
                 Log.e(TAG, "nothing clicked");
@@ -170,5 +173,9 @@ public class MainActivity extends AppCompatActivity {
         alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
     }
 
+
+    public String getCurrentUserID() {
+        return currentUser.getUid();
+    }
 
 }
