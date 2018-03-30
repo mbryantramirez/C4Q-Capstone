@@ -125,13 +125,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.pref:
-                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
-                fragmentTransaction.addToBackStack("Campaigns");
-                setActionBarTitle("preferences");
-                fragmentTransaction.commit();
+                Intent intent = new Intent (this, PreferenceActivity.class);
+                startActivity(intent);
+//                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
+//                fragmentTransaction.addToBackStack("Campaigns");
+//                setActionBarTitle("preferences");
+//                fragmentTransaction.commit();
                 break;
             default:
                 Log.e(TAG, "nothing clicked");
@@ -168,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
     public void showSwipeInstructions(){
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
         alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
+    }
+
+    public String getCurrentUserID() {
+        return currentUser.getUid();
     }
 
 
