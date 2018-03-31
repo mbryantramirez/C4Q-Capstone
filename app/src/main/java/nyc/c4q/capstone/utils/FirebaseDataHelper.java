@@ -27,9 +27,11 @@ public class FirebaseDataHelper {
     private SharedPreferences preferences;
     private static final String CAMPAIGN_PATH = "campaigns";
     private static final String USER_PATH = "users";
+    private static final String FUNDED_PATH = "funded";
     private static final String TAG = "Firebase?";
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private Context context;
+
 
     private static class FirebaseHolder {
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();
@@ -52,7 +54,11 @@ public class FirebaseDataHelper {
         return databaseReference;
     }
 
-    public DatabaseReference getCampaignDatbaseRefrence() {
+    public DatabaseReference getFundedCampaignsDatabaseReference() {
+        return getDatabaseReference().child(FUNDED_PATH);
+    }
+
+    public DatabaseReference getCampaignDatbaseReference() {
         return getDatabaseReference().child(CAMPAIGN_PATH);
     }
 
@@ -70,14 +76,13 @@ public class FirebaseDataHelper {
             Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
             Log.d(TAG, "onLoopCount: " + count);
 
-            Log.d(TAG, "getCampaignsList: " + dataSnapshot.getChildren());
+            Log.d(TAG, "getCampaignsList: " + child.getKey());
             if (child.child("category").getValue(String.class).contains(textFromPref)) {
                 Log.d(TAG, "onChildrenLoop: " + child.child("category"));
                 DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-                Log.d(TAG, "getCampaignsList: "+dbReturnCampaignModel.getTitle());
+                Log.d(TAG, "getCampaignsList: " + dbReturnCampaignModel.getTitle());
                 DBReturnCampaignModelList.add(dbReturnCampaignModel);
             }
-
         }
         //what this method is doing is it takes a string as a parameter and then
         return DBReturnCampaignModelList;
@@ -85,13 +90,36 @@ public class FirebaseDataHelper {
 
     public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot, String blogTitleString) {
         Log.d(TAG, "query" + dataSnapshot.hasChild(blogTitleString));
-        Log.d(TAG, "getCampaign: "+dataSnapshot.hasChild(blogTitleString));
+        Log.d(TAG, "getCampaign: " + dataSnapshot.hasChild(blogTitleString));
         if (dataSnapshot.hasChild(blogTitleString)) {
             Log.d(TAG, "datasnapshot:" + dataSnapshot.child(blogTitleString));
             return dataSnapshot.child(blogTitleString).getValue(DBReturnCampaignModel.class);
         }
 
         return null;
+    }
+
+    public List<String> getFundedCampaignsList(DataSnapshot dataSnapshot, String uid) {
+        List<String> fundedCampaignNames = new ArrayList<>();
+        Log.d(TAG, "onDataSnapshot: " + uid);
+        for (DataSnapshot child : dataSnapshot.getChildren()) {
+            Log.d(TAG, "onDataSnapshotParse: " + child.getKey());
+        }
+        int count = 0;
+        for (DataSnapshot child : dataSnapshot.getChildren()) {
+            Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
+            Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
+            Log.d(TAG, "onLoopCount: " + count);
+
+            Log.d(TAG, "getFundedCampaignsList: " + child.getKey());
+            for (DataSnapshot values : child.getChildren()) {
+                if (values.getValue().equals(uid)) {
+                    Log.d(TAG, "True");
+                    fundedCampaignNames.add(child.getKey());
+                }
+            }
+        }
+        return fundedCampaignNames;
     }
 
 }
