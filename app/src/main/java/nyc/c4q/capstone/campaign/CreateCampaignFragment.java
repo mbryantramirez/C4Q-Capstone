@@ -77,13 +77,14 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
         String category = campaignCategory.getText().toString();
-        String website = campaignWebsite.getText().toString();
+        //  String website = campaignWebsite.getText().toString();
         String phoneNumber = campaignPhoneNumber.getText().toString();
 
 //        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
 //            Toast.makeText(getContext(), "enter missing input", Toast.LENGTH_LONG).show();
 //        } else {
-//            CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, website, phoneNumber);
+//        String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+//        CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, phoneNumber);
 //            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
 //        }
     }
@@ -96,8 +97,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 
     public void createSampleCampaign() {
         String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
-        CreateCampaignModel campaign = new CreateCampaignModel("sample", "sample", uid, "https://dog.ceo/api/img/sheepdog-shetland/n02105855_3498.jpg", "sample", "sample", "sample", "47-99-47-1 30th Pl", "sample", "sample", "sample");
-        firebaseDataHelper.getCampaignDatbaseRefrence().push().setValue(campaign);
+        CreateCampaignModel campaign = new CreateCampaignModel("Sample4", "sample", uid, "https://dog.ceo/api/img/wolfhound-irish/n02090721_2319.jpg", "sample", "sample", "sample", "4804 Locust St, Woodside, NY 11377", "sample", /* "sample",*/ "sample");
+        firebaseDataHelper.getCampaignDatbaseRefrence().child(campaign.title).setValue(campaign);
         Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
     }
 

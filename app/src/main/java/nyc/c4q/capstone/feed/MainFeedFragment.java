@@ -41,6 +41,7 @@ import com.yuyakaido.android.cardstackview.SwipeDirection;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.blog.BlogPostFragment;
@@ -81,6 +82,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
+        firebaseDataHelper.getCampaignDatbaseRefrence().orderByChild("Keyword").equalTo("Medical");
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
 
@@ -182,6 +184,20 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
+    }
+    private void addPreferencesEventListener(){
+        firebaseDataHelper.getPreferenceDatabaseReference().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+                firebaseDataHelper.getPreferenceDatabaseReference()
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        })
     }
 
 
