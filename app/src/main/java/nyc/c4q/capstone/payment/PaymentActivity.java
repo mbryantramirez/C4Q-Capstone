@@ -5,12 +5,14 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
@@ -21,7 +23,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
     private String paymentType, amount;
     private FirebaseDataHelper firebaseDataHelper;
     private FirebaseAuth auth;
+    private FirebaseUser currentUser;
     private String campaignNameExtra;
+    private static final String PAYMENT_TAG = "PAY?";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -29,6 +33,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         firebaseDataHelper = new FirebaseDataHelper();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
         setUpActionBar();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -106,7 +112,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
                 paymentType = "PayPal";
                 break;
             case R.id.submit_payment:
-//              firebaseDataHelper.getUsersDatabaseReference().child("Funded").child(campaignNameExtra).child()
+                Log.d(PAYMENT_TAG, "onPaymentSubmit: " + currentUser.getDisplayName());
+              firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() +" "+ currentUser.getUid()).setValue(currentUser.getUid());
                 Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
         }
 

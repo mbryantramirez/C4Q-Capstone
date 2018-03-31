@@ -79,7 +79,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     }
 
     private void createUser() {
-        final String firstName = firstName_et.getText().toString();
+        final String firstName = firstName_et.getText().toString().trim();
         final String lastName = lastName_et.getText().toString().trim();
         String address = address_et.getText().toString().trim();
         String passwordConfirm = passwordConfirm_et.getText().toString().trim();
@@ -113,7 +113,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                                 newUser = auth.getCurrentUser();
 
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(firstName + lastName).build();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(firstName + " " + lastName).build();
 
                                 newUser.updateProfile(profileUpdates);
 
