@@ -3,7 +3,6 @@ package nyc.c4q.capstone.campaign;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +84,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 //        } else {
 //        String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
 //        CreateCampaignModel campaign = new CreateCampaignModel(title, creator, uid, url, goal, intro, body, address, category, phoneNumber);
-//            firebaseDataHelper.getCampaignDatbaseRefrence().child(title).setValue(campaign);
+//            firebaseDataHelper.getCampaignDatbaseReference().child(title).setValue(campaign);
 //        }
     }
 
@@ -98,7 +97,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     public void createSampleCampaign() {
         String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
         CreateCampaignModel campaign = new CreateCampaignModel("Sample4", "sample", uid, "https://dog.ceo/api/img/wolfhound-irish/n02090721_2319.jpg", "sample", "sample", "sample", "4804 Locust St, Woodside, NY 11377", "sample", /* "sample",*/ "sample");
-        firebaseDataHelper.getCampaignDatbaseRefrence().child(campaign.title).setValue(campaign);
+        firebaseDataHelper.getCampaignDatbaseReference().child(campaign.title).setValue(campaign);
         Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
     }
 

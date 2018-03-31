@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import nyc.c4q.capstone.R;
@@ -51,8 +53,10 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     private TextView storyTitle;
     private Button donateButton;
     private RecyclerView recyclerView;
+    private String Uid;
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
+    private List<String> fundedCampaignTitles = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
     private String blogTitleString;
 
@@ -73,22 +77,10 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
         blogTitleString = getArguments().getString("Title");
         Log.d(BLOG_TAG, "onBundleReceived: " + blogTitleString);
-        firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(this);
+        firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
 
-        firebaseDataHelper.getDatabaseReference().child("campaigns").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
-                //  campaignModelList = firebaseDataHelper.getCampaignListByUid(dataSnapshot, );
-                campaignAdapter.setData(campaignModelList);
-                campaignAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
 
         blogPost.setMovementMethod(new ScrollingMovementMethod());
 
@@ -101,6 +93,25 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
             }
         });
         return rootView;
+    }
+
+    private void addFundedEventListner() {
+        firebaseDataHelper.getFundedCampaignsDatabaseReference().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!TextUtils.isEmpty(Uid)) {
+                    fundedCampaignTitles = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, Uid);
+                    Log.d(TAG,"onReturnedFundedList: "+ Arrays.toString(new List[]{fundedCampaignTitles}));
+                }
+                campaignAdapter.setData(campaignModelList);
+                campaignAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -121,6 +132,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     //this is linked to blog feed
     private void loadTextFromFirebase(DBReturnCampaignModel model) {
+
         Log.d(BLOG_TAG, "onLoadBlog: " + model.getTitle() + " " + model.getImageUrl());
         Picasso.get().load(model.getImageUrl()).into(userImage);
 //        userImage.setImageResource(R.drawable.community_logo);
@@ -131,10 +143,12 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
+        Uid = firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString).getCreatorID();
+ addFundedEventListner();
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString));
-        // campaignModelList = firebaseDataHelper.getCampaignListByUid(dataSnapshot, );
         campaignAdapter.setData(campaignModelList);
         campaignAdapter.notifyDataSetChanged();
+
     }
 
     @Override
