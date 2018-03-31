@@ -127,7 +127,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                 TextView tvTitle = rootView.findViewById(R.id.infowindow_marker_title);
                 TextView tvSummary = rootView.findViewById(R.id.infowindow_marker_summary);
                 tvTitle.setText(markerCampaign.getTitle());
-                tvSummary.setText(markerCampaign.getSummary());
+                tvSummary.setText(markerCampaign.getBody());
                 Picasso.get().load(markerCampaign.getImageUrl()).into(tvImage);
                 return rootView;
             }
