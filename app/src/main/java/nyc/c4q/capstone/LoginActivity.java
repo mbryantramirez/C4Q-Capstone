@@ -40,10 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
-        getSupportActionBar().setTitle("Login");
 
-
+        setUpActionBar();
         setUpViews();
 
         auth = FirebaseAuth.getInstance();
@@ -58,83 +56,39 @@ public class LoginActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = username.getText().toString().trim();
+                final String email = username.getText().toString().trim();
+                final String userPassword = password.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    username.setError("Required");
-                } else {
-                    username.setError(null);
-                }
-
-                String userPassword = password.getText().toString().trim();
-                if (TextUtils.isEmpty(userPassword)) {
-                    password.setError("Required");
-                } else {
-                    password.setError(null);
-                }
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(userPassword)) {
 
 
-                auth.signInWithEmailAndPassword(email, userPassword)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "sign in: success");
-                                    currentUser = auth.getCurrentUser();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Log.d(TAG, "sign in: failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
+                    auth.signInWithEmailAndPassword(email, userPassword)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "sign in: success");
+                                        currentUser = auth.getCurrentUser();
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Log.d(TAG, "sign in: failure", task.getException());
+                                        Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
-            }
-        });
-//    }
-//    }
-//                auth.createUserWithEmailAndPassword(email, userPassword)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "user account created? YES");
-//                                    currentUser = auth.getCurrentUser();
-//                                    updateUI(currentUser);
-//                                } else {
-//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
-//                                    Log.d(TAG, "exception is: " + task.getException());
-//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
-//                                    updateUI(null);
-//                                }
-//                            }
-//                        });
-//
-//            }
-//        });
-    }
+                            });
 
-//                auth.createUserWithEmailAndPassword(email, userPassword)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "user account created? YES");
-//                                    currentUser = auth.getCurrentUser();
-//                                    updateUI(currentUser);
-//                                } else {
-//                                    Log.d(TAG, "user account created? NO" + auth.getCurrentUser());
-//                                    Log.d(TAG, "exception is: " + task.getException());
-//                                    Toast.makeText(LoginActivity.this, "unable to create new account", Toast.LENGTH_SHORT).show();
-//                                    updateUI(null);
-//                                }
-//                            }
-//                        });
-//
-//            }
-//        });
-//    }
+                }else if(TextUtils.isEmpty(email)){
+                    username.setError("required");
+                }else if(TextUtils.isEmpty(userPassword)){
+                    password.setError("required");
+                }
+            }
+
+
+        });
+    }
 
 
     @Override
@@ -142,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         currentUser = auth.getCurrentUser();
         updateUI(currentUser);
+
     }
 
     public void setUpViews() {
@@ -156,13 +111,21 @@ public class LoginActivity extends AppCompatActivity {
     //if user is logged in, go to MainActivity
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-//            Toast.makeText(this, "you are logged in", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "welcome back!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
 
         }
+
+    }
+
+    public void setUpActionBar() {
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+        getSupportActionBar().setTitle("Login");
+
     }
 }
+
 
 
 

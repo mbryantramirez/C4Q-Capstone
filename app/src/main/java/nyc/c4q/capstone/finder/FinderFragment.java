@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -40,8 +41,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.SphericalUtil;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +58,7 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 public class FinderFragment extends Fragment implements OnMapReadyCallback, ViewPager.OnPageChangeListener, ValueEventListener, GoogleMap.OnInfoWindowClickListener {
 
+    private static final String FINDERTAG = "FINDERFRAG?";
     private View rootView;
     private MapView mapView;
     private GoogleMap myGoogleMap;
@@ -96,7 +96,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         super.onViewCreated(view, savedInstanceState);
         mapView = rootView.findViewById(R.id.finder_map_view);
         if (mapView != null) {
-            mapView.onCreate(null);
+            mapView.onCreate(savedInstanceState);
             mapView.onResume();
             mapView.getMapAsync(this);
         }
@@ -110,6 +110,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         myGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         myGoogleMap.getUiSettings().setMapToolbarEnabled(true);
         myGoogleMap.setMyLocationEnabled(true);
+        getDeviceLocation();
         myGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker) {
@@ -131,7 +132,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
             }
         });
         myGoogleMap.setOnInfoWindowClickListener(this);
-        getDeviceLocation();
+
     }
 
     private void getDeviceLocation() {
@@ -152,13 +153,16 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     private void orderMarkers(Location deviceLocation) {
         for (Map.Entry<MarkerOptions, DBReturnCampaignModel> entry : campaignHashMap.entrySet()) {
             MarkerOptions marker = entry.getKey();
+            DBReturnCampaignModel dbReturnCampaignModel = entry.getValue();
             if (deviceLocation != null) {
                 Marker mapMarker = myGoogleMap.addMarker(marker);
                 mapMarker.setTag(entry.getValue());
                 if (lastKnownLocation != null) {
                     Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
+                    Log.d(TAG, "onMapMarkerAdded: " + marker.getPosition().latitude + "/" + mapMarker.getPosition().longitude + " " + dbReturnCampaignModel.getTitle());
                 }
                 LatLng latLng = new LatLng(deviceLocation.getLatitude(), deviceLocation.getLongitude());
+
                 if (SphericalUtil.computeDistanceBetween(marker.getPosition(), latLng) <= 5000) {
                     mapMarker.setVisible(true);
                 } else {
@@ -186,6 +190,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         setMapMarkers(firebaseDataHelper.getCampaignsList(dataSnapshot, ""));
+        getDeviceLocation();
     }
 
     @Override
@@ -195,9 +200,17 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
 
     public void setMapMarkers(List<DBReturnCampaignModel> campaignModels) {
         for (DBReturnCampaignModel dbReturnCampaignModel : campaignModels) {
-            LatLng currentLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
-            MarkerOptions marker = new MarkerOptions().position(new LatLng(currentLocation.latitude, currentLocation.longitude));
-            campaignHashMap.put(marker, dbReturnCampaignModel);
+            LatLng currentCampaignLocation = LocationHelper.getLocationFromAddress(getActivity(), dbReturnCampaignModel.getAddress());
+            if (currentCampaignLocation != null) {
+                MarkerOptions marker = new MarkerOptions().position(new LatLng(currentCampaignLocation.latitude, currentCampaignLocation.longitude));
+                campaignHashMap.put(marker, dbReturnCampaignModel);
+                Log.d(FINDERTAG, "onNewLocationAddedFromName: " + dbReturnCampaignModel.getTitle() + "/" + dbReturnCampaignModel.getAddress() + "/ " + currentCampaignLocation.latitude + " " + currentCampaignLocation.longitude);
+            } else {
+                Log.d(FINDERTAG, "onGetLocationFromName: " + "ErrorLoading Location");
+            }
+        }
+        for (Map.Entry<MarkerOptions, DBReturnCampaignModel> entry : campaignHashMap.entrySet()) {
+            Log.d(FINDERTAG, entry.getKey() + " " + entry.getValue().getTitle());
         }
     }
 
@@ -206,7 +219,6 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
     public void onInfoWindowClick(Marker marker) {
         DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
         ((MainActivity) getActivity()).startSecondFragment(markerCampaign);
-
     }
 }
 //I am going to set up the preferneces fragment so that I can

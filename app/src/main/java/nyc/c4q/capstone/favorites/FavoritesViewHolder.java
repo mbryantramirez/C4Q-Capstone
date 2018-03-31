@@ -27,6 +27,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View
     private TextView creator;
 
     public FavoritesViewHolder(View itemView) {
+        //its called itemview because it is a view in the item of the recycler view
         super(itemView);
         title = itemView.findViewById(R.id.paigTitle);
         goal = itemView.findViewById(R.id.paignGoal);

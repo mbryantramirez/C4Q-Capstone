@@ -183,6 +183,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     public void onCancelled(DatabaseError databaseError) {
 
     }
+    public void saveCampaign(View view){
+        DBReturnCampaignModel dbReturnCampaignModel= new DBReturnCampaignModel();
+        String textFromString= feedCardAdapter.toString();
+        firebaseDataHelper.getDatabaseReference().child("favorites").setValue(textFromString);
+    }
 
 
 
