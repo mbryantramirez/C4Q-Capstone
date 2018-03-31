@@ -35,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_below="@id/blog_post_imageview"
-
             android:scrollbars="vertical"
             android:text="This is the story of someone that needs help..."
             android:textSize="18sp" />
@@ -45,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/blog_post_recyclerView"
+            android:layout_below="@id/blog_post_textview"
             android:text="I have contributed to: "
             android:textSize="15sp" />
 
@@ -68,6 +68,8 @@
             android:contextClickable="true"
             android:text="Donate Now"
             android:textSize="20sp" />
+
+
     </RelativeLayout>
 
 

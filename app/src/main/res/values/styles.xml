@@ -7,21 +7,23 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/lightGreen</item>
         <item name="android:textColorSecondary">@color/lightGreen</item>
-
-
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="SplashTheme" parent="Theme.AppCompat">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
     <style name="ActionBar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:statusBarColor">@color/darkBlue</item>
+
         <item name="actionMenuTextColor">@color/lightGreen</item>
         <item name="android:navigationBarColor">@color/darkBlue</item>
         <item name="colorAccent">@color/lightGreen</item>
 
+        <item name="android:actionOverflowButtonStyle">@style/MyPpopup</item>
+
+        <!--<item name="android:popupMenuStyle">@style/MyPopupMenu</item>-->
     </style>
 
 
@@ -34,6 +36,10 @@
         <item name="android:letterSpacing">.1</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/lightGreen</item>
+    </style>
+
+    <style name="MyPpopup" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_black_24dp</item>
     </style>
 
     <style name="ActionBarSubTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">

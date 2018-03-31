@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/lightBlue"
+    android:backgroundTint="@color/lightBlue"
     android:orientation="vertical"
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
 
@@ -24,7 +24,7 @@
             android:text="To create your campaign, please provide the following information:"
             android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/firebase_set_campaign_creator"
@@ -34,12 +34,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="your name"
             android:inputType="textPersonName"
             android:padding="6dp"
-            android:textAlignment="center"
-            android:textColor="@color/darkBlue" />
+            android:textAlignment="textStart"
+            android:textColor="@color/darkBlue"
+            android:textColorHint="@color/darkBlue" />
 
         <EditText
             android:id="@+id/firebase_set_address"
@@ -49,11 +50,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="your address"
             android:inputType="text|textPostalAddress"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColorHint="@color/darkBlue" />
 
         <EditText
             android:id="@+id/firebase_set_imageurl"
@@ -63,12 +65,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
-            android:hint="upload image"
+            android:hint=" upload image"
             android:inputType="textUri"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColorHint="@color/darkBlue" />
 
 
         <EditText
@@ -79,10 +82,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="choose a title for your campaign"
+            android:textColorHint="@color/darkBlue"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
 
         <EditText
@@ -93,11 +97,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="briefly tell us your story"
+            android:textColorHint="@color/darkBlue"
             android:inputType="textMultiLine"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
 
         <EditText
@@ -108,11 +113,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="continue your story here"
+            android:textColorHint="@color/darkBlue"
             android:inputType="textMultiLine"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/firebase_set_category"
@@ -122,10 +128,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="category spinner?"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColorHint="@color/darkBlue" />
 
         <EditText
             android:id="@+id/firebase_set_goal"
@@ -135,11 +142,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="amount of money you'd like to raise"
             android:inputType="numberDecimal"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColorHint="@color/darkBlue" />
 
         <EditText
             android:id="@+id/firebase_set_website_url"
@@ -149,10 +157,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="campaign website URL"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColorHint="@color/darkBlue" />
 
         <EditText
             android:id="@+id/firebase_set_phone_num"
@@ -162,10 +171,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/create_campaign_boxes"
+            android:background="@drawable/border_for_cardview"
             android:hint="phone number?"
             android:padding="6dp"
-            android:textAlignment="center" />
+            android:textAlignment="textStart"
+            android:textColorHint="@color/darkBlue" />
+
 
         <Button
             android:id="@+id/firebase_store_data"
@@ -176,7 +187,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_button"
-            android:hint="Create My Campaign"
+            android:text="Create My Campaign"
             android:textColor="@color/darkBlue"
             android:textSize="20sp" />
 
