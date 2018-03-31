@@ -67,6 +67,7 @@ public class FirebaseDataHelper {
     }
 
 
+
     public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
 

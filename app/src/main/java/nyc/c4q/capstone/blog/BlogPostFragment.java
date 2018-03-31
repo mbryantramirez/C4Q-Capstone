@@ -91,7 +91,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         return rootView;
     }
 
-    private List<String> addFundedEventListner() {
+    private void addFundedEventListner() {
         firebaseDataHelper.getFundedCampaignsDatabaseReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,7 +110,6 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
             }
         });
-        return fundedCampaignTitles;
     }
 
     @Override
