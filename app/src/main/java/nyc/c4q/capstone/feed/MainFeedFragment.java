@@ -1,6 +1,9 @@
 package nyc.c4q.capstone.feed;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
@@ -8,10 +11,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -92,7 +97,18 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
         cardStackView.setCardEventListener(new CardStackView.CardEventListener() {
             @Override
             public void onCardDragging(float percentX, float percentY) {
-                Log.d(CARD_TAG, "onCardDragging:");
+                Log.d(CARD_TAG, "onCardDragging:" + percentX + " "+ percentY);
+//                Toast.makeText(rootView.getContext(), "like", Toast.LENGTH_LONG).show();
+                if (percentX>=.9 &&percentY>=.243) {
+                    Toast toast = new Toast(rootView.getContext());
+                    ImageView view = new ImageView(rootView.getContext());
+                    view.setImageResource(R.drawable.heart_icon);
+                    view.setMaxHeight(20);
+                    view.setMaxWidth(20);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.setView(view);
+                    toast.show();
+                }
             }
 
             @Override
@@ -104,15 +120,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
                     int pos = cardStackView.getTopIndex() - 1;
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
-                    ShineButton likeAnim= new ShineButton(context);
-                    ConstraintLayout linearLayout = (ConstraintLayout) rootView.findViewById(R.id.wrapper);
-                    likeAnim.setBtnColor(R.color.grayGreen);
-                    likeAnim.setShapeResource(R.raw.heart);
-                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(100,100);
-                    likeAnim.setLayoutParams(layoutParams);
-                    if (linearLayout != null) {
-                        linearLayout.addView(likeAnim);
-                    }
+
+
 
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
                     firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
@@ -177,12 +186,11 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
             }
         });
     }
+
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
-
-
 
 
 }
