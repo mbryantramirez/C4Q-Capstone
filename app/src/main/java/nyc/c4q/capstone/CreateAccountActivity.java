@@ -18,8 +18,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
-public class CreateAccountActivity extends AppCompatActivity {
+import java.util.Objects;
+
+import nyc.c4q.capstone.models.UserAccount;
+import nyc.c4q.capstone.utils.FirebaseDataHelper;
+
+public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
     private TextView firstName_tv, lastName_tv, password_tv, email_tv, number_tv;
@@ -28,6 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private ImageView profilePic;
     private FirebaseAuth auth;
     private FirebaseUser newUser;
+    private FirebaseDataHelper firebaseDataHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,52 +51,12 @@ public class CreateAccountActivity extends AppCompatActivity {
         email_et = findViewById(R.id.email_et);
         upload_bt = findViewById(R.id.uploadPic_button);
         submit_bt = findViewById(R.id.create_account_bt);
-//        profilePic = findViewById(R.id.icon_iv);
+        firebaseDataHelper = new FirebaseDataHelper();
+
 
         auth = FirebaseAuth.getInstance();
 
-        submit_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String email = email_et.getText().toString().trim();
-                String password = password_et.getText().toString().trim();
-                String confirmPassword = passwordConfirm_et.getText().toString().trim();
-
-                if(password.length() < 6){
-                    password_et.setError("password must contain at least 6 characters");
-                }
-
-                if(!password.equals(confirmPassword)){
-                    passwordConfirm_et.setError("passwords do not match");
-                }
-
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-
-                    auth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "new account created?: YES!" + auth.getUid());
-                                        newUser = auth.getCurrentUser();
-                                        updateUI(newUser);
-                                    } else {
-                                        Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
-                                        Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
-                                        updateUI(null);
-
-                                    }
-                                }
-                            });
-                }else if(TextUtils.isEmpty(email)){
-                    email_et.setError("required");
-                }else if(TextUtils.isEmpty(password)){
-                    password_et.setError("required");
-                }
-
-            }
-        });
+        submit_bt.setOnClickListener(this);
 
     }
 
@@ -104,5 +71,61 @@ public class CreateAccountActivity extends AppCompatActivity {
     public void setUpActionBar() {
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
         getSupportActionBar().setTitle("Create Account");
+    }
+
+    @Override
+    public void onClick(View view) {
+        createUser();
+    }
+
+    private void createUser() {
+        final String firstName = firstName_et.getText().toString().trim();
+        final String lastName = lastName_et.getText().toString().trim();
+        String address = address_et.getText().toString().trim();
+        String passwordConfirm = passwordConfirm_et.getText().toString().trim();
+        String email = email_et.getText().toString().trim();
+        String password = password_et.getText().toString().trim();
+        String confirmPassword = passwordConfirm_et.getText().toString().trim();
+
+
+        if (!password.equals(confirmPassword)) {
+            passwordConfirm_et.setError("password does not match");
+        }
+
+        if (TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(address) || TextUtils.isEmpty(passwordConfirm) || TextUtils.isEmpty(email)) {
+            firstName_et.setError("required");
+            lastName_et.setError("required");
+            address_et.setError("required");
+            password_et.setError("required");
+            email_et.setError("required");
+        } else {
+
+            final UserAccount userAccount = new UserAccount(firstName, lastName, address, email);
+
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "new account created?: YES!" + auth.getUid());
+
+                                firebaseDataHelper.getUsersDatabaseReference().child(Objects.requireNonNull(auth.getUid())).setValue(userAccount);
+
+                                newUser = auth.getCurrentUser();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(firstName + " " + lastName).build();
+
+                                newUser.updateProfile(profileUpdates);
+
+                                updateUI(newUser);
+
+                            } else {
+                                Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
+                                Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
+                        }
+                    });
+        }
     }
 }

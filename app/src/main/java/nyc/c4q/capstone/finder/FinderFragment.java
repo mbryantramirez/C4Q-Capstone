@@ -1,12 +1,7 @@
 package nyc.c4q.capstone.finder;
 
 
-import android.content.Context;
-import android.location.Address;
-import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,16 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
@@ -80,7 +70,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         mapView = rootView.findViewById(R.id.finder_map_view);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-        firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
+        firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
         return rootView;
     }
 
@@ -127,7 +117,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                 TextView tvTitle = rootView.findViewById(R.id.infowindow_marker_title);
                 TextView tvSummary = rootView.findViewById(R.id.infowindow_marker_summary);
                 tvTitle.setText(markerCampaign.getTitle());
-                tvSummary.setText(markerCampaign.getSummary());
+                tvSummary.setText(markerCampaign.getBody());
                 Picasso.get().load(markerCampaign.getImageUrl()).into(tvImage);
                 return rootView;
             }

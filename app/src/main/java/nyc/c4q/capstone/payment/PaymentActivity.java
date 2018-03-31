@@ -5,25 +5,41 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import nyc.c4q.capstone.R;
+import nyc.c4q.capstone.utils.FirebaseDataHelper;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
     private Button one, five, ten, twenty, submitButton;
     private CardView googlePay, androidPay, payPal;
     private String paymentType, amount;
+    private FirebaseDataHelper firebaseDataHelper;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private String campaignNameExtra;
+    private static final String PAYMENT_TAG = "PAY?";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
+        firebaseDataHelper = new FirebaseDataHelper();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
         setUpActionBar();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            campaignNameExtra = extras.getString("CampaignName");
+        }
 
         submitButton = findViewById(R.id.submit_payment);
         submitButton.setOnClickListener(this);
@@ -66,7 +82,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
             payPal.setBackgroundColor(Color.TRANSPARENT);
 
         }
-        view.setBackgroundColor(getResources().getColor(R.color.lightGreen));
 
         return false;
     }
@@ -96,6 +111,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
                 paymentType = "PayPal";
                 break;
             case R.id.submit_payment:
+                Log.d(PAYMENT_TAG, "onPaymentSubmit: " + currentUser.getDisplayName());
+              firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() +" "+ currentUser.getUid()).setValue(currentUser.getUid());
                 Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
         }
 
@@ -109,7 +126,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
     public void setUpActionBar() {
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
         getSupportActionBar().setTitle("payment");
-
     }
 
 }
