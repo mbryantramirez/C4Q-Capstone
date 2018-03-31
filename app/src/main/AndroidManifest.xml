@@ -35,8 +35,9 @@
             android:theme="@style/ActionBar" />
 
 
-        <activity android:name=".CreateAccountActivity"
-            android:theme="@style/ActionBar"/>
+        <activity
+            android:name=".CreateAccountActivity"
+            android:theme="@style/ActionBar" />
         <!--<activity-->
         <!--android:name=".SplashActivity"-->
         <!--android:theme="@style/SplashTheme" />-->
@@ -45,7 +46,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value=" AIzaSyCRm-51nGIAxV3q2fz5IuX20bWariS45FM " />
 
-        <activity android:name=".favorites.PreferenceActivity"></activity>
+        <activity android:name=".favorites.PreferenceActivity"
+             android:theme="@style/ActionBar" />
+
     </application>
 
 </manifest>

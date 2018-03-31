@@ -24,6 +24,7 @@ import nyc.c4q.capstone.favorites.PreferenceActivity;
 import nyc.c4q.capstone.feed.MainFeedFragment;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -176,4 +177,16 @@ public class MainActivity extends AppCompatActivity {
         return currentUser.getUid();
     }
 
-}
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        getWindow().getDecorView().setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+//                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+//                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+//                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
+//                        View.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
+//                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+

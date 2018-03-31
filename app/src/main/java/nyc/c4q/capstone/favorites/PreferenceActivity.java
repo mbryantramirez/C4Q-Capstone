@@ -2,7 +2,13 @@ package nyc.c4q.capstone.favorites;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MotionEvent;
+
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,6 +25,8 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
+
+        setActionBarTitle("my preferences");
 
         medical = findViewById(R.id.medButton);
         medical.setOnClickListener(this);
@@ -56,4 +64,21 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
        }
 
     }
+
+
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
+    }
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.options_menu, menu);
+            return true;
+    }
+
 }
