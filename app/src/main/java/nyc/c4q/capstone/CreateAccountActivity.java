@@ -56,8 +56,12 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String password = password_et.getText().toString().trim();
                 String confirmPassword = passwordConfirm_et.getText().toString().trim();
 
+                if(password.length() < 6){
+                    password_et.setError("password must contain at least 6 characters");
+                }
+
                 if(!password.equals(confirmPassword)){
-                    passwordConfirm_et.setError("password does not match");
+                    passwordConfirm_et.setError("passwords do not match");
                 }
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
