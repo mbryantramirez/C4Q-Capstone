@@ -79,6 +79,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
+                //  campaignModelList = firebaseDataHelper.getCampaignListByUid(dataSnapshot, );
                 campaignAdapter.setData(campaignModelList);
                 campaignAdapter.notifyDataSetChanged();
             }
@@ -130,6 +131,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString));
+        // campaignModelList = firebaseDataHelper.getCampaignListByUid(dataSnapshot, );
         campaignAdapter.setData(campaignModelList);
         campaignAdapter.notifyDataSetChanged();
     }

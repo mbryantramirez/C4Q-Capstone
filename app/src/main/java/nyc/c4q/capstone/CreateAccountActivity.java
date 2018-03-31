@@ -97,7 +97,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             address_et.setError("required");
             password_et.setError("required");
             email_et.setError("required");
-
         } else {
 
             final UserAccount userAccount = new UserAccount(firstName,lastName,address,email);
@@ -115,7 +114,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                                 Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
                                 Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
                                 updateUI(null);
-
                             }
                         }
                     });

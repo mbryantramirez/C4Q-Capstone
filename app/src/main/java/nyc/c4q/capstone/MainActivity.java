@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
+        Log.d(TAG, currentUser.getDisplayName()+"    "+currentUser.getUid());
         setContentView(R.layout.activity_main);
         setActionBarTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
