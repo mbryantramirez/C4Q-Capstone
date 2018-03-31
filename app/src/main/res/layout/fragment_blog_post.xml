@@ -1,56 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?android:windowBackground"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+
     tools:context="nyc.c4q.capstone.blog.BlogPostFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightBlue">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:id="@+id/blog_post_imageview"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                tools:text="Large User Image"
-                tools:textSize="80sp"
-                android:layout_below="@id/blog_post_title"/>
-
-            <TextView
-                android:id="@+id/blog_post_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                tools:text="TITLE" />
-
-
-            <TextView
-                android:id="@+id/blog_post_textview"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_below="@id/blog_post_imageview"
-                android:scrollbars="vertical"
-                android:text="This is the story of someone that needs help..."
-                android:textSize="18sp" />
-
-        </RelativeLayout>
-
-    </ScrollView>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        android:layout_height="160dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/lightBlue">
+
+        <ImageView
+            android:id="@+id/blog_post_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/blog_post_title"
+            tools:text="Large User Image"
+            tools:textSize="80sp" />
+
+        <TextView
+            android:id="@+id/blog_post_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:text="TITLE" />
+
+
+        <TextView
+            android:id="@+id/blog_post_textview"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@id/blog_post_imageview"
+
+            android:scrollbars="vertical"
+            android:text="This is the story of someone that needs help..."
+            android:textSize="18sp" />
 
 
         <TextView
@@ -64,7 +52,7 @@
             android:id="@+id/blog_post_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_above="@id/donate_button"
+            android:layout_below="@id/blog_post_textview"
             android:orientation="horizontal" />
 
 
@@ -72,18 +60,24 @@
             android:id="@+id/donate_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/blog_post_recyclerView"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true"
             android:background="@drawable/rounded_button"
+            android:contextClickable="true"
             android:text="Donate Now"
-            android:textSize="20sp"
-            android:contextClickable="true"/>
-
+            android:textSize="20sp" />
     </RelativeLayout>
 
-</RelativeLayout>
+
+</ScrollView>
+
+
+
+
+
+
 
 
 

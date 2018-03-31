@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
@@ -79,7 +80,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private void createUser() {
         final String firstName = firstName_et.getText().toString();
-        String lastName = lastName_et.getText().toString().trim();
+        final String lastName = lastName_et.getText().toString().trim();
         String address = address_et.getText().toString().trim();
         String passwordConfirm = passwordConfirm_et.getText().toString().trim();
         String email = email_et.getText().toString().trim();
@@ -99,7 +100,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             email_et.setError("required");
         } else {
 
-            final UserAccount userAccount = new UserAccount(firstName,lastName,address,email);
+            final UserAccount userAccount = new UserAccount(firstName, lastName, address, email);
 
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
@@ -107,9 +108,17 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "new account created?: YES!" + auth.getUid());
+
                                 firebaseDataHelper.getUsersDatabaseReference().child(Objects.requireNonNull(auth.getUid())).setValue(userAccount);
+
                                 newUser = auth.getCurrentUser();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(firstName + lastName).build();
+
+                                newUser.updateProfile(profileUpdates);
+
                                 updateUI(newUser);
+
                             } else {
                                 Log.d(TAG, "new account created?: NOOOOO, exception is:" + task.getException());
                                 Toast.makeText(CreateAccountActivity.this, "Unable to create your account", Toast.LENGTH_SHORT).show();
@@ -117,8 +126,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                             }
                         }
                     });
-
         }
     }
-
 }

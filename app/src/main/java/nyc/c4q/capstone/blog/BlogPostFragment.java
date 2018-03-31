@@ -96,6 +96,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(rootView.getContext(), PaymentActivity.class);
+                intent.putExtra("CampaignName", blogTitleString);
                 startActivity(intent);
             }
         });
