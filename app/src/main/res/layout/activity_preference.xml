@@ -156,6 +156,16 @@
             android:text="@string/tragedy" />
 
 
-    </LinearLayout>
 
+    </LinearLayout>
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_below="@+id/ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Preferences!" />
 </RelativeLayout>
+
+
+
+

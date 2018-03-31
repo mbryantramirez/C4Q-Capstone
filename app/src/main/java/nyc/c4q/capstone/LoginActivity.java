@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button registerButton;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
+    private ImageView icon;
 
 
     @Override
@@ -43,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setUpActionBar();
         setUpViews();
+        moveIconClockwise(icon);
 
         auth = FirebaseAuth.getInstance();
 
@@ -124,10 +129,15 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Login");
 
     }
+
+    public void moveIconClockwise(View view){
+        icon = findViewById(R.id.logo_imageView);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.clockwise);
+        icon.startAnimation(animation);
+
+    }
+
 }
-
-
-
 
 
 
