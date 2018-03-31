@@ -1,41 +1,29 @@
 package nyc.c4q.capstone.feed;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.TypedArrayUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.sackcentury.shinebuttonlib.ShineButton;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
 
@@ -43,8 +31,6 @@ import java.util.Collections;
 import java.util.List;
 
 import nyc.c4q.capstone.MainActivity;
-import nyc.c4q.capstone.blog.BlogPostFragment;
-import nyc.c4q.capstone.finder.LocationHelper;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.R;
 
@@ -66,7 +52,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Context context;
     private Location getLocationFromMenu;
-
+    private View rootView;
 
     public MainFeedFragment() {
         // Required empty public constructor
@@ -78,7 +64,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
         getActivity().setTitle("village");
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
+
+        rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
 
@@ -117,8 +104,19 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     Log.d(CARD_TAG, "topIndex: " + cardStackView.getTopIndex());
                     int pos = cardStackView.getTopIndex() - 1;
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
+                    ShineButton likeAnim= new ShineButton(context);
+                    ConstraintLayout linearLayout = (ConstraintLayout) rootView.findViewById(R.id.wrapper);
+                    likeAnim.setBtnColor(R.color.grayGreen);
+                    likeAnim.setShapeResource(R.raw.heart);
+                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(100,100);
+                    likeAnim.setLayoutParams(layoutParams);
+                    if (linearLayout != null) {
+                        linearLayout.addView(likeAnim);
+                    }
+
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
                     firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+
                 }
             }
 
@@ -174,20 +172,16 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     getLocationFromMenu = location;
                     Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
                     loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot, textFromPref), location);
+
                 }
             }
         });
     }
-
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
-    public void saveCampaign(View view){
-        DBReturnCampaignModel dbReturnCampaignModel= new DBReturnCampaignModel();
-        String textFromString= feedCardAdapter.toString();
-        firebaseDataHelper.getDatabaseReference().child("favorites").setValue(textFromString);
-    }
+
 
 
 

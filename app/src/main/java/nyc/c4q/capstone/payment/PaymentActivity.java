@@ -56,10 +56,10 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (view instanceof Button) {
-            one.setBackgroundColor(Color.LTGRAY);
-            five.setBackgroundColor(Color.LTGRAY);
-            ten.setBackgroundColor(Color.LTGRAY);
-            twenty.setBackgroundColor(Color.LTGRAY);
+            one.setBackgroundColor(Color.TRANSPARENT);
+            five.setBackgroundColor(Color.TRANSPARENT);
+            ten.setBackgroundColor(Color.TRANSPARENT);
+            twenty.setBackgroundColor(Color.TRANSPARENT);
         } else if (view instanceof CardView) {
             googlePay.setBackgroundColor(Color.TRANSPARENT);
             androidPay.setBackgroundColor(Color.TRANSPARENT);

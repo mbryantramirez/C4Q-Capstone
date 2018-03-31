@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="lime_green">#32CD32</color>
     <color name="lightBlue">#77AFC3</color>
+    <color name="opaqueLightBlue">#8077AFC3</color>
     <color name="darkBlue">#3A4C64</color>
     <color name="pink">#D0567B</color>
     <color name="grayGreen">#516E72</color>
