@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import nyc.c4q.capstone.R;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
@@ -28,9 +30,8 @@ public class BlogPostCampaignViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(DBReturnCampaignModel model) {
 
+        Picasso.get().load(model.getImageUrl()).into(recyclerViewImage);
 
-//        recyclerViewImage.setImageURI(Uri.parse(model.getImageUrl()));
-        recyclerViewImage.setImageResource(R.mipmap.ic_launcher);
 
     }
 }

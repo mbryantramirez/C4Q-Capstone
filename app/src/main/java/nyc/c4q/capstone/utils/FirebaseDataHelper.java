@@ -122,4 +122,19 @@ public class FirebaseDataHelper {
         return fundedCampaignNames;
     }
 
+    public List<DBReturnCampaignModel> getCampaignsFromFundedList(DataSnapshot dataSnapshot, List<String> fundedCampaignsList) {
+        List<DBReturnCampaignModel> contributedCampaignsList = new ArrayList<>();
+
+        for (String title : fundedCampaignsList) {
+            DBReturnCampaignModel campaign = getCampaign(dataSnapshot, title);
+            if (campaign != null) {
+                contributedCampaignsList.add(campaign);
+            } else {
+                Log.d(TAG, "Error Returned Null on " + title);
+            }
+        }
+
+        return contributedCampaignsList;
+    }
+
 }
