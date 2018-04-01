@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/opaqueLightBlue"
+        android:background="@color/opaqueLightBlue"
         app:cardCornerRadius="6dp"
         app:cardElevation="2dp"
         app:cardMaxElevation="5dp">
