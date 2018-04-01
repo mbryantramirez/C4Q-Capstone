@@ -128,13 +128,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.pref:
                 Intent intent = new Intent (this, PreferenceActivity.class);
                 startActivity(intent);
-//                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
-//                fragmentTransaction.addToBackStack("Campaigns");
-//                setActionBarTitle("preferences");
-//                fragmentTransaction.commit();
                 break;
             default:
                 Log.e(TAG, "nothing clicked");
