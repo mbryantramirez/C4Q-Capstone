@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:backgroundTint="@color/lightBlue"
     android:orientation="vertical"
+    android:padding="8dp"
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
 
     <!-- TODO: Update blank fragment layout -->
