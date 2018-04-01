@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
+//import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
 import nyc.c4q.capstone.favorites.PreferenceActivity;
 import nyc.c4q.capstone.feed.MainFeedFragment;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
@@ -45,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
         Log.d(TAG, "user name is: " + currentUser.getUid());
-        Log.d(TAG, currentUser.getDisplayName()+" "+currentUser.getUid());
         setContentView(R.layout.activity_main);
         setActionBarTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
@@ -74,14 +76,18 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 currentPosition = tab.getPosition();
                 viewPager.setCurrentItem(tab.getPosition());
-                switch(currentPosition){
-                    case 0: setActionBarTitle("my village");
-                    break;
-                    case 1: setActionBarTitle("location");
-                    break;
-                    case 2: setActionBarTitle("create a campaign");
-                    break;
-                    case 3: setActionBarTitle("favorites & funded");
+                switch (currentPosition) {
+                    case 0:
+                        setActionBarTitle("my village");
+                        break;
+                    case 1:
+                        setActionBarTitle("location");
+                        break;
+                    case 2:
+                        setActionBarTitle("create a campaign");
+                        break;
+                    case 3:
+                        setActionBarTitle("favorites & funded");
                 }
             }
 
@@ -105,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -126,15 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.pref:
-                Intent intent = new Intent (this, PreferenceActivity.class);
+                Intent intent = new Intent(this, PreferenceActivity.class);
                 startActivity(intent);
-//                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.main_fragment_container, fragment);
-//                fragmentTransaction.addToBackStack("Campaigns");
-//                setActionBarTitle("preferences");
-//                fragmentTransaction.commit();
                 break;
             default:
                 Log.e(TAG, "nothing clicked");
@@ -163,14 +161,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void setActionBarTitle(String title){
+    public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
     }
 
-    public void showSwipeInstructions(){
+    public void showSwipeInstructions() {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
-        alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
+        alertDialogFragment.show(getSupportFragmentManager(), "error_dialog");
     }
 
     public String getCurrentUserID() {
@@ -187,6 +185,6 @@ public class MainActivity extends AppCompatActivity {
 //                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
 //                        View.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
 //                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }
+}
 
 

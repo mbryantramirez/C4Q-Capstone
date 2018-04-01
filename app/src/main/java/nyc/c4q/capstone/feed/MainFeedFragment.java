@@ -103,8 +103,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     Toast toast = new Toast(rootView.getContext());
                     ImageView view = new ImageView(rootView.getContext());
                     view.setImageResource(R.drawable.heart_icon);
-                    view.setMaxHeight(15);
-                    view.setMaxWidth(15);
+                    view.setMaxHeight(5);
+                    view.setMaxWidth(5);
                     toast.setDuration(Toast.LENGTH_SHORT);
                     toast.setView(view);
                     toast.show();

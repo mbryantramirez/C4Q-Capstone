@@ -3,11 +3,7 @@ package nyc.c4q.capstone.controller;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 
-import nyc.c4q.capstone.blog.BlogPostFragment;
-import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
 import nyc.c4q.capstone.favorites.FavoritesFragment;
 import nyc.c4q.capstone.finder.FinderFragment;
 import nyc.c4q.capstone.campaign.CreateCampaignFragment;

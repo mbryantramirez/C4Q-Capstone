@@ -42,8 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Email Address"
+
+            android:layout_marginTop="10dp"
             android:textColorHint="@color/darkBlue"
+            android:background="@drawable/border_for_cardview"
             android:inputType="textWebEmailAddress"
+            android:padding="8dp"
+
             android:textColor="@color/darkBlue" />
 
 
@@ -52,8 +57,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
+
+            android:layout_marginTop="10dp"
             android:textColorHint="@color/darkBlue"
+            android:background="@drawable/border_for_cardview"
             android:inputType="textWebPassword"
+            android:padding="8dp"
+
             android:textColor="@color/darkBlue" />
 
 
@@ -81,9 +91,9 @@
             android:id="@+id/login_register_button"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/rounded_button"
-            android:layout_marginTop="10dp"
             android:paddingHorizontal="16dp"
             android:text="Click to register"
             android:textColor="@color/darkBlue"
