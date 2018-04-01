@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/lightBlue"
+    android:background="@color/opaqueLightBlue"
     android:orientation="vertical"
     android:padding="8dp"
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">

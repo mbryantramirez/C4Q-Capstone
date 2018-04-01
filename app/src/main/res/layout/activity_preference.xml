@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/lightBlue"
+    android:background="@color/opaqueLightBlue"
     tools:context="nyc.c4q.capstone.favorites.PreferenceActivity">
 
     <LinearLayout
@@ -45,6 +45,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/medical" />
 
@@ -55,6 +56,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/housing" />
 
@@ -65,6 +67,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
 
             android:text="@string/education" />
@@ -89,6 +92,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/business" />
 
@@ -99,6 +103,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/volunteer" />
 
@@ -108,6 +113,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/events" />
 
@@ -130,6 +136,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/community" />
 
@@ -140,6 +147,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/sports" />
 
@@ -150,6 +158,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
+            android:textColor="@color/darkBlue"
 
             android:text="@string/tragedy" />
 
@@ -163,7 +172,9 @@
         android:layout_below="@+id/ll3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Preferences!" />
+        android:text="Save Preferences"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/darkBlue"/>
 
 </RelativeLayout>
 
