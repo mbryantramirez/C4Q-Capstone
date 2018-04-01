@@ -103,7 +103,10 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     int pos = cardStackView.getTopIndex() - 1;
                     DBReturnCampaignModel dbReturnCampaignModel = feedCardAdapter.getItem(pos);
                     Log.d(CARD_TAG, "onCardSwippedRight: " + dbReturnCampaignModel.getTitle());
-                    firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                    String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+
+//                    firebaseDataHelper.getDatabaseReference().child("favorites").child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel);
+                    firebaseDataHelper.getFavoritesDatabaseReference().child(uid).child(dbReturnCampaignModel.getTitle()).setValue(dbReturnCampaignModel.getTitle());
                 }
             }
 
@@ -160,7 +163,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     }
 
     private void addPreferencesEventListener() {
-        firebaseDataHelper.getPreferenceDatabaseReference().addValueEventListener(new ValueEventListener() {
+        firebaseDataHelper.getPreferencesDatabaseReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 final String textFromPref = preferences.getString("Keyword", "");
