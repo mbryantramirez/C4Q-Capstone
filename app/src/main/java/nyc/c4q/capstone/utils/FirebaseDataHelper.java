@@ -30,18 +30,18 @@ public class FirebaseDataHelper {
     private static final String CAMPAIGN_PATH = "campaigns";
     private static final String USER_PATH = "users";
     private static final String FUNDED_PATH = "funded";
-    private static final String TAG = "Firebase?";
+    private static final String FAVORITE_PATH = "favorites";
+    private static final String PREFRENCE_PATH = "preferences";
+    private static final String TAG = "FirebaseHelper?";
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private Context context;
 
 
     private static class FirebaseHolder {
         private static final FirebaseDataHelper INSTANCE = new FirebaseDataHelper();
-        //this is a instance class
     }
 
     public static FirebaseDataHelper getInstance() {
-        // this is the instance method
         return FirebaseHolder.INSTANCE;
     }
 
@@ -70,35 +70,55 @@ public class FirebaseDataHelper {
         return getDatabaseReference().child(USER_PATH);
     }
 
-    public DatabaseReference getPreferenceDatabaseReference() {
-        return getDatabaseReference().child("preferences");
-        //In here the ide is getting data from the database with child preferences.
+    public DatabaseReference getPreferencesDatabaseReference() {
+        return getDatabaseReference().child(PREFRENCE_PATH);
+    }
+
+    public DatabaseReference getFavoritesDatabaseReference() {
+        return getDatabaseReference().child(FAVORITE_PATH);
     }
 
 
-    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
+    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
-
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
-            //this is assigning each child in the the datbase to a child.
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
-            Log.d(TAG, "onLoopCount: " + count);
+            DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
+            DBReturnCampaignModelList.add(dbReturnCampaignModel);
+        }
+        //what this method is doing is it takes a string as a parameter and then
+        return DBReturnCampaignModelList;
+    }
 
-            Log.d(TAG, "getCampaignsList: " + child.getKey());
-            if (child.child("category").getValue(String.class).contains(textFromPref)) {
-                //If any of the keys in the category contains the text in the string
-                //the parameters in the model will be assigned to the values of the keys in the database.
-                // it will add it to the listg
-                Log.d(TAG, "onChildrenLoop: " + child.child("category"));
-                DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-                Log.d(TAG, "getCampaignsList: " + dbReturnCampaignModel.getTitle());
-                DBReturnCampaignModelList.add(dbReturnCampaignModel);
-                //The updated model will be added to the list.
+    public List<String> getFavoritedCampaignsTitles(DataSnapshot dataSnapshot, String uid) {
+        List<String> favoritedCampaignNames = new ArrayList<>();
+        Log.d(TAG, "onDataSnapshot: " + uid);
+        int count = 0;
+        for (DataSnapshot child : dataSnapshot.getChildren()) {
+            Log.d(TAG, "onGetSnapShotChildren: "+ child);
+            if (child.getKey().equals(uid)) {
+                for (DataSnapshot values : child.getChildren()) {
+                    Log.d(TAG, "True");
+                    favoritedCampaignNames.add(values.getKey());
+                }
             }
         }
-        return DBReturnCampaignModelList;
+        Log.d(TAG,"onGetFavoriteTitles: "+ Arrays.toString(new List[]{favoritedCampaignNames}));
+        return favoritedCampaignNames;
+    }
+
+    public List<DBReturnCampaignModel> getFavoritedCampaigns(DataSnapshot dataSnapshot, List<String> favoriteCampaignTitles) {
+        List<DBReturnCampaignModel> favoritedCampaigns = new ArrayList<>();
+        for (String title : favoriteCampaignTitles) {
+            DBReturnCampaignModel campaign = getCampaign(dataSnapshot, title);
+            if (campaign != null) {
+                favoritedCampaigns.add(campaign);
+            } else {
+                Log.d(TAG, "Error Returned Null on Favorite Campaign" + title);
+            }
+        }
+        Log.d(TAG, Arrays.toString(new List[]{favoritedCampaigns}));
+        return favoritedCampaigns;
     }
 
     public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot, String blogTitleString) {
@@ -108,7 +128,6 @@ public class FirebaseDataHelper {
             Log.d(TAG, "datasnapshot:" + dataSnapshot.child(blogTitleString));
             return dataSnapshot.child(blogTitleString).getValue(DBReturnCampaignModel.class);
         }
-        //this method will return a child from the  database with a certain blog title.
 
         return null;
     }
@@ -116,16 +135,8 @@ public class FirebaseDataHelper {
     public List<String> getFundedCampaignsList(DataSnapshot dataSnapshot, String uid) {
         List<String> fundedCampaignNames = new ArrayList<>();
         Log.d(TAG, "onDataSnapshot: " + uid);
-        for (DataSnapshot child : dataSnapshot.getChildren()) {
-            Log.d(TAG, "onDataSnapshotParse: " + child.getKey());
-        }
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
-            Log.d(TAG, "onLoopCount: " + count);
-
-            Log.d(TAG, "getFundedCampaignsList: " + child.getKey());
             for (DataSnapshot values : child.getChildren()) {
                 if (values.getValue().equals(uid)) {
                     Log.d(TAG, "True");
@@ -135,6 +146,7 @@ public class FirebaseDataHelper {
         }
         return fundedCampaignNames;
     }
+
 
     public List<DBReturnCampaignModel> getCampaignsFromFundedList(DataSnapshot dataSnapshot, List<String> fundedCampaignsList) {
         List<DBReturnCampaignModel> contributedCampaignsList = new ArrayList<>();
@@ -178,4 +190,3 @@ public class FirebaseDataHelper {
     }
 
 }
-//The methods in the class gets used throughout the app, so that is why it is called the helper class.
