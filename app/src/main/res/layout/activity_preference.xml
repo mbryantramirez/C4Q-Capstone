@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBlue"
+    android:backgroundTint="@color/lightBlue"
     tools:context="nyc.c4q.capstone.favorites.PreferenceActivity">
 
     <LinearLayout
@@ -23,10 +22,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:text="Choose from the following categories to be shown campaigns that align with your interests:"
             android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
-            android:text="Choose from the following categories to be shown campaigns that align with your interests:"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -45,30 +44,31 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Medical" />
+
+            android:text="@string/medical" />
+
 
         <Button
             android:id="@+id/housing_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Housing" />
+
+            android:text="@string/housing" />
+
 
         <Button
             android:id="@+id/education_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Education" />
+
+
+            android:text="@string/education" />
+
 
 
     </LinearLayout>
@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll1"
-        android:background="@color/lightBlue"
+        android:backgroundTint="@color/lightBlue"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -88,30 +88,29 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Business" />
+
+            android:text="@string/business" />
+
 
         <Button
             android:id="@+id/volunteerButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Volunteer" />
+
+            android:text="@string/volunteer" />
 
         <Button
             android:id="@+id/eventsButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Events" />
+
+            android:text="@string/events" />
+
 
 
     </LinearLayout>
@@ -130,32 +129,42 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Community" />
+
+            android:text="@string/community" />
+
 
         <Button
             android:id="@+id/sports_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Sports" />
+
+            android:text="@string/sports" />
+
 
         <Button
             android:id="@+id/tragedy_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:textStyle="bold"
-
             android:background="@drawable/preference_round_button"
-            android:text="Tragedy" />
+
+            android:text="@string/tragedy" />
+
+
 
 
     </LinearLayout>
-
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_below="@+id/ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Preferences!" />
 </RelativeLayout>
+
+
+
+

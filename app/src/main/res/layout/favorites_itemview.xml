@@ -3,68 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border_for_cardview"
+
     android:layout_marginBottom="10dp"
     android:orientation="vertical">
 
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:backgroundTint="#8077AFC3"
-
+        android:backgroundTint="@color/opaqueLightBlue"
         app:cardCornerRadius="6dp"
         app:cardElevation="2dp"
-
         app:cardMaxElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageUrl"
             android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|center_vertical" />
+            android:layout_height="100dp"
+            android:layout_margin="2dp"
+            android:layout_gravity="left|center_horizontal" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_margin="5dp">
 
 
             <TextView
+
                 android:id="@+id/paigTitle"
-                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-
+                android:paddingTop="12dp"
                 android:textColor="@color/darkBlue"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <TextView
+                android:layout_below="@id/paigTitle"
                 android:id="@+id/paignGoal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/darkBlue"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
 
 
             <TextView
+                android:layout_below="@id/paignGoal"
                 android:id="@+id/paignCreator"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/darkBlue"
-                android:textSize="18sp" />
+                android:textSize="14sp"
+                android:paddingBottom="12dp"/>
 
-        </LinearLayout>
+
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

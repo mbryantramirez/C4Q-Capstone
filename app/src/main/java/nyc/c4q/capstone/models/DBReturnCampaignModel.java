@@ -15,6 +15,24 @@ public class DBReturnCampaignModel {
     private String body;
     private String address;
     private String category;
+    private String website;
+    private String phoneNumber;
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public DBReturnCampaignModel() {
     }
@@ -58,7 +76,6 @@ public class DBReturnCampaignModel {
     public void setGoal(String goal) {
         this.goal = goal;
     }
-
 
     public String getIntro() {
         return intro;

@@ -34,37 +34,26 @@
             android:text="village: a place to give and receive"
             android:textAlignment="center"
             android:textAppearance="@color/darkBlue"
-            android:textSize="20dp" />
+            android:textSize="26sp" />
 
-        <TextView
-            android:id="@+id/login_username_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Username:"
-            android:textColor="@color/darkBlue" />
 
         <EditText
             android:id="@+id/login_username_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Email Address"
+            android:textColorHint="@color/darkBlue"
             android:inputType="textWebEmailAddress"
             android:textColor="@color/darkBlue" />
 
-        <TextView
-            android:id="@+id/login_password_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Password:"
-            android:textColor="@color/darkBlue" />
 
         <EditText
             android:id="@+id/login_password_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
+            android:textColorHint="@color/darkBlue"
             android:inputType="textWebPassword"
-
             android:textColor="@color/darkBlue" />
 
 
@@ -73,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_button"
             android:paddingHorizontal="16dp"
             android:text="Submit"
@@ -85,11 +75,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="or" />
+
 
         <Button
             android:id="@+id/login_register_button"
@@ -97,6 +83,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:background="@drawable/rounded_button"
+            android:layout_marginTop="10dp"
             android:paddingHorizontal="16dp"
             android:text="Click to register"
             android:textColor="@color/darkBlue"

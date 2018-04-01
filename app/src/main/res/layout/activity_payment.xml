@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,29 +12,39 @@
 
     <TextView
         android:id="@+id/pay_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textAlignment="center"
+        android:layout_width="351dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="How Much Would You Like To Donate?"
+        android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
         tools:text="How Much Would You Like To Donate?" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        card_view:layout_constraintBottom_toTopOf="@+id/title_text_view"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/pay_text_view">
 
         <Button
             android:id="@+id/one_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
-            android:text="$1"
             android:background="@drawable/create_campaign_boxes"
+            android:text="$1"
             android:textStyle="bold" />
 
         <Button
@@ -42,24 +52,25 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
-            android:text="$5"
             android:background="@drawable/create_campaign_boxes"
-            android:textStyle="bold"/>
+            android:text="$5"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/ten_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
-            android:text="$10"
             android:background="@drawable/create_campaign_boxes"
+            android:text="$10"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/twenty_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:text="$20"
             android:background="@drawable/create_campaign_boxes"
+            android:text="$20"
             android:textStyle="bold" />
 
 
@@ -69,30 +80,39 @@
         android:id="@+id/title_text_view"
         android:layout_width="match_parent"
         android:layout_height="33dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="Payment"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        card_view:layout_constraintBottom_toTopOf="@+id/googlePay_cv"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
         tools:text="Payment" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/googlePay_cv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        card_view:cardCornerRadius="12dp"
-        android:padding="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
 
-        card_view:cardElevation="5dp">
+        android:layout_marginStart="8dp"
+        android:padding="10dp"
+        card_view:cardCornerRadius="12dp"
+        card_view:cardElevation="5dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/androidpay_cv"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:background="@drawable/create_campaign_boxes"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
 
             <LinearLayout
@@ -114,21 +134,24 @@
     <android.support.v7.widget.CardView
         android:id="@+id/androidpay_cv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:padding="10dp"
         card_view:cardCornerRadius="12dp"
-        card_view:cardElevation="5dp">
+        card_view:cardElevation="5dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/paypal_cv"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:background="@drawable/create_campaign_boxes"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
 
             <LinearLayout
@@ -150,21 +173,24 @@
     <android.support.v7.widget.CardView
         android:id="@+id/paypal_cv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:padding="10dp"
         card_view:cardCornerRadius="12dp"
-        card_view:cardElevation="5dp">
+        card_view:cardElevation="5dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:background="@drawable/create_campaign_boxes"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
 
             <LinearLayout
@@ -185,10 +211,16 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/submit_payment"
@@ -198,4 +230,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

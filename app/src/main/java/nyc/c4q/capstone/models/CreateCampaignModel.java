@@ -23,7 +23,7 @@ public class CreateCampaignModel {
 
     }
 
-    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String intro, String body, String address, String category, String website, String phoneNumber) {
+    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String intro, String body, String address, String category, /*String website,*/ String phoneNumber) {
         this.title = title;
         this.creatorName = creatorName;
         this.creatorID = creatorID;

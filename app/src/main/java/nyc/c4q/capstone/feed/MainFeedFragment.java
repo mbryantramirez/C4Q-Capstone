@@ -72,7 +72,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
         rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
-        firebaseDataHelper.getCampaignDatbaseRefrence().addValueEventListener(this);
+        firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
 
         cardStackView = rootView.findViewById(R.id.feed_card_stack_view);
 
@@ -103,8 +103,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     Toast toast = new Toast(rootView.getContext());
                     ImageView view = new ImageView(rootView.getContext());
                     view.setImageResource(R.drawable.heart_icon);
-                    view.setMaxHeight(20);
-                    view.setMaxWidth(20);
+                    view.setMaxHeight(15);
+                    view.setMaxWidth(15);
                     toast.setDuration(Toast.LENGTH_SHORT);
                     toast.setView(view);
                     toast.show();
@@ -167,7 +167,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     public void doSomething() {
         Toast.makeText(context, "Refreshed Feed", Toast.LENGTH_LONG).show();
-        firebaseDataHelper.getCampaignDatbaseRefrence().addListenerForSingleValueEvent(this);
+        firebaseDataHelper.getDatabaseReference().addListenerForSingleValueEvent(this);
     }
 
     @Override
