@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nyc.c4q.capstone.feed.MainFeedFragment"
-    android:background="@color/opaqueLightBlue">
+    tools:context="nyc.c4q.capstone.feed.MainFeedFragment">
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/feed_card_stack_view"
