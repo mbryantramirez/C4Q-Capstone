@@ -180,7 +180,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        setMapMarkers(firebaseDataHelper.getCampaignsList(dataSnapshot, ""));
+        setMapMarkers(firebaseDataHelper.getCampaignsList(dataSnapshot));
         getDeviceLocation();
     }
 

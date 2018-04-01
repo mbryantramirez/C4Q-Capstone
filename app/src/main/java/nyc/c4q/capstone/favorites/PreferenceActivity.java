@@ -151,7 +151,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.submit_button:
                 PreferencesModel model = new PreferencesModel(medical, housing, education, business, volunteer, events, community, sports, tragedy);
-                firebaseDataHelper.getPreferenceDatabaseReference().child(user.getUid()).setValue(model);
+                firebaseDataHelper.getPreferencesDatabaseReference().child(user.getUid()).setValue(model);
                 Intent intent = new Intent(PreferenceActivity.this, MainActivity.class);
                 startActivity(intent);
         }

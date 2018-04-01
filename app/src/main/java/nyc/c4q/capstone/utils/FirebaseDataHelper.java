@@ -30,7 +30,9 @@ public class FirebaseDataHelper {
     private static final String CAMPAIGN_PATH = "campaigns";
     private static final String USER_PATH = "users";
     private static final String FUNDED_PATH = "funded";
-    private static final String TAG = "Firebase?";
+    private static final String FAVORITE_PATH = "favorites";
+    private static final String PREFRENCE_PATH = "preferences";
+    private static final String TAG = "FirebaseHelper?";
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     private Context context;
 
@@ -67,31 +69,56 @@ public class FirebaseDataHelper {
     public DatabaseReference getUsersDatabaseReference() {
         return getDatabaseReference().child(USER_PATH);
     }
-    public DatabaseReference getPreferenceDatabaseReference() {
-        return getDatabaseReference().child("preferences");
+
+    public DatabaseReference getPreferencesDatabaseReference() {
+        return getDatabaseReference().child(PREFRENCE_PATH);
+    }
+
+    public DatabaseReference getFavoritesDatabaseReference() {
+        return getDatabaseReference().child(FAVORITE_PATH);
     }
 
 
-
-    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
+    public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
-
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
-            Log.d(TAG, "onLoopCount: " + count);
-
-            Log.d(TAG, "getCampaignsList: " + child.getKey());
-            if (child.child("category").getValue(String.class).contains(textFromPref)) {
-                Log.d(TAG, "onChildrenLoop: " + child.child("category"));
-                DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-                Log.d(TAG, "getCampaignsList: " + dbReturnCampaignModel.getTitle());
-                DBReturnCampaignModelList.add(dbReturnCampaignModel);
-            }
+            DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
+            DBReturnCampaignModelList.add(dbReturnCampaignModel);
         }
         //what this method is doing is it takes a string as a parameter and then
         return DBReturnCampaignModelList;
+    }
+
+    public List<String> getFavoritedCampaignsTitles(DataSnapshot dataSnapshot, String uid) {
+        List<String> favoritedCampaignNames = new ArrayList<>();
+        Log.d(TAG, "onDataSnapshot: " + uid);
+        int count = 0;
+        for (DataSnapshot child : dataSnapshot.getChildren()) {
+            Log.d(TAG, "onGetSnapShotChildren: "+ child);
+            if (child.getKey().equals(uid)) {
+                for (DataSnapshot values : child.getChildren()) {
+                    Log.d(TAG, "True");
+                    favoritedCampaignNames.add(values.getKey());
+                }
+            }
+        }
+        Log.d(TAG,"onGetFavoriteTitles: "+ Arrays.toString(new List[]{favoritedCampaignNames}));
+        return favoritedCampaignNames;
+    }
+
+    public List<DBReturnCampaignModel> getFavoritedCampaigns(DataSnapshot dataSnapshot, List<String> favoriteCampaignTitles) {
+        List<DBReturnCampaignModel> favoritedCampaigns = new ArrayList<>();
+        for (String title : favoriteCampaignTitles) {
+            DBReturnCampaignModel campaign = getCampaign(dataSnapshot, title);
+            if (campaign != null) {
+                favoritedCampaigns.add(campaign);
+            } else {
+                Log.d(TAG, "Error Returned Null on Favorite Campaign" + title);
+            }
+        }
+        Log.d(TAG, Arrays.toString(new List[]{favoritedCampaigns}));
+        return favoritedCampaigns;
     }
 
     public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot, String blogTitleString) {
@@ -108,16 +135,8 @@ public class FirebaseDataHelper {
     public List<String> getFundedCampaignsList(DataSnapshot dataSnapshot, String uid) {
         List<String> fundedCampaignNames = new ArrayList<>();
         Log.d(TAG, "onDataSnapshot: " + uid);
-        for (DataSnapshot child : dataSnapshot.getChildren()) {
-            Log.d(TAG, "onDataSnapshotParse: " + child.getKey());
-        }
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child + count);
-            Log.d(TAG, "onFireBaseDatahelperCall: " + child.getValue() + count);
-            Log.d(TAG, "onLoopCount: " + count);
-
-            Log.d(TAG, "getFundedCampaignsList: " + child.getKey());
             for (DataSnapshot values : child.getChildren()) {
                 if (values.getValue().equals(uid)) {
                     Log.d(TAG, "True");
@@ -127,6 +146,7 @@ public class FirebaseDataHelper {
         }
         return fundedCampaignNames;
     }
+
 
     public List<DBReturnCampaignModel> getCampaignsFromFundedList(DataSnapshot dataSnapshot, List<String> fundedCampaignsList) {
         List<DBReturnCampaignModel> contributedCampaignsList = new ArrayList<>();
@@ -142,18 +162,20 @@ public class FirebaseDataHelper {
 
         return contributedCampaignsList;
     }
+
     public List<String> getPreferenceString(DataSnapshot dataSnapshot, String uid) {
         List<String> preferenceList = new ArrayList<>();
 
-        for (DataSnapshot child: dataSnapshot.child(uid).getChildren()) {
-          String prefs = child.getValue(String.class);
+        for (DataSnapshot child : dataSnapshot.child(uid).getChildren()) {
+            String prefs = child.getValue(String.class);
 
-          preferenceList.add(prefs);
+            preferenceList.add(prefs);
 
         }
         Log.d(TAG, Arrays.toString(new List[]{preferenceList}));
         return preferenceList;
     }
+
     public List<DBReturnCampaignModel> getPreferencesModel(DataSnapshot dataSnapshot, List<String> preferenceList) {
         List<DBReturnCampaignModel> model = new ArrayList<>();
         for (String a : preferenceList) {

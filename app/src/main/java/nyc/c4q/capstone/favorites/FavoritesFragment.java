@@ -5,15 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +36,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     private RecyclerView recyclerView;
     private Button fundedButton;
     private Button favoritesButton;
-    private DataSnapshot currentSnapshot;
+    private DataSnapshot campaignsDatasnapshot;
     //In this fragment Muhaimen will put in the logic to display the list of campaigns
     //
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
@@ -64,21 +61,24 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
         favoritesButton = rootView.findViewById(R.id.favorites);
         fundedButton = rootView.findViewById(R.id.fundedButton);
-        firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
-        isFavorites = true;
+        firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
+        addFavoritesEventListner();
+
 
         fundedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseDataHelper.getDatabaseReference().child("funded").addValueEventListener(FavoritesFragment.this);
                 isFavorites = false;
+                addFundedEventListner();
+
             }
         });
+
         favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
                 isFavorites = true;
+                addFavoritesEventListner();
             }
         });
 
@@ -86,6 +86,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         // Inflate the layout for this fragment
         return rootView;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,18 +105,48 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        currentSnapshot = dataSnapshot;
-        //In here firebase takes a snapshot of the model and saves it, then puts the data wherever needed.
-        if (isFavorites) {
-            campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
-        } else {
-            String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
-            List<String> fundedCampaignList = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, uid);
-            campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(dataSnapshot, fundedCampaignList);
-        }
+        campaignsDatasnapshot = dataSnapshot;
 
-        listAdapter.setData(campaignModelList);
-        listAdapter.notifyDataSetChanged();
+    }
+
+    private void addFundedEventListner() {
+        firebaseDataHelper.getFundedCampaignsDatabaseReference().addValueEventListener(new ValueEventListener() {
+            String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<String> fundedCampaignList = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, uid);
+                campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(campaignsDatasnapshot, fundedCampaignList);
+                listAdapter.setData(campaignModelList);
+                listAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void addFavoritesEventListner() {
+        firebaseDataHelper.getFavoritesDatabaseReference().addValueEventListener(new ValueEventListener() {
+            String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                campaignModelList = firebaseDataHelper.getFavoritedCampaigns(campaignsDatasnapshot, firebaseDataHelper.getFavoritedCampaignsTitles(dataSnapshot, uid));
+                listAdapter.setData(campaignModelList);
+                listAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     @Override
@@ -123,10 +154,5 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     }
 
-//    public void onResume() {
-//        super.onResume();
-//        ((MainActivity) getActivity())
-//                .setActionBarTitle("favorites");
-//    }
 }
 
