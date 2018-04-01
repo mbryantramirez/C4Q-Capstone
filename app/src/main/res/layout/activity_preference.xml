@@ -165,6 +165,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll3"
                 android:text="Save Preferences"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_button"
                 android:textColor="@color/darkBlue" />
 
         </RelativeLayout>

@@ -1,5 +1,6 @@
 package nyc.c4q.capstone.campaign;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -31,10 +35,11 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignIntro;
     private EditText campaignBody;
     private EditText campaignAddress;
-    private EditText campaignCategory;
+    private Spinner campaignCategory;
     private EditText campaignWebsite;
     private EditText campaignPhoneNumber;
     private Button createCampaignButton;
+    Context context;
 
 
     public CreateCampaignFragment() {
@@ -54,10 +59,16 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignIntro = rootview.findViewById(R.id.firebase_set_intro);
         campaignBody = rootview.findViewById(R.id.firebase_set_campaign_body);
         campaignAddress = rootview.findViewById(R.id.firebase_set_address);
-        campaignCategory = rootview.findViewById(R.id.firebase_set_category);
+        campaignCategory = rootview.findViewById(R.id.firebase_set_category_spinner);
         campaignWebsite = rootview.findViewById(R.id.firebase_set_website_url);
         campaignPhoneNumber = rootview.findViewById(R.id.firebase_set_phone_num);
         createCampaignButton.setOnClickListener(this);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_spinner_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campaignCategory.setAdapter(adapter);
+//        campaignCategory.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
+
         return rootview;
     }
 
@@ -75,7 +86,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String intro = campaignIntro.getText().toString();
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
-        String category = campaignCategory.getText().toString();
+//        String category = campaignCategory.getText().toString();
         //  String website = campaignWebsite.getText().toString();
         String phoneNumber = campaignPhoneNumber.getText().toString();
 
@@ -101,4 +112,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
     }
 
+
 }
+
+
