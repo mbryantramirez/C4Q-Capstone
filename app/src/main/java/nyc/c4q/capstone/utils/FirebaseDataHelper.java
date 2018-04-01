@@ -14,9 +14,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
+import nyc.c4q.capstone.models.PreferencesModel;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -68,6 +70,7 @@ public class FirebaseDataHelper {
     public DatabaseReference getPreferenceDatabaseReference() {
         return getDatabaseReference().child("preferences");
     }
+
 
 
     public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot, String textFromPref) {
@@ -123,6 +126,45 @@ public class FirebaseDataHelper {
             }
         }
         return fundedCampaignNames;
+    }
+
+    public List<DBReturnCampaignModel> getCampaignsFromFundedList(DataSnapshot dataSnapshot, List<String> fundedCampaignsList) {
+        List<DBReturnCampaignModel> contributedCampaignsList = new ArrayList<>();
+
+        for (String title : fundedCampaignsList) {
+            DBReturnCampaignModel campaign = getCampaign(dataSnapshot, title);
+            if (campaign != null) {
+                contributedCampaignsList.add(campaign);
+            } else {
+                Log.d(TAG, "Error Returned Null on " + title);
+            }
+        }
+
+        return contributedCampaignsList;
+    }
+    public List<String> getPreferenceString(DataSnapshot dataSnapshot, String uid) {
+        List<String> preferenceList = new ArrayList<>();
+
+        for (DataSnapshot child: dataSnapshot.child(uid).getChildren()) {
+          String prefs = child.getValue(String.class);
+
+          preferenceList.add(prefs);
+
+        }
+        Log.d(TAG, Arrays.toString(new List[]{preferenceList}));
+        return preferenceList;
+    }
+    public List<DBReturnCampaignModel> getPreferencesModel(DataSnapshot dataSnapshot, List<String> preferenceList) {
+        List<DBReturnCampaignModel> model = new ArrayList<>();
+        for (String a : preferenceList) {
+            for (DataSnapshot child : dataSnapshot.getChildren())
+                if (child.child("category").getValue(String.class).contains(a)) {
+                    DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
+                    model.add(dbReturnCampaignModel);
+                }
+        }
+        Log.d(TAG, Arrays.toString(new List[]{model}));
+        return model;
     }
 
 }

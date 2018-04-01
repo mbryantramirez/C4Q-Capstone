@@ -20,7 +20,7 @@ import nyc.c4q.capstone.models.DBReturnCampaignModel;
 
 public class BlogPostCampaignAdapter extends RecyclerView.Adapter<BlogPostCampaignViewHolder> {
 
-    private List<DBReturnCampaignModel> modelList = new ArrayList<>();
+    private List<DBReturnCampaignModel> modelList;
 
     public BlogPostCampaignAdapter(List<DBReturnCampaignModel> modelList) {
         this.modelList = modelList;

@@ -1,10 +1,7 @@
 package nyc.c4q.capstone.blog;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -59,6 +56,7 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     private List<String> fundedCampaignTitles = new ArrayList<>();
     private BlogPostCampaignAdapter campaignAdapter;
     private String blogTitleString;
+    private DataSnapshot campaignsDataSnap;
 
     public BlogPostFragment() {
         // Required empty public constructor
@@ -80,8 +78,6 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
 
 
-
-
         blogPost.setMovementMethod(new ScrollingMovementMethod());
 
         donateButton.setOnClickListener(new OnClickListener() {
@@ -101,7 +97,9 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!TextUtils.isEmpty(Uid)) {
                     fundedCampaignTitles = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, Uid);
-                    Log.d(TAG,"onReturnedFundedList: "+ Arrays.toString(new List[]{fundedCampaignTitles}));
+                    Log.d(TAG, "onReturnedFundedList: " + Arrays.toString(new List[]{fundedCampaignTitles}));
+                    campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(campaignsDataSnap, fundedCampaignTitles);
+                    Log.d(TAG, "onReturnCampaignsList: " + Arrays.toString(new List[]{campaignModelList}));
                 }
                 campaignAdapter.setData(campaignModelList);
                 campaignAdapter.notifyDataSetChanged();
@@ -143,12 +141,12 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
+        campaignsDataSnap = dataSnapshot;
         Uid = firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString).getCreatorID();
- addFundedEventListner();
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString));
+        addFundedEventListner();
         campaignAdapter.setData(campaignModelList);
         campaignAdapter.notifyDataSetChanged();
-
     }
 
     @Override

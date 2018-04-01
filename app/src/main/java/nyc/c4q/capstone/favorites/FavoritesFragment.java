@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.R;
@@ -38,10 +39,12 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     private RecyclerView recyclerView;
     private Button fundedButton;
     private Button favoritesButton;
+    private DataSnapshot currentSnapshot;
     //In this fragment Muhaimen will put in the logic to display the list of campaigns
     //
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private FavoritesAdapter listAdapter;
+    private boolean isFavorites;
 
     private static final String TAG = "FIREBASEFAV";
 
@@ -62,22 +65,22 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         favoritesButton = rootView.findViewById(R.id.favorites);
         fundedButton = rootView.findViewById(R.id.fundedButton);
         firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
-
+        isFavorites = true;
 
         fundedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseDataHelper.getDatabaseReference().child("funded").addValueEventListener(FavoritesFragment.this);
-
+                isFavorites = false;
             }
         });
         favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseDataHelper.getDatabaseReference().child("favorites").addValueEventListener(FavoritesFragment.this);
+                isFavorites = true;
             }
         });
-
 
 
         // Inflate the layout for this fragment
@@ -101,11 +104,18 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
+        currentSnapshot = dataSnapshot;
         //In here firebase takes a snapshot of the model and saves it, then puts the data wherever needed.
-        campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
+        if (isFavorites) {
+            campaignModelList = firebaseDataHelper.getCampaignsList(dataSnapshot, "");
+        } else {
+            String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+            List<String> fundedCampaignList = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, uid);
+            campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(dataSnapshot, fundedCampaignList);
+        }
+
         listAdapter.setData(campaignModelList);
         listAdapter.notifyDataSetChanged();
-
     }
 
     @Override

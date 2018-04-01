@@ -50,6 +50,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Context context;
     private Location getLocationFromMenu;
+    private DataSnapshot prefSnapshot;
 
 
     public MainFeedFragment() {
@@ -149,30 +150,33 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(final DataSnapshot dataSnapshot) {
-        final String textFromPref = preferences.getString("Keyword", "");
-        Log.d(TAG, "onDataChange: " + textFromPref);
-        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    getLocationFromMenu = location;
-                    Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
-                    loadTextFromList(firebaseDataHelper.getCampaignsList(dataSnapshot, textFromPref), location);
-                }
-            }
-        });
+        prefSnapshot = dataSnapshot;
+        addPreferencesEventListener();
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
     }
-    private void addPreferencesEventListener(){
+
+    private void addPreferencesEventListener() {
         firebaseDataHelper.getPreferenceDatabaseReference().addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
-                firebaseDataHelper.getPreferenceDatabaseReference();
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                final String textFromPref = preferences.getString("Keyword", "");
+                Log.d(TAG, "onDataChange: " + textFromPref);
+                fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            getLocationFromMenu = location;
+                            Log.d(LOCATION_TAG, "onSuccess: " + "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
+                            String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+                            List<String> newList = firebaseDataHelper.getPreferenceString(dataSnapshot, uid);
+                            loadTextFromList(firebaseDataHelper.getPreferencesModel(prefSnapshot, newList), location);
+                        }
+                    }
+                });
             }
 
             @Override
@@ -181,7 +185,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
             }
         });
     }
-
 
 
 }
