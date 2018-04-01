@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
 import nyc.c4q.capstone.controller.FragmentAdapter;
-import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
+//import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
 import nyc.c4q.capstone.favorites.PreferenceActivity;
 import nyc.c4q.capstone.feed.MainFeedFragment;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
-        firebaseDataHelper.getCampaignDatbaseRefrence().keepSynced(true);
+        firebaseDataHelper.getCampaignDatbaseReference().keepSynced(true);
         tabLayoutSetup();
     }
 
