@@ -35,7 +35,8 @@
             android:id="@+id/item_campaign_card_image"
             android:layout_width="match_parent"
             android:layout_height="380dp"
-            android:background="@drawable/border_for_cardview"/>
+            android:layout_margin="8dp"
+            android:background="@drawable/border_for_cardview" />
 
 
     </android.support.constraint.ConstraintLayout>
