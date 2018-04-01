@@ -65,10 +65,10 @@ public class CampaignPreferencesFragment extends Fragment implements ValueEventL
 
         medButton= rootView.findViewById(R.id.medButton);
         housingButton=rootView.findViewById(R.id.housing_button);
-        clothingButton=rootView.findViewById(R.id.clothingButton);
+//        clothingButton=rootView.findViewById(R.id.clothingButton);
         educationButton=rootView.findViewById(R.id.education_button);
         businessButton=rootView.findViewById(R.id.business);
-        npButton=rootView.findViewById(R.id.npButton);
+//        npButton=rootView.findViewById(R.id.npButton);
         preferences=rootView.getContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
         editor=preferences.edit();
 

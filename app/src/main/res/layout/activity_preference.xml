@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/lightBlue"
+    android:background="@color/opaqueLightBlue"
     tools:context="nyc.c4q.capstone.favorites.PreferenceActivity">
 
     <LinearLayout
@@ -45,7 +45,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Medical"
             android:textStyle="bold" />
 
@@ -55,7 +54,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Housing"
             android:textStyle="bold" />
 
@@ -65,7 +63,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Education"
             android:textStyle="bold" />
 
@@ -88,7 +85,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Business"
             android:textStyle="bold" />
 
@@ -98,7 +94,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Volunteer"
             android:textStyle="bold" />
 
@@ -108,7 +103,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Events"
             android:textStyle="bold" />
 
@@ -130,7 +124,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Community"
             android:textStyle="bold" />
 
@@ -140,7 +133,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Sports"
             android:textStyle="bold" />
 
@@ -150,7 +142,6 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-
             android:text="Tragedy"
             android:textStyle="bold" />
 

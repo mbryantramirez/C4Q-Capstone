@@ -76,14 +76,18 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 currentPosition = tab.getPosition();
                 viewPager.setCurrentItem(tab.getPosition());
-                switch(currentPosition){
-                    case 0: setActionBarTitle("my village");
-                    break;
-                    case 1: setActionBarTitle("location");
-                    break;
-                    case 2: setActionBarTitle("create a campaign");
-                    break;
-                    case 3: setActionBarTitle("favorites & funded");
+                switch (currentPosition) {
+                    case 0:
+                        setActionBarTitle("my village");
+                        break;
+                    case 1:
+                        setActionBarTitle("location");
+                        break;
+                    case 2:
+                        setActionBarTitle("create a campaign");
+                        break;
+                    case 3:
+                        setActionBarTitle("favorites & funded");
                 }
             }
 
@@ -127,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.pref:
-                Intent intent = new Intent (this, PreferenceActivity.class);
+                Intent intent = new Intent(this, PreferenceActivity.class);
                 startActivity(intent);
 //                CampaignPreferencesFragment fragment = new CampaignPreferencesFragment();
 //                FragmentManager fragmentManager = getSupportFragmentManager();
@@ -164,14 +168,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void setActionBarTitle(String title){
+    public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.rounded_shape_dark_blue));
     }
 
-    public void showSwipeInstructions(){
+    public void showSwipeInstructions() {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
-        alertDialogFragment.show(getSupportFragmentManager(),"error_dialog");
+        alertDialogFragment.show(getSupportFragmentManager(), "error_dialog");
     }
 
     public String getCurrentUserID() {
@@ -188,6 +192,6 @@ public class MainActivity extends AppCompatActivity {
 //                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | // hide nav bar
 //                        View.SYSTEM_UI_FLAG_FULLSCREEN | // hide status bar
 //                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }
+}
 
 

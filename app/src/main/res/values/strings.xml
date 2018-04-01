@@ -11,5 +11,14 @@
     <string name="alert_dialog_ok">got it?</string>
     <string name="title_activity_campaign">CampaignActivity</string>
     <string name="title_activity_preference">PreferenceActivity</string>
+    <string name="community">Community</string>
+    <string name="events">Events</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="business">Business</string>
+    <string name="education">Education</string>
+    <string name="housing">Housing</string>
+    <string name="medical">Medical</string>
+    <string name="sports">Sports</string>
+    <string name="tragedy">Tragedy</string>
 
 </resources>

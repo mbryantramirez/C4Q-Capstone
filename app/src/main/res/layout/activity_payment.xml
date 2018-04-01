@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@color/lightBlue"
+    android:background="@color/opaqueLightBlue"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="nyc.c4q.capstone.payment.PaymentActivity">

@@ -66,16 +66,17 @@ public class FirebaseDataHelper {
             Log.d(TAG, "onLoopCount: " + count);
 
             Log.d(TAG, "getCampaignsList: " + dataSnapshot.getChildren());
-            if (child.child("category").getValue(String.class).contains(textFromPref)) {
+//            if (child.child("category").getValue(String.class).contains(textFromPref)) {
                 Log.d(TAG, "onChildrenLoop: " + child.child("category"));
                 DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
                 Log.d(TAG, "getCampaignsList: "+dbReturnCampaignModel.getTitle());
                 DBReturnCampaignModelList.add(dbReturnCampaignModel);
             }
 
-        }
+//        }
         //what this method is doing is it takes a string as a parameter and then
         return DBReturnCampaignModelList;
+
     }
 
     public DBReturnCampaignModel getCampaign(DataSnapshot dataSnapshot, String blogTitleString) {
