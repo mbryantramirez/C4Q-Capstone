@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_spinner_options">
+        <item>choose a category</item>
+        <item>medical</item>
+        <item>housing</item>
+        <item>education</item>
+        <item>business</item>
+        <item>volunteer</item>
+        <item>events</item>
+        <item>community</item>
+        <item>sports</item>
+        <item>tragedy</item>
+    </string-array>
+
+
+</resources>

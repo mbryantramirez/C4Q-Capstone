@@ -99,22 +99,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                 Log.d(CARD_TAG, "onCardDragging:");
                 Log.d(CARD_TAG, "onCardDragging:" + percentX + " " + percentY);
 //                Toast.makeText(rootView.getContext(), "like", Toast.LENGTH_LONG).show();
-                Toast toast = new Toast(rootView.getContext());
-                ImageView view = new ImageView(rootView.getContext());
-                Drawable dr = getResources().getDrawable(R.drawable.heart_icon);
-                Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
-                Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
-                view.setImageDrawable(d);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.setView(view);
 
-                if ((percentX>= 0.90270996 && percentX <=1.0) &&(percentY>=.77272 && percentY <= .7727302)) {
-                    Log.d(TAG,"onCardDragging: "+"toast");
-                    toast.show();
-                } else {
-                    toast.cancel();
-
-                }
             }
 
             @Override
