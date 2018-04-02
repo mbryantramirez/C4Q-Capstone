@@ -20,5 +20,6 @@
     <string name="medical">Medical</string>
     <string name="sports">Sports</string>
     <string name="tragedy">Tragedy</string>
+    <string name="campaign_cv_action">More</string>
 
 </resources>

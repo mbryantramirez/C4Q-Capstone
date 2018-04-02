@@ -81,12 +81,10 @@ public class FirebaseDataHelper {
 
     public List<DBReturnCampaignModel> getCampaignsList(DataSnapshot dataSnapshot) {
         List<DBReturnCampaignModel> DBReturnCampaignModelList = new ArrayList<>();
-        int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
             DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
             DBReturnCampaignModelList.add(dbReturnCampaignModel);
         }
-        //what this method is doing is it takes a string as a parameter and then
         return DBReturnCampaignModelList;
     }
 
@@ -95,7 +93,7 @@ public class FirebaseDataHelper {
         Log.d(TAG, "onDataSnapshot: " + uid);
         int count = 0;
         for (DataSnapshot child : dataSnapshot.getChildren()) {
-            Log.d(TAG, "onGetSnapShotChildren: "+ child);
+            Log.d(TAG, "onGetSnapShotChildren: " + child);
             if (child.getKey().equals(uid)) {
                 for (DataSnapshot values : child.getChildren()) {
                     Log.d(TAG, "True");
@@ -103,7 +101,7 @@ public class FirebaseDataHelper {
                 }
             }
         }
-        Log.d(TAG,"onGetFavoriteTitles: "+ Arrays.toString(new List[]{favoritedCampaignNames}));
+        Log.d(TAG, "onGetFavoriteTitles: " + Arrays.toString(new List[]{favoritedCampaignNames}));
         return favoritedCampaignNames;
     }
 
@@ -114,7 +112,7 @@ public class FirebaseDataHelper {
             if (campaign != null) {
                 favoritedCampaigns.add(campaign);
             } else {
-                Log.d(TAG, "Error Returned Null on Favorite Campaign" + title);
+                Log.d(TAG, "Error Returned null on Favorite Campaign" + title);
             }
         }
         Log.d(TAG, Arrays.toString(new List[]{favoritedCampaigns}));
