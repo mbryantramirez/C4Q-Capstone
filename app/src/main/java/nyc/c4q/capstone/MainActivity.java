@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setActionBarTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
         firebaseDataHelper.getCampaignDatbaseReference().keepSynced(true);
         tabLayoutSetup();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_spinner_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        campaignCategory.setAdapter(adapter);
+//        campaignCategory.setAdapter(adapter);
 //        campaignCategory.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
 
         return rootview;
@@ -87,7 +88,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
 //        String category = campaignCategory.getText().toString();
-        //  String website = campaignWebsite.getText().toString();
+          String website = campaignWebsite.getText().toString();
         String phoneNumber = campaignPhoneNumber.getText().toString();
 
 //        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
