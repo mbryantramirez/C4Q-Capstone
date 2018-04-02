@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setActionBarTitle("village");
         tabLayout = findViewById(R.id.main_tab_layout);
         firebaseDataHelper = new FirebaseDataHelper();
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebaseDataHelper.getDatabaseReference().keepSynced(true);
         firebaseDataHelper.getCampaignDatbaseReference().keepSynced(true);
         tabLayoutSetup();
