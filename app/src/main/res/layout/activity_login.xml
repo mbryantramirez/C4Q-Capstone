@@ -31,9 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:text="village: a place to give and receive"
+            android:text="village: bringing neighbors together"
             android:textAlignment="center"
-            android:textAppearance="@color/darkBlue"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="26sp" />
 
 
