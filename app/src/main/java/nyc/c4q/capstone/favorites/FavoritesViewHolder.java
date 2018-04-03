@@ -29,6 +29,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View
     private Button goToBlogPost;
 
     public FavoritesViewHolder(View itemView) {
+        //its called itemview because it is a view in the item of the recycler view
         super(itemView);
         title = itemView.findViewById(R.id.paigTitle);
         subheading = itemView.findViewById(R.id.paigSubheading);

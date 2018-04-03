@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:elevationEnabled="true"
+        app:leftOverlay="@layout/left_overlay"
+        app:rightOverlay="@layout/image_overlay"
         app:swipeEnabled="true" />
 
 </android.support.constraint.ConstraintLayout>
