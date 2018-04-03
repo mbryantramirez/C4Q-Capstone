@@ -2,6 +2,9 @@ package nyc.c4q.capstone.feed;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -51,6 +55,7 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
     private Context context;
     private Location getLocationFromMenu;
     private DataSnapshot prefSnapshot;
+    private View rootView;
 
 
     public MainFeedFragment() {
@@ -63,7 +68,8 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
 
         getActivity().setTitle("village");
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
+
+        rootView = inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
 
@@ -91,6 +97,9 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
             @Override
             public void onCardDragging(float percentX, float percentY) {
                 Log.d(CARD_TAG, "onCardDragging:");
+                Log.d(CARD_TAG, "onCardDragging:" + percentX + " " + percentY);
+//                Toast.makeText(rootView.getContext(), "like", Toast.LENGTH_LONG).show();
+
             }
 
             @Override

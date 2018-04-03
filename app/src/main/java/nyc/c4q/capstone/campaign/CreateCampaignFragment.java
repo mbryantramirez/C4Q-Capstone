@@ -64,10 +64,10 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         campaignWebsite = rootview.findViewById(R.id.firebase_set_website_url);
         campaignPhoneNumber = rootview.findViewById(R.id.firebase_set_phone_num);
         createCampaignButton.setOnClickListener(this);
-//
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_spinner_options, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        campaignCategory.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_spinner_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campaignCategory.setAdapter(adapter);
 //        campaignCategory.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
 
         return rootview;
