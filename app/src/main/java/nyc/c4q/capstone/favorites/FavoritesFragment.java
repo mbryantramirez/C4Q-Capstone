@@ -40,7 +40,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private FavoritesAdapter listAdapter;
-    private boolean isFavorites;
+    private boolean isFavorite;
 
     private static final String TAG = "FIREBASEFAV";
 
@@ -58,11 +58,12 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         fundedButton = rootView.findViewById(R.id.fundedButton);
         firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
         addFavoritesEventListner();
-
+        isFavorite = true;
 
         fundedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isFavorite = false;
                 addFundedEventListner();
             }
         });
@@ -70,6 +71,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isFavorite = true;
                 addFavoritesEventListner();
             }
         });
@@ -96,7 +98,6 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         campaignsDatasnapshot = dataSnapshot;
-
     }
 
     private void addFundedEventListner() {
@@ -107,7 +108,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> fundedCampaignList = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, uid);
                 campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(campaignsDatasnapshot, fundedCampaignList);
-                listAdapter.setData(campaignModelList);
+                listAdapter.setData(campaignModelList, isFavorite);
                 listAdapter.notifyDataSetChanged();
             }
 
@@ -125,7 +126,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 campaignModelList = firebaseDataHelper.getFavoritedCampaigns(campaignsDatasnapshot, firebaseDataHelper.getFavoritedCampaignsTitles(dataSnapshot, uid));
-                listAdapter.setData(campaignModelList);
+                listAdapter.setData(campaignModelList, isFavorite);
                 listAdapter.notifyDataSetChanged();
             }
 

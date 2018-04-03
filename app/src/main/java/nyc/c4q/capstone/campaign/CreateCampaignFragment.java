@@ -103,7 +103,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
 //        createCampaign();
-        createSampleCampaign();
+//        createSampleCampaign();
     }
 
     public void createSampleCampaign() {

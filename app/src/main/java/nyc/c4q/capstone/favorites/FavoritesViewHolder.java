@@ -27,6 +27,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View
     private TextView subheading;
     private ImageView imageURl;
     private Button goToBlogPost;
+    private Button removeFromFavorites;
 
     public FavoritesViewHolder(View itemView) {
         //its called itemview because it is a view in the item of the recycler view
@@ -35,23 +36,29 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View
         subheading = itemView.findViewById(R.id.paigSubheading);
         imageURl = itemView.findViewById(R.id.imageUrl);
         goToBlogPost = itemView.findViewById(R.id.favorites_nav_action_button);
+            removeFromFavorites = itemView.findViewById(R.id.favorites_clear_action_button);
+
         itemView.setOnClickListener(this);
     }
 
-    public void onBind(final DBReturnCampaignModel model, final FirebaseDataHelper firebaseDataHelper) {
-        Log.d(TAG, "onBind: viewholder");
+    public void onBind(final DBReturnCampaignModel model, final FirebaseDataHelper firebaseDataHelper, boolean isFavorite) {
+        Log.d(TAG, "onBind: vieFwholder");
         Picasso.get().load(model.getImageUrl()).into(imageURl);
         String titleText = model.getTitle() + ": ";
         title.setText(titleText);
         subheading.setText(model.getBody());
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                String uid = ((MainActivity) (Objects.requireNonNull(itemView.getContext()))).getCurrentUserID();
-                firebaseDataHelper.getFavoritesDatabaseReference().child(uid).child(model.getTitle()).removeValue();
-                return true;
-            }
-        });
+        if(isFavorite) {
+            removeFromFavorites.setVisibility(View.VISIBLE);
+            removeFromFavorites.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String uid = ((MainActivity) (Objects.requireNonNull(itemView.getContext()))).getCurrentUserID();
+                    firebaseDataHelper.getFavoritesDatabaseReference().child(uid).child(model.getTitle()).removeValue();
+                }
+            });
+        }else{
+            removeFromFavorites.setVisibility(View.INVISIBLE);
+        }
         goToBlogPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

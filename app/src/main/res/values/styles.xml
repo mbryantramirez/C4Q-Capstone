@@ -57,11 +57,11 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="alertDialog" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:background">@color/lightGreen</item>
+        <item name="android:background">@color/white</item>
         <item name="android:textColor">@color/darkBlue</item>
         <item name="android:textColorPrimary">@color/darkBlue</item>
         <item name="android:textColorSecondary">@color/darkBlue</item>
-
+        <item name="android:colorAccent">@color/darkBlue</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">

@@ -21,6 +21,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
     private List<DBReturnCampaignModel> modelList = new ArrayList<>();
     //In here Muhaimen will put the logic for the recyclerview for the list of campaigns.
     private FirebaseDataHelper firebaseDataHelper;
+    private boolean isFavorite;
 
     public FavoritesAdapter(List<DBReturnCampaignModel> campaignModelList, FirebaseDataHelper firebaseDataHelper) {
         this.modelList = modelList;
@@ -28,8 +29,9 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
     }
 
 
-    public void setData(List<DBReturnCampaignModel> data) {
+    public void setData(List<DBReturnCampaignModel> data, boolean isFavorite) {
         this.modelList = data;
+        this.isFavorite = isFavorite;
     }
 
 
@@ -42,7 +44,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
-        holder.onBind(modelList.get(position), firebaseDataHelper);
+        holder.onBind(modelList.get(position), firebaseDataHelper, isFavorite);
     }
 
     @Override
