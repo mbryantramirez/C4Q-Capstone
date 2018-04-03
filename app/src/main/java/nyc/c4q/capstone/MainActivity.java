@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 import nyc.c4q.capstone.alerts.AlertDialogFragment;
 import nyc.c4q.capstone.blog.BlogPostFragment;
@@ -26,9 +23,9 @@ import nyc.c4q.capstone.controller.FragmentAdapter;
 //import nyc.c4q.capstone.favorites.CampaignPreferencesFragment;
 import nyc.c4q.capstone.favorites.PreferenceActivity;
 import nyc.c4q.capstone.feed.MainFeedFragment;
+import nyc.c4q.capstone.menuCategories.AboutVillageActivity;
 import nyc.c4q.capstone.models.DBReturnCampaignModel;
 import nyc.c4q.capstone.utils.FirebaseDataHelper;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -119,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "me", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.options_menu_about:
-                Toast.makeText(this, "about", Toast.LENGTH_SHORT).show();
+                Intent aboutIntent = new Intent(this, AboutVillageActivity.class);
+                startActivity(aboutIntent);
                 break;
             case R.id.options_menu_logout:
                 signOut();
