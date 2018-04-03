@@ -67,7 +67,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_spinner_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        campaignCategory.setAdapter(adapter);
+        campaignCategory.setAdapter(adapter);
 //        campaignCategory.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
 
         return rootview;
