@@ -37,8 +37,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     private Button fundedButton;
     private Button favoritesButton;
     private DataSnapshot campaignsDatasnapshot;
-    //In this fragment Muhaimen will put in the logic to display the list of campaigns
-    //
+
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private FavoritesAdapter listAdapter;
     private boolean isFavorites;
@@ -49,13 +48,9 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-//        getActivity().setTitle("favorites");
-
 
         rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         recyclerView = rootView.findViewById(R.id.favorites_recyclerview);
@@ -68,22 +63,17 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
         fundedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isFavorites = false;
                 addFundedEventListner();
-
             }
         });
 
         favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isFavorites = true;
                 addFavoritesEventListner();
             }
         });
 
-
-        // Inflate the layout for this fragment
         return rootView;
     }
 
@@ -97,7 +87,7 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listAdapter = new FavoritesAdapter(campaignModelList);
+        listAdapter = new FavoritesAdapter(campaignModelList, firebaseDataHelper);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager1);
         recyclerView.setAdapter(listAdapter);
@@ -126,13 +116,12 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
             }
         });
-
-
     }
 
     private void addFavoritesEventListner() {
         firebaseDataHelper.getFavoritesDatabaseReference().addValueEventListener(new ValueEventListener() {
             String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 campaignModelList = firebaseDataHelper.getFavoritedCampaigns(campaignsDatasnapshot, firebaseDataHelper.getFavoritedCampaignsTitles(dataSnapshot, uid));
@@ -145,8 +134,6 @@ public class FavoritesFragment extends Fragment implements ValueEventListener {
 
             }
         });
-
-
     }
 
     @Override
