@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="category_spinner_options">
-        <item>choose a category</item>
+        <item>select a category</item>
         <item>medical</item>
         <item>housing</item>
         <item>education</item>

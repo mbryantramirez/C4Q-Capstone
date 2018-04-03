@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         setActionBarTitle("create a campaign");
                         break;
                     case 3:
-                        setActionBarTitle("favorites & funded");
+                        setActionBarTitle("favorites & contributions");
                 }
             }
 
