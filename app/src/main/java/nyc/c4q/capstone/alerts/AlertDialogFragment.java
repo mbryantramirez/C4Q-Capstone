@@ -20,7 +20,7 @@ public class AlertDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Context context = getActivity();
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.alertDialog)
                 .setTitle(context.getString(R.string.alert_dialog_greeting))
                 .setMessage(context.getString(R.string.swipe_instructions))
                 .setPositiveButton(context.getString(R.string.alert_dialog_ok), null);

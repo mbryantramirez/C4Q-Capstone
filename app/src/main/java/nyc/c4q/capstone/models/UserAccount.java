@@ -6,7 +6,7 @@ public class UserAccount {
     public String lastName;
     public String address;
     public String email;
-
+    public String userStory;
     public UserAccount(){
 
     }

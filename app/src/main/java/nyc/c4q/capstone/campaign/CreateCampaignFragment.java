@@ -52,18 +52,18 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_create_campaign, container, false);
-//        campaignTitle = rootview.findViewById(R.id.firebase_set_title);
-//        campaignGoal = rootview.findViewById(R.id.firebase_set_goal);
-//        campaignImageUrl = rootview.findViewById(R.id.firebase_set_imageurl);
-//        campaignCreator = rootview.findViewById(R.id.firebase_set_campaign_creator);
-//        createCampaignButton = rootview.findViewById(R.id.firebase_store_data);
-//        campaignIntro = rootview.findViewById(R.id.firebase_set_intro);
-//        campaignBody = rootview.findViewById(R.id.firebase_set_campaign_body);
-//        campaignAddress = rootview.findViewById(R.id.firebase_set_address);
-//        campaignCategory = rootview.findViewById(R.id.firebase_set_category_spinner);
-//        campaignWebsite = rootview.findViewById(R.id.firebase_set_website_url);
-//        campaignPhoneNumber = rootview.findViewById(R.id.firebase_set_phone_num);
-//        createCampaignButton.setOnClickListener(this);
+        campaignTitle = rootview.findViewById(R.id.firebase_set_title);
+        campaignGoal = rootview.findViewById(R.id.firebase_set_goal);
+        campaignImageUrl = rootview.findViewById(R.id.firebase_set_imageurl);
+        campaignCreator = rootview.findViewById(R.id.firebase_set_campaign_creator);
+        createCampaignButton = rootview.findViewById(R.id.firebase_store_data);
+        campaignIntro = rootview.findViewById(R.id.firebase_set_intro);
+        campaignBody = rootview.findViewById(R.id.firebase_set_campaign_body);
+        campaignAddress = rootview.findViewById(R.id.firebase_set_address);
+        campaignCategory = rootview.findViewById(R.id.firebase_set_category_spinner);
+        campaignWebsite = rootview.findViewById(R.id.firebase_set_website_url);
+        campaignPhoneNumber = rootview.findViewById(R.id.firebase_set_phone_num);
+        createCampaignButton.setOnClickListener(this);
 //
 //        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_spinner_options, android.R.layout.simple_spinner_item);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
