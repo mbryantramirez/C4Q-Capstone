@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_margin="8dp"
+            android:scaleType="centerCrop"
             android:layout_below="@id/blog_post_title"
             tools:text="Large User Image"
             tools:textSize="80sp" />
