@@ -61,8 +61,10 @@ public class LoginActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = username.getText().toString().trim();
-                final String userPassword = password.getText().toString().trim();
+//                final String email = username.getText().toString().trim();
+//                final String userPassword = password.getText().toString().trim();
+                String email = "example@aol.com";
+                String userPassword = "123456";
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(userPassword)) {
 
@@ -84,14 +86,12 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
 
-                }else if(TextUtils.isEmpty(email)){
+                } else if (TextUtils.isEmpty(email)) {
                     username.setError("required");
-                }else if(TextUtils.isEmpty(userPassword)){
+                } else if (TextUtils.isEmpty(userPassword)) {
                     password.setError("required");
                 }
             }
-
-
         });
     }
 
@@ -130,19 +130,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void moveIconClockwise(View view){
+    public void moveIconClockwise(View view) {
         icon = findViewById(R.id.logo_imageView);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.clockwise);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.clockwise);
         icon.startAnimation(animation);
 
     }
 
 }
-
-
-/*
-
- */
 
 
 

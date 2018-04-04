@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.SphericalUtil;
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,23 +104,50 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
         myGoogleMap.setMyLocationEnabled(true);
         getDeviceLocation();
         myGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+
             @Override
             public View getInfoWindow(Marker marker) {
-
 
                 return null;
             }
 
             @Override
             public View getInfoContents(Marker marker) {
+                View rootView = getLayoutInflater().inflate(R.layout.mapwindowlayout, null, true);
+
                 DBReturnCampaignModel markerCampaign = (DBReturnCampaignModel) marker.getTag();
-                View rootView = getLayoutInflater().inflate(R.layout.mapwindowlayout, null);
-                ImageView tvImage = rootView.findViewById(R.id.infowindow_marker_image);
-                TextView tvTitle = rootView.findViewById(R.id.infowindow_marker_title);
-                TextView tvSummary = rootView.findViewById(R.id.infowindow_marker_summary);
-                tvTitle.setText(markerCampaign.getTitle());
-                tvSummary.setText(markerCampaign.getBody());
-                Picasso.get().load(markerCampaign.getImageUrl()).into(tvImage);
+
+                ImageView mapInfoImage = rootView.findViewById(R.id.infowindow_marker_image);
+                TextView mapInfoTitle = rootView.findViewById(R.id.infowindow_marker_title);
+                TextView mapInfoAddress = rootView.findViewById(R.id.infowindow_marker_address);
+                TextView mapInfoCity = rootView.findViewById(R.id.infowindow_marker_city);
+                TextView mapInfoPhoneNumber = rootView.findViewById(R.id.infowindow_marker_phone_num);
+                String campaignCity = "";
+                String campaignAddress = markerCampaign.getAddress();
+                String campaignPhoneNumber = markerCampaign.getPhoneNumber();
+                String campaignTitle = markerCampaign.getTitle();
+                String campaignImageUrl = markerCampaign.getImageUrl();
+                Log.d(TAG, "onLoadInfoWindow: " + campaignAddress);
+                Log.d(TAG, "onLoadInfoWindow: " + campaignTitle);
+                Log.d(TAG, "onLoadInfoWindow: " + campaignPhoneNumber);
+                Log.d(TAG, "onLoadInfoWindow: " + campaignImageUrl);
+
+                String[] address = campaignAddress.split(",");
+                Log.d(TAG, "onLoadInfoWindow: " + Arrays.toString(address));
+
+                if (address.length != 0) {
+                    campaignCity = address[1] + address[2];
+                }
+                mapInfoTitle.setText(campaignTitle);
+                mapInfoAddress.setText(address[0]);
+                mapInfoCity.setText(campaignCity);
+                mapInfoPhoneNumber.setText(campaignPhoneNumber);
+                Picasso.get().load(campaignImageUrl).into(mapInfoImage);
+
+                if (!TextUtils.isEmpty(campaignAddress) && !TextUtils.isEmpty(campaignAddress) && !TextUtils.isEmpty(campaignAddress) && TextUtils.isEmpty(campaignImageUrl)) {
+
+                }
                 return rootView;
             }
         });

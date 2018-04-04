@@ -27,7 +27,7 @@ import nyc.c4q.capstone.models.DBReturnCampaignModel;
 public class FeedCardAdapter extends ArrayAdapter<DBReturnCampaignModel> {
 
 
-    public FeedCardAdapter(@NonNull Context context) {
+    FeedCardAdapter(@NonNull Context context) {
         super(context, 0);
     }
 

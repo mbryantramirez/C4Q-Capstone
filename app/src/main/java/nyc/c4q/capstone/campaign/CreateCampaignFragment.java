@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Objects;
+import java.util.Stack;
 
 import nyc.c4q.capstone.MainActivity;
 import nyc.c4q.capstone.models.CreateCampaignModel;
@@ -41,6 +42,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignPhoneNumber;
     private Button createCampaignButton;
     Context context;
+    private Stack<CreateCampaignModel> createSampleCampaignsStack = new Stack<>();
 
 
     public CreateCampaignFragment() {
@@ -69,8 +71,11 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campaignCategory.setAdapter(adapter);
 //        campaignCategory.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
-
+        initializeDemoSamples();
         return rootview;
+    }
+
+    private void initializeDemoSamples() {
     }
 
     @Override
@@ -88,7 +93,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
         String body = campaignBody.getText().toString();
         String address = campaignAddress.getText().toString();
 //        String category = campaignCategory.getText().toString();
-          String website = campaignWebsite.getText().toString();
+        String website = campaignWebsite.getText().toString();
         String phoneNumber = campaignPhoneNumber.getText().toString();
 
 //        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(goal) || TextUtils.isEmpty(url) || TextUtils.isEmpty(creator) || TextUtils.isEmpty(intro) || TextUtils.isEmpty(body) || TextUtils.isEmpty(address) || TextUtils.isEmpty(category) || TextUtils.isEmpty(uid)) {
@@ -103,7 +108,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
 //        createCampaign();
-//        createSampleCampaign();
+        createSampleCampaign();
     }
 
     public void createSampleCampaign() {
