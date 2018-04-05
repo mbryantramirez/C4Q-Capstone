@@ -41,6 +41,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     private EditText campaignWebsite;
     private EditText campaignPhoneNumber;
     private Button createCampaignButton;
+    private String uid;
     Context context;
     private Stack<CreateCampaignModel> createSampleCampaignsStack = new Stack<>();
 
@@ -54,6 +55,7 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_create_campaign, container, false);
+        uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
         campaignTitle = rootview.findViewById(R.id.firebase_set_title);
         campaignGoal = rootview.findViewById(R.id.firebase_set_goal);
         campaignImageUrl = rootview.findViewById(R.id.firebase_set_imageurl);
@@ -76,6 +78,12 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     }
 
     private void initializeDemoSamples() {
+        CreateCampaignModel campaign1 = new CreateCampaignModel("Daycare Help", "sample", uid, "https://static1.squarespace.com/static/53def449e4b031c95f37d516/541346c0e4b0f910e30f2835/5419fcc4e4b0e99e67e19b6d/1410989271679/P1170008.jpg", "500", "Child care is so expensive and I don’t have any family around to babysit", "My daughter turns 3 next week. I remember so clearly the day I found out I was pregnant. I was young, scared, and alone. It’s been tough for me, but I graduate from school in a year and I can start a career that will give us both a better life. Child care is so expensive and I don’t have any family around to babysit. Can you help me to cover the cost of daycare so that I can focus on my studies and give my baby girl the life she deserves? Thank you for helping us.", "544 47th Ave, Long Island City, NY 11101", "Education", "0", "(718) 729-9071");
+        CreateCampaignModel campaign2 = new CreateCampaignModel("We lost everything", "sample", uid, "https://media.nbcnewyork.com/images/1200*675/WNBC+11PM+AIRCHECK+M-Sun+-+23011029_WNBC_000000015818784+copy.jpg", "10000", "We stood on the curb and watched the scene of our home burning to the ground", "We lost everything that night. As we stood on the curb and watched the surreal scene of our home burning to the ground, I felt numb. The enormity of what was happening was just too overwhelming. But that numbness quickly turned to anger. Anger gave way to sorrow, and in time, my sorrow turned to gratitude. Yes, we lost everything, but we escaped with our lives. All the proceeds from this campaign will go to families that have experienced a tragedy — specifically, the loss of a child. Please help me in easing the suffering of others that have truly lost everything. Thank you.", "51-11 34th St, Long Island City, NY 11101 ", "Tragedy", "0", "(917) 484-3582");
+        CreateCampaignModel campaign3 = new CreateCampaignModel("World Youth Alliance", "sample", uid, "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29178459_1588198964568155_6796363408900882432_n.jpg?_nc_cat=0&oh=cb32b892f8431707c64b6013e13ff7a1&oe=5B2AF6C5", "300", "The World Youth Alliance works to understand and speak about the idea of the human person", "This is the East New York Worlds Youth Alliance. I came here every day after school when I was a child. My home life was rough and school life was even rougher. This center was a safe-haven for me. I could always count on a warm meal and a friendly face to help me with my problems. I can honestly say that I don’t know where I would be today if this place hadn’t existed. I am starting this campaign to give back to the place that helped me so much, so that they can continue to help the children of today. Thank you for your generosity.", "228 E 71st St, New York, NY 10021", "Community", "0", "(212) 585-0757");
+        createSampleCampaignsStack.add(campaign1);
+        createSampleCampaignsStack.add(campaign2);
+        createSampleCampaignsStack.add(campaign3);
     }
 
     @Override
@@ -112,9 +120,8 @@ public class CreateCampaignFragment extends Fragment implements View.OnClickList
     }
 
     public void createSampleCampaign() {
-        String uid = ((MainActivity) (Objects.requireNonNull(getActivity()))).getCurrentUserID();
-        CreateCampaignModel campaign = new CreateCampaignModel("Sample4", "sample", uid, "https://dog.ceo/api/img/wolfhound-irish/n02090721_2319.jpg", "sample", "sample", "sample", "4804 Locust St, Woodside, NY 11377", "sample", /* "sample",*/ "sample");
-        firebaseDataHelper.getCampaignDatbaseReference().child(campaign.title).setValue(campaign);
+        CreateCampaignModel model = createSampleCampaignsStack.pop();
+        firebaseDataHelper.getCampaignDatbaseReference().child(model.title).setValue(model);
         Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
     }
 

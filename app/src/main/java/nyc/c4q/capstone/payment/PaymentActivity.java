@@ -2,6 +2,7 @@ package nyc.c4q.capstone.payment;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -26,6 +27,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
     private FirebaseUser currentUser;
     private String campaignNameExtra;
     private static final String PAYMENT_TAG = "PAY?";
+    final PaymentBottomDialogFragment paymentBottomDialogFragment = PaymentBottomDialogFragment.newInstance("Payment");
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -112,8 +114,11 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
                 break;
             case R.id.submit_payment:
                 Log.d(PAYMENT_TAG, "onPaymentSubmit: " + currentUser.getDisplayName());
-              firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() +" "+ currentUser.getUid()).setValue(currentUser.getUid());
+                firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() + " " + currentUser.getUid()).setValue(currentUser.getUid());
                 Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
+//                NavUtils.navigateUpFromSameTask(this);
+                paymentBottomDialogFragment.show(getSupportFragmentManager(), paymentBottomDialogFragment.getTag());
+
         }
 
     }

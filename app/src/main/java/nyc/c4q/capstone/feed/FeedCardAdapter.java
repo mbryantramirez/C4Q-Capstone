@@ -48,8 +48,10 @@ public class FeedCardAdapter extends ArrayAdapter<DBReturnCampaignModel> {
 
         DBReturnCampaignModel dbReturnCampaignModel = getItem(position);
 
-        holder.title.setText(dbReturnCampaignModel.getTitle());
         Picasso.get().load(dbReturnCampaignModel.getImageUrl()).into(holder.imageUrl);
+        holder.title.setText(dbReturnCampaignModel.getTitle());
+        holder.previewText.setText(dbReturnCampaignModel.getBody());
+
         return convertView;
     }
 
@@ -57,10 +59,12 @@ public class FeedCardAdapter extends ArrayAdapter<DBReturnCampaignModel> {
     private static class ViewHolder {
         public TextView title;
         public ImageView imageUrl;
+        public TextView previewText;
 
         public ViewHolder(View view) {
             this.title = view.findViewById(R.id.item_campaign_card_title);
             this.imageUrl = view.findViewById(R.id.item_campaign_card_image);
+            this.previewText = view.findViewById(R.id.item_campaign_card_summary);
         }
 
     }

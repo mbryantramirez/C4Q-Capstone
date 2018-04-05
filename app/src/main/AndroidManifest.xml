@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/ActionBar"/>
+            android:theme="@style/ActionBar" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -29,6 +29,7 @@
         </activity>
         <activity
             android:name=".payment.PaymentActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/ActionBar" />
         <activity
             android:name=".MainActivity"
@@ -36,10 +37,6 @@
         <activity
             android:name=".CreateAccountActivity"
             android:theme="@style/ActionBar" />
-        <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:theme="@style/SplashTheme" /> -->
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value=" AIzaSyCRm-51nGIAxV3q2fz5IuX20bWariS45FM " />
@@ -50,7 +47,7 @@
         <activity
             android:name=".menuCategories.AboutVillageActivity"
             android:label="@string/title_activity_about_village"
-            android:theme="@style/ActionBar"/>
+            android:theme="@style/ActionBar" />
     </application>
 
 </manifest>
