@@ -17,13 +17,13 @@ public class CreateCampaignModel {
     public String category;
     public String website;
     public String phoneNumber;
-
+    public String progress;
 
     public CreateCampaignModel() {
 
     }
 
-    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String intro, String body, String address, String category, /*String website,*/ String phoneNumber) {
+    public CreateCampaignModel(String title, String creatorName, String creatorID, String imageUrl, String goal, String intro, String body, String address, String category, String progress, String phoneNumber) {
         this.title = title;
         this.creatorName = creatorName;
         this.creatorID = creatorID;
@@ -34,6 +34,7 @@ public class CreateCampaignModel {
         this.address = address;
         this.category = category;
         this.website = website;
+        this.progress = progress;
         this.phoneNumber = phoneNumber;
     }
 
