@@ -30,4 +30,5 @@
     of our village.</string>
     <string name="about_village_quote">\"When we give cheerfully and accept gratefully, everyone is blessed.\"  "\u2014" Maya Angelou</string>
     <string name="create_campaign_header_txt">To create your campaign, please provide the following information:</string>
+    <string name="payment_nav_action">return</string>
 </resources>

@@ -116,7 +116,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
                 Log.d(PAYMENT_TAG, "onPaymentSubmit: " + currentUser.getDisplayName());
                 firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() + " " + currentUser.getUid()).setValue(currentUser.getUid());
                 Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
-//                NavUtils.navigateUpFromSameTask(this);
                 paymentBottomDialogFragment.show(getSupportFragmentManager(), paymentBottomDialogFragment.getTag());
 
         }
