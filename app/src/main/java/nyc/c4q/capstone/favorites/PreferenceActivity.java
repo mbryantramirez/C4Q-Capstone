@@ -23,8 +23,8 @@ import static nyc.c4q.capstone.MainActivity.firebaseDataHelper;
 
 public class PreferenceActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "error";
-    private Button medical_btn, housing_btn, education_btn, business_btn, volunteer_btn, events_btn, community_btn, sports_btn, tragedy_btn, save_preferences;
-    private String medical, housing, education, business, volunteer, events, community, sports, tragedy;
+    private Button medical_btn, housing_btn, education_btn, children_btn, volunteer_btn, events_btn, community_btn, sports_btn, tragedy_btn, save_preferences;
+    private String medical, housing, education, children, volunteer, events, community, sports, tragedy;
     int color = 0;
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
@@ -46,8 +46,8 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
         housing_btn.setOnClickListener(this);
         education_btn = findViewById(R.id.education_button);
         education_btn.setOnClickListener(this);
-        business_btn = findViewById(R.id.business);
-        business_btn.setOnClickListener(this);
+        children_btn = findViewById(R.id.children);
+        children_btn.setOnClickListener(this);
         volunteer_btn = findViewById(R.id.volunteerButton);
         volunteer_btn.setOnClickListener(this);
         events_btn = findViewById(R.id.eventsButton);
@@ -109,9 +109,9 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.business:
                 if (color == 1) {
-                    business = "Business";
+                    children = "Children";
                 } else {
-                    business = "";
+                    children = "";
                 }
                 break;
             case R.id.volunteerButton:
@@ -150,7 +150,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.submit_button:
-                PreferencesModel model = new PreferencesModel(medical, housing, education, business, volunteer, events, community, sports, tragedy);
+                PreferencesModel model = new PreferencesModel(medical, housing, education, children, volunteer, events, community, sports, tragedy);
                 firebaseDataHelper.getPreferencesDatabaseReference().child(user.getUid()).setValue(model);
                 Intent intent = new Intent(PreferenceActivity.this, MainActivity.class);
                 startActivity(intent);

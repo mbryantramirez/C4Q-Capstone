@@ -91,13 +91,12 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/business"
+                    android:id="@+id/children"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/preference_round_button"
-
-                    android:text="@string/business" />
+                    android:text="Children" />
 
 
                 <Button
@@ -143,8 +142,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/preference_round_button"
-                    android:text="@string/sports"
-                    android:textColor="@color/darkBlue" />
+                    android:text="@string/sports" />
 
 
                 <Button
@@ -153,9 +151,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/preference_round_button"
-                    android:text="@string/tragedy"
-
-                    android:textColor="@color/darkBlue" />
+                    android:text="@string/tragedy" />
 
             </LinearLayout>
 
