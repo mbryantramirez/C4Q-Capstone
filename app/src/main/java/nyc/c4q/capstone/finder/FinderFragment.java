@@ -162,9 +162,11 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
                     lastKnownLocation = (Location) task.getResult();
-                    Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
-                    myGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()), 13));
-                    orderMarkers(lastKnownLocation);
+                    if (lastKnownLocation != null) {
+                        Log.d(TAG, "onComplete: " + lastKnownLocation.getLatitude() + " " + lastKnownLocation.getLongitude());
+                        myGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()), 13));
+                        orderMarkers(lastKnownLocation);
+                    }
                 }
             }
         });
