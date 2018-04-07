@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    android:background="@color/white"
+    android:background="#f9f9f9"
     tools:context="nyc.c4q.capstone.campaign.CreateCampaignFragment">
 
     <RelativeLayout
@@ -29,52 +28,60 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:orientation="vertical"
                 app:cardCornerRadius="2dp">
 
                 <LinearLayout
 
-                    android:layout_marginBottom="8dp"
-                    android:paddingBottom="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:background="@color/darkGreen"
+                        android:background="@color/opaqueLightBlue"
                         android:padding="12dp"
                         android:text="@string/create_campaign_header_txt"
                         android:textAlignment="center"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"
-                        android:textColor="@color/lightGreen"
+                        android:textColor="@color/darkBlue"
                         android:textSize="26sp" />
 
-                    <EditText
-                        android:id="@+id/firebase_set_campaign_creator"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_password"
+                        style="@style/textlabel"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/border_for_cardview"
-                        android:hint="your name"
-                        android:inputType="textPersonName"
-                        android:padding="6dp"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/darkBlue"
-                        android:textColorHint="@color/darkBlue" />
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/firebase_set_campaign_creator"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Name"
+                            android:inputType="textPersonName"
+                            android:textAlignment="textStart"
+                            app:met_maxCharacters="10"
+                            app:met_primaryColor="@color/darkBlue" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--android:background="@drawable/border_for_cardview"-->
+                    <!--android:padding="6dp"-->
+                    <!--android:textColorHint="@color/darkBlue"-->
+
 
                     <EditText
                         android:id="@+id/firebase_set_address"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/border_for_cardview"
                         android:hint="your address"
                         android:inputType="text|textPostalAddress"
@@ -86,8 +93,7 @@
                         android:id="@+id/firebase_set_imageurl"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/border_for_cardview"
                         android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
                         android:hint=" upload image"
@@ -101,8 +107,8 @@
                         android:id="@+id/firebase_set_title"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
+
                         android:background="@drawable/border_for_cardview"
                         android:hint="choose a title for your campaign"
                         android:padding="6dp"
@@ -114,8 +120,8 @@
                         android:id="@+id/firebase_set_intro"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
+
                         android:background="@drawable/border_for_cardview"
                         android:hint="briefly tell us your story"
                         android:inputType="textMultiLine"
@@ -128,8 +134,8 @@
                         android:id="@+id/firebase_set_campaign_body"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
+
                         android:background="@drawable/border_for_cardview"
                         android:hint="continue your story here"
                         android:inputType="textMultiLine"
@@ -141,7 +147,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/border_for_cardview"
                         android:paddingRight="6dp">
 
@@ -163,8 +169,8 @@
                         android:id="@+id/firebase_set_goal"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
+
                         android:background="@drawable/border_for_cardview"
                         android:hint="amount of money you'd like to raise"
                         android:inputType="numberDecimal"
@@ -176,8 +182,8 @@
                         android:id="@+id/firebase_set_website_url"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
+
                         android:background="@drawable/border_for_cardview"
                         android:hint="campaign website URL"
                         android:padding="6dp"
@@ -188,8 +194,8 @@
                         android:id="@+id/firebase_set_phone_num"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_margin="8dp"
+
                         android:background="@drawable/border_for_cardview"
                         android:hint="phone number?"
                         android:padding="6dp"
@@ -200,12 +206,11 @@
                         android:id="@+id/firebase_store_data"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/rounded_button"
                         android:text="Create My Campaign"
                         android:textColor="@color/darkBlue"
-                        android:textSize="20sp"
-                        />
+                        android:textSize="20sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </ScrollView>
