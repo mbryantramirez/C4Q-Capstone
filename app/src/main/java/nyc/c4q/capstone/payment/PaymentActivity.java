@@ -92,16 +92,16 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.one_button:
-                amount = "$1";
+                amount = "1";
                 break;
             case R.id.five_button:
-                amount = "$5";
+                amount = "5";
                 break;
             case R.id.ten_button:
-                amount = "$10";
+                amount = "10";
                 break;
             case R.id.twenty_button:
-                amount = "$20";
+                amount = "20";
                 break;
             case R.id.googlePay_cv:
                 paymentType = "Google Pay";
@@ -116,14 +116,14 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
                 Log.d(PAYMENT_TAG, "onPaymentSubmit: " + currentUser.getDisplayName());
                 firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() + " " + currentUser.getUid()).setValue(currentUser.getUid());
                 Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
+                firebaseDataHelper.getCampaignDatbaseReference().child(campaignNameExtra).child("progress").setValue(amount);
                 paymentBottomDialogFragment.show(getSupportFragmentManager(), paymentBottomDialogFragment.getTag());
-
         }
 
     }
 
     private String getPaymentToastString(String amount, String paymentType) {
-        return "Thank you for donating " + amount + " through " + paymentType +
+        return "Thank you for donating $" + amount + " through " + paymentType +
                 ". Your contribution is greatly appreciated!";
     }
 

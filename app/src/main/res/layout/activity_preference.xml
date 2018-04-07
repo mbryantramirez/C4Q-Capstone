@@ -143,8 +143,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/preference_round_button"
-                    android:text="@string/sports"
-                    android:textColor="@color/darkBlue" />
+                    android:text="@string/sports" />
 
 
                 <Button
@@ -153,21 +152,18 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/preference_round_button"
-                    android:text="@string/tragedy"
-
-                    android:textColor="@color/darkBlue" />
+                    android:text="@string/tragedy" />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/submit_button"
+                android:id="@+id/submit_button_pref_act"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_below="@+id/ll3"
-                android:text="Save Preferences"
                 android:layout_margin="8dp"
                 android:background="@drawable/rounded_button"
-                android:textColor="@color/darkBlue" />
+                android:text="Save Preferences" />
 
         </RelativeLayout>
 

@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
+import nyc.c4q.capstone.favorites.PreferenceActivity;
 import nyc.c4q.capstone.payment.PaymentActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Log.d(TAG, "sign in: success");
                                         currentUser = auth.getCurrentUser();
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        Intent intent = new Intent(LoginActivity.this, PreferenceActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
@@ -116,10 +117,9 @@ public class LoginActivity extends AppCompatActivity {
     //if user is logged in, go to MainActivity
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-            Toast.makeText(this, "welcome back!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Welcome back!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
-
         }
 
     }

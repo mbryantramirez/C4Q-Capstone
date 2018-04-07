@@ -54,7 +54,7 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-            android:text="@string/housing" />
+            android:text="Community" />
 
 
         <Button
@@ -79,12 +79,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/business"
+            android:id="@+id/childrenBtn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/preference_round_button"
-            android:text="@string/business" />
+            android:text="Children" />
 
 
         <Button

@@ -17,6 +17,15 @@ public class DBReturnCampaignModel {
     private String category;
     private String website;
     private String phoneNumber;
+    private String progress;
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
 
     public String getWebsite() {
         return website;
