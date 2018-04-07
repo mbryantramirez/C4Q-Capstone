@@ -49,12 +49,12 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     private TextView blogPost;
     private TextView storyTitle;
     private Button donateButton;
-    private RecyclerView recyclerView;
+//    private RecyclerView recyclerView;
     private String Uid;
 
     private List<DBReturnCampaignModel> campaignModelList = new ArrayList<>();
     private List<String> fundedCampaignTitles = new ArrayList<>();
-    private BlogPostCampaignAdapter campaignAdapter;
+//    private BlogPostCampaignAdapter campaignAdapter;
     private String blogTitleString;
     private DataSnapshot campaignsDataSnap;
 
@@ -72,13 +72,12 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         blogPost = rootView.findViewById(R.id.blog_post_textview);
         storyTitle = rootView.findViewById(R.id.blog_post_title);
         donateButton = rootView.findViewById(R.id.donate_button);
-        recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
+//        recyclerView = rootView.findViewById(R.id.blog_post_recyclerView);
         blogTitleString = getArguments().getString("Title");
         Log.d(BLOG_TAG, "onBundleReceived: " + blogTitleString);
         firebaseDataHelper.getCampaignDatbaseReference().addValueEventListener(this);
 
-
-        blogPost.setMovementMethod(new ScrollingMovementMethod());
+//        blogPost.setMovementMethod(new ScrollingMovementMethod());
 
         donateButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -91,26 +90,26 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         return rootView;
     }
 
-    private void addFundedEventListner() {
-        firebaseDataHelper.getFundedCampaignsDatabaseReference().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!TextUtils.isEmpty(Uid)) {
-                    fundedCampaignTitles = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, Uid);
-                    Log.d(TAG, "onReturnedFundedList: " + Arrays.toString(new List[]{fundedCampaignTitles}));
-                    campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(campaignsDataSnap, fundedCampaignTitles);
-                    Log.d(TAG, "onReturnCampaignsList: " + Arrays.toString(new List[]{campaignModelList}));
-                }
-                campaignAdapter.setData(campaignModelList);
-                campaignAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
+//    private void addFundedEventListner() {
+//        firebaseDataHelper.getFundedCampaignsDatabaseReference().addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if (!TextUtils.isEmpty(Uid)) {
+//                    fundedCampaignTitles = firebaseDataHelper.getFundedCampaignsList(dataSnapshot, Uid);
+//                    Log.d(TAG, "onReturnedFundedList: " + Arrays.toString(new List[]{fundedCampaignTitles}));
+//                    campaignModelList = firebaseDataHelper.getCampaignsFromFundedList(campaignsDataSnap, fundedCampaignTitles);
+//                    Log.d(TAG, "onReturnCampaignsList: " + Arrays.toString(new List[]{campaignModelList}));
+//                }
+////                campaignAdapter.setData(campaignModelList);
+////                campaignAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,10 +120,10 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        campaignAdapter = new BlogPostCampaignAdapter(campaignModelList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(campaignAdapter);
+//        campaignAdapter = new BlogPostCampaignAdapter(campaignModelList);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(campaignAdapter);
     }
 
 
@@ -144,9 +143,9 @@ public class BlogPostFragment extends Fragment implements ValueEventListener {
         campaignsDataSnap = dataSnapshot;
         Uid = firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString).getCreatorID();
         loadTextFromFirebase(firebaseDataHelper.getCampaign(dataSnapshot, blogTitleString));
-        addFundedEventListner();
-        campaignAdapter.setData(campaignModelList);
-        campaignAdapter.notifyDataSetChanged();
+//        addFundedEventListner();
+//        campaignAdapter.setData(campaignModelList);
+//        campaignAdapter.notifyDataSetChanged();
     }
 
     @Override
