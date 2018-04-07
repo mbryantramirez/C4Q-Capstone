@@ -8,6 +8,8 @@ import nyc.c4q.capstone.favorites.FavoritesFragment;
 import nyc.c4q.capstone.finder.FinderFragment;
 import nyc.c4q.capstone.campaign.CreateCampaignFragment;
 import nyc.c4q.capstone.feed.MainFeedFragment;
+import nyc.c4q.capstone.finder.MVPBuilderFragment;
+import nyc.c4q.capstone.finder.MVPFinderFragment;
 
 import static android.app.PendingIntent.getActivity;
 

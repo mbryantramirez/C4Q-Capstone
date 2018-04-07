@@ -6,7 +6,6 @@
     android:background="#f9f9f9"
     tools:context="nyc.c4q.capstone.blog.BlogPostFragment">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,9 +15,9 @@
             android:id="@+id/blog_post_imageview"
             android:layout_width="match_parent"
             android:layout_height="400dp"
+            android:layout_below="@id/blog_post_title"
             android:layout_margin="8dp"
             android:scaleType="centerCrop"
-            android:layout_below="@id/blog_post_title"
             tools:text="Large User Image"
             tools:textSize="80sp" />
 
@@ -26,40 +25,30 @@
             android:id="@+id/blog_post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="26sp"
             android:layout_margin="8dp"
-            android:textColor="@color/darkBlue"
+            android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="@color/darkBlue"
+            android:textSize="26sp"
             tools:text="TITLE" />
 
 
-        <TextView
-            android:id="@+id/blog_post_textview"
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/blog_nested_scroll"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_below="@id/blog_post_imageview"
-            android:scrollbars="vertical"
-            android:layout_margin="8dp"
-            android:text="This is the story of someone that needs help..."
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/blog_post_recyclerView"
-            android:layout_below="@id/blog_post_textview"
-            android:text="I have contributed to: "
-            android:textSize="15sp" />
+            android:layout_below="@id/blog_post_imageview"
+            android:layout_margin="8dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/blog_post_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"
-            android:layout_below="@id/blog_post_textview"
-            android:orientation="horizontal" />
+            <TextView
+                android:id="@+id/blog_post_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:text="This is the story of someone that needs help..."
+                android:textSize="18sp" />
+
+        </android.support.v4.widget.NestedScrollView>
 
 
         <Button
@@ -67,9 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@id/blog_post_recyclerView"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_below="@id/blog_nested_scroll"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_button"
             android:contextClickable="true"
             android:text="Donate Now"
