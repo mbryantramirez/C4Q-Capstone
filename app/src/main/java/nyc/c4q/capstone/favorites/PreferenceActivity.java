@@ -139,7 +139,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.business:
                 if (businessColor == 1) {
-                    business = "Business";
+                    children = "Business";
                 } else {
                     children = "";
                 }
