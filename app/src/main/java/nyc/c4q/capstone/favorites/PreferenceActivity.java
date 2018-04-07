@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
@@ -31,6 +32,15 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
     private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
     FirebaseAuth authorization;
     FirebaseUser user;
+    private int sprtBtnColor = 0;
+    private int tragdyBtnColor = 0;
+    private int commBtnColor = 0;
+    private int eventBtnColor = 0;
+    private int volunBtnColor = 0;
+    private int businessColor = 0;
+    private int edubtnColor = 0;
+    private int housingbtnColor = 0;
+    private int medBtnColor = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,69 +91,94 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
             view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
             saveString(color, view);
         }
-
     }
 
     private void saveString(int color, View view) {
+
         switch (view.getId()) {
             case R.id.medButton:
-                if (color == 1) {
+//                if(medBtnColor == 0){
+//
+//                }
+//                if (medBtnColor == 1) {
+//                    medical = "Medical";
+//                } else {
+//                    medical = "";
+//                }
+                if (medBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + medBtnColor);
+                    medBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     medical = "Medical";
                 } else {
+                    Log.d(TAG, "onClick: " + medBtnColor);
+                    medBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
                     medical = "";
                 }
                 break;
             case R.id.housing_button:
-                if (color == 1) {
+//                if (housingbtnColor == 1) {
+//                    housing = "Housing";
+//                } else {
+//                    housing = "";
+//                }
+                if (housingbtnColor == 0) {
+                    Log.d(TAG, "onClick: " + housingbtnColor);
+                    housingbtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     housing = "Housing";
                 } else {
+                    Log.d(TAG, "onClick: " + housingbtnColor);
+                    housingbtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
                     housing = "";
                 }
                 break;
             case R.id.education_button:
-                if (color == 1) {
+                if (edubtnColor == 1) {
                     education = "Education";
                 } else {
                     education = "";
                 }
                 break;
             case R.id.business:
-                if (color == 1) {
+                if (businessColor == 1) {
                     business = "Business";
                 } else {
                     business = "";
                 }
                 break;
             case R.id.volunteerButton:
-                if (color == 1) {
+                if (volunBtnColor == 1) {
                     volunteer = "Volunteer";
                 } else {
                     volunteer = "";
                 }
                 break;
             case R.id.eventsButton:
-                if (color == 1) {
+                if (eventBtnColor == 1) {
                     events = "Events";
                 } else {
                     events = "";
                 }
                 break;
             case R.id.commButton:
-                if (color == 1) {
+                if (commBtnColor == 1) {
                     community = "Community";
                 } else {
                     community = "";
                 }
                 break;
             case R.id.sports_button:
-                if (color == 1) {
+                if (sprtBtnColor == 1) {
                     sports = "Sports";
                 } else {
                     sports = "";
                 }
                 break;
             case R.id.tragedy_button:
-                if (color == 1) {
+                if (tragdyBtnColor == 1) {
                     tragedy = "Tragedy";
                 } else {
                     tragedy = "";
