@@ -209,7 +209,7 @@
                         android:layout_margin="8dp"
 
                         android:background="@drawable/border_for_cardview"
-                        android:hint="phone number?"
+                        android:hint="phone number"
                         android:padding="6dp"
                         android:textAlignment="textStart"
                         android:textColorHint="@color/darkBlue" />
