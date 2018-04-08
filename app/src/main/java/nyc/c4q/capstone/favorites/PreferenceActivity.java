@@ -41,6 +41,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
     private int edubtnColor = 0;
     private int housingbtnColor = 0;
     private int medBtnColor = 0;
+    private int childBtnColor = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
         housing_btn.setOnClickListener(this);
         education_btn = findViewById(R.id.education_button);
         education_btn.setOnClickListener(this);
-        children_btn = findViewById(R.id.children);
+        children_btn = findViewById(R.id.children_btn);
         children_btn.setOnClickListener(this);
         volunteer_btn = findViewById(R.id.volunteerButton);
         volunteer_btn.setOnClickListener(this);
@@ -68,7 +69,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
         sports_btn.setOnClickListener(this);
         tragedy_btn = findViewById(R.id.tragedy_button);
         tragedy_btn.setOnClickListener(this);
-        save_preferences = findViewById(R.id.submit_button);
+        save_preferences = findViewById(R.id.submit_button_pref_act);
         save_preferences.setOnClickListener(this);
 
         firebaseDataHelper = new FirebaseDataHelper();
@@ -82,29 +83,13 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        if (color == 0) {
-            color = 1;
-            view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
-            saveString(color, view);
-        } else {
-            color = 0;
-            view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
-            saveString(color, view);
-        }
+       saveString(view);
     }
 
-    private void saveString(int color, View view) {
+    private void saveString( View view) {
 
         switch (view.getId()) {
             case R.id.medButton:
-//                if(medBtnColor == 0){
-//
-//                }
-//                if (medBtnColor == 1) {
-//                    medical = "Medical";
-//                } else {
-//                    medical = "";
-//                }
                 if (medBtnColor == 0) {
                     Log.d(TAG, "onClick: " + medBtnColor);
                     medBtnColor = 1;
@@ -114,7 +99,7 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
                     Log.d(TAG, "onClick: " + medBtnColor);
                     medBtnColor = 0;
                     view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
-                    medical = "";
+                    medical = null;
                 }
                 break;
             case R.id.housing_button:
@@ -127,59 +112,101 @@ public class PreferenceActivity extends AppCompatActivity implements View.OnClic
                     Log.d(TAG, "onClick: " + housingbtnColor);
                     housingbtnColor = 0;
                     view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
-                    housing = "";
+                    housing = null;
                 }
                 break;
             case R.id.education_button:
-                if (edubtnColor == 1) {
+                if (edubtnColor == 0) {
+                    Log.d(TAG, "onClick: " + edubtnColor);
+                    edubtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     education = "Education";
                 } else {
-                    education = "";
+                    Log.d(TAG, "onClick: " + edubtnColor);
+                    edubtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    education = null;
                 }
                 break;
-            case R.id.business:
-                if (businessColor == 1) {
-                    children = "Business";
+            case R.id.children_btn:
+                if (childBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + children_btn);
+                    childBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
+                    children = "Children";
                 } else {
-                    children = "";
+                    Log.d(TAG, "onClick: " + children_btn);
+                    childBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    children = null;
                 }
                 break;
             case R.id.volunteerButton:
-                if (volunBtnColor == 1) {
+                if (volunBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + volunBtnColor);
+                    volunBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     volunteer = "Volunteer";
                 } else {
-                    volunteer = "";
+                    Log.d(TAG, "onClick: " + volunBtnColor);
+                    volunBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    volunteer = null;
                 }
                 break;
             case R.id.eventsButton:
-                if (eventBtnColor == 1) {
+                if (eventBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + eventBtnColor);
+                    eventBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     events = "Events";
                 } else {
-                    events = "";
+                    Log.d(TAG, "onClick: " + eventBtnColor);
+                    eventBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    events = null;
                 }
                 break;
             case R.id.commButton:
-                if (commBtnColor == 1) {
+                if (commBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + commBtnColor);
+                    commBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     community = "Community";
                 } else {
-                    community = "";
+                    Log.d(TAG, "onClick: " + commBtnColor);
+                    commBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    community = null;
                 }
                 break;
             case R.id.sports_button:
-                if (sprtBtnColor == 1) {
+                if (sprtBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + sprtBtnColor);
+                    sprtBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     sports = "Sports";
                 } else {
-                    sports = "";
+                    Log.d(TAG, "onClick: " + sprtBtnColor);
+                    sprtBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    sports = null;
                 }
                 break;
             case R.id.tragedy_button:
-                if (tragdyBtnColor == 1) {
+                if (tragdyBtnColor == 0) {
+                    Log.d(TAG, "onClick: " + tragdyBtnColor);
+                    tragdyBtnColor = 1;
+                    view.setBackground(getResources().getDrawable(R.drawable.second_preference_round_button));
                     tragedy = "Tragedy";
                 } else {
-                    tragedy = "";
+                    Log.d(TAG, "onClick: " + tragdyBtnColor);
+                    tragdyBtnColor = 0;
+                    view.setBackground(getResources().getDrawable(R.drawable.preference_round_button));
+                    tragedy = null;
                 }
                 break;
-            case R.id.submit_button:
+            case R.id.submit_button_pref_act:
                 PreferencesModel model = new PreferencesModel(medical, housing, education, children, volunteer, events, community, sports, tragedy);
                 firebaseDataHelper.getPreferencesDatabaseReference().child(user.getUid()).setValue(model);
                 Intent intent = new Intent(PreferenceActivity.this, MainActivity.class);

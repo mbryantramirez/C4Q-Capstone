@@ -56,6 +56,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         auth = FirebaseAuth.getInstance();
 
+        newUser = auth.getCurrentUser();
+
         submit_bt.setOnClickListener(this);
 
     }
@@ -107,9 +109,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Log.d(TAG, "new account created?: YES!" + auth.getUid());
 
-                                firebaseDataHelper.getUsersDatabaseReference().child(Objects.requireNonNull(auth.getUid())).setValue(userAccount);
+                                String uid = newUser.getUid();
+
+                                Log.d(TAG, "new account created?: YES!" + uid);
+
+                                firebaseDataHelper.getUsersDatabaseReference().child(uid).setValue(userAccount);
 
                                 newUser = auth.getCurrentUser();
 

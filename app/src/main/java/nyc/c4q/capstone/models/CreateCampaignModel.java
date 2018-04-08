@@ -15,7 +15,6 @@ public class CreateCampaignModel {
     public String body;
     public String address;
     public String category;
-    public String website;
     public String phoneNumber;
     public String progress;
 
@@ -33,7 +32,6 @@ public class CreateCampaignModel {
         this.body = body;
         this.address = address;
         this.category = category;
-        this.website = website;
         this.progress = progress;
         this.phoneNumber = phoneNumber;
     }
