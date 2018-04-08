@@ -136,7 +136,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                 String[] address = campaignAddress.split(",");
                 Log.d(TAG, "onLoadInfoWindow: " + Arrays.toString(address));
 
-                if (address.length != 0) {
+                if (address.length != 0 && address.length>2) {
                     campaignCity = address[1] + address[2];
                 }
                 mapInfoTitle.setText(campaignTitle);
@@ -185,7 +185,7 @@ public class FinderFragment extends Fragment implements OnMapReadyCallback, View
                 }
                 LatLng latLng = new LatLng(deviceLocation.getLatitude(), deviceLocation.getLongitude());
 
-                if (SphericalUtil.computeDistanceBetween(marker.getPosition(), latLng) <= 5000) {
+                if (SphericalUtil.computeDistanceBetween(marker.getPosition(), latLng) <= 10000) {
                     mapMarker.setVisible(true);
                 } else {
                     mapMarker.setVisible(false);

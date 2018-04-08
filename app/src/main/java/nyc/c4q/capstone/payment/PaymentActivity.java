@@ -115,11 +115,10 @@ public class PaymentActivity extends AppCompatActivity implements View.OnTouchLi
             case R.id.submit_payment:
                 Log.d(PAYMENT_TAG, "onPaymentSubmit: " + currentUser.getDisplayName());
                 firebaseDataHelper.getFundedCampaignsDatabaseReference().child(campaignNameExtra).child(currentUser.getDisplayName() + " " + currentUser.getUid()).setValue(currentUser.getUid());
-                Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, getPaymentToastString(amount, paymentType), Toast.LENGTH_SHORT).show();
                 firebaseDataHelper.getCampaignDatbaseReference().child(campaignNameExtra).child("progress").setValue(amount);
                 paymentBottomDialogFragment.show(getSupportFragmentManager(), paymentBottomDialogFragment.getTag());
         }
-
     }
 
     private String getPaymentToastString(String amount, String paymentType) {

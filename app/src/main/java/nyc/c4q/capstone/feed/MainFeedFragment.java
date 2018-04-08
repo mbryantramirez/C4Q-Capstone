@@ -190,7 +190,6 @@ public class MainFeedFragment extends Fragment implements ValueEventListener {
                     }
                 });
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
