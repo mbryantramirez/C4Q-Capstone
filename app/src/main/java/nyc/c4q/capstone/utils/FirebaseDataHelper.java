@@ -180,7 +180,9 @@ public class FirebaseDataHelper {
             for (DataSnapshot child : dataSnapshot.getChildren())
                 if (child.child("category").getValue(String.class).contains(a)) {
                     DBReturnCampaignModel dbReturnCampaignModel = child.getValue(DBReturnCampaignModel.class);
-                    model.add(dbReturnCampaignModel);
+                    if (!model.contains(dbReturnCampaignModel)) {
+                        model.add(dbReturnCampaignModel);
+                    }
                 }
         }
         Log.d(TAG, Arrays.toString(new List[]{model}));
