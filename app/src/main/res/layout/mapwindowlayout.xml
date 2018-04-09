@@ -24,11 +24,14 @@
 
         <TextView
             android:id="@+id/infowindow_marker_title"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:lines="1"
             android:textAlignment="textStart"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/infowindow_marker_image"
             app:layout_constraintTop_toTopOf="parent" />
